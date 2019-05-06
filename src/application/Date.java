@@ -3,11 +3,11 @@ package application;
 import java.time.LocalDate;
 
 public class Date {
-	public static int year;
-	public static int month;
-	public static int day;
-	public static int hour;
-	public static int minute;
+	public int year;
+	public int month;
+	public int day;
+	public int hour;
+	public int minute;
 
 	public Date() {
 		LocalDate localDate = LocalDate.now();
@@ -28,8 +28,24 @@ public class Date {
 		this.minute = minute;
 		
 	}
+	public void setDate(int year, int month, int day){
+		this.year = year;
+		this.month = month;
+		this.day = day;
+	}
+	public void setTime(int hour, int minute){
+		this.hour = hour;
+		this.minute = minute;
+	}
+	public void setDT(int year, int month, int day, int hour, int minute){
+		this.year = year;
+		this.month = month;
+		this.day = day;
+		this.hour = hour;
+		this.minute = minute;
+	}
 
-	public static void nextMonth() {
+	public void nextMonth() {
 		month++;
 		if(month > 12){
 			month-=12;
@@ -38,7 +54,7 @@ public class Date {
 		
 	}
 
-	public static void prevMonth() {
+	public void prevMonth() {
 		month--;
 		if(month <= 0){
 			month+=12;
