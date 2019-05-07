@@ -2,6 +2,10 @@ package application;
 
 public class Event extends Task{
 	private String location;
+	
+	public Event() {
+		date = new Date();
+		}
 
 	public Event(String name, String desc, String loc, int year, int month, int day, int hour, int minute){
 		this.name = name;
@@ -11,6 +15,10 @@ public class Event extends Task{
 	}
 	public void display() {
 			
+	}
+	
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	
 }
