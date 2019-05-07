@@ -4,6 +4,8 @@ public class Assignment extends Task{
 	private boolean priority;
 	private String subject;
 
+	
+	
 	public void display() {
 		
 	}
