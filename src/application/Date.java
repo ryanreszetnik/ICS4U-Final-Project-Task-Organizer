@@ -6,8 +6,8 @@ public class Date {
 	public int year;
 	public int month;
 	public int day;
-	public int hour;
-	public int minute;
+	public int hour = -1;
+	public int minute =- 1;
 
 	public Date() {
 		LocalDate localDate = LocalDate.now();
