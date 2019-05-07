@@ -1,8 +1,10 @@
 package application;
 
+import java.util.ArrayList;
+
 public class Calendar {
 
-	
+	public ArrayList<Task> tasks = new ArrayList<>();
 	
 	public static int weekDay(int day, int month, int year){
 		int century = year/100;
