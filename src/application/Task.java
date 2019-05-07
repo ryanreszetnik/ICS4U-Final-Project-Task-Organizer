@@ -5,6 +5,7 @@ public abstract class Task {
 	public static String description;
 	public Date date;
 	boolean hasTime = false;
+	
 	public abstract void display();
 	public void setTime(int hour, int min) {
 		date.setTime(hour, min);
