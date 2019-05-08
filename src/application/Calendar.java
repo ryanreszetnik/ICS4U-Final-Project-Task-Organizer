@@ -15,7 +15,6 @@ public class Calendar {
 		}
 		month-=2;//every month shifted back 2 months so march is considered month 1
 		int wd = (int) ((day+Math.floor(2.6*month-0.2)-2*century+yr+Math.floor(yr/4)+Math.floor(century/4))%7);
-		//4+floor(2.6*3-0.2)-2*20+19+floor(19/4)+floor(20/4)%7
 		if(wd < 0){
 			wd+=7;
 		}
