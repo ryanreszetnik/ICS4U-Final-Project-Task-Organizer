@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 
 
@@ -15,13 +16,22 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Pane root = new Pane();
-			Scene scene = new Scene(root,130*7,100*6+95);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			displayCalendar.setup(root);
+			Pane cal = new Pane();
+			Pane newTask = new Pane();
+			Pane list = new Pane();
+			StackPane calendarstack = new StackPane();
+			StackPane liststack = new StackPane();
+			calendarstack.getChildren().add(cal);
+			liststack.getChildren().add(list);
+			
+			Scene calendarview = new Scene(calendarstack,130*7,100*6+95);
+			Scene listview = new Scene(liststack,130*7,100*6+95);
+			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			listview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			displayCalendar.setup(cal);
 			
 			
-			primaryStage.setScene(scene);
+			primaryStage.setScene(calendarview);
 			primaryStage.show();
 			
 		} catch(Exception e) {
