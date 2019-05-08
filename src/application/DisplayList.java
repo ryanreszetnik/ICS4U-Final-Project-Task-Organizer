@@ -35,14 +35,16 @@ public class DisplayList {
 			list.get(i).setFont(fo);
 			list.get(i).setPrefSize(650, 100);
 			list.get(i).setTranslateY(60 + (100 * i));
+			list.get(i).setText(List.list.get(list.size()-1).name + "\n" + (List.list.get(list.size()-1).date.hour + ":" + (List.list.get(list.size()-1).date.minute)));
 			pane.getChildren().add(list.get(i));
 		}
+		buttonControl();
 	}
 
 	public static void buttonControl() {
-
 		addTask.setOnMouseClicked(event -> {
 			addButton();
+			System.out.print("added");
 		});
 
 	}
