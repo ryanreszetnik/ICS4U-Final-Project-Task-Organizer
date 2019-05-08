@@ -25,13 +25,13 @@ public class Main extends Application {
 			liststack.getChildren().add(list);
 			
 			Scene calendarview = new Scene(calendarstack,130*7,100*6+95);
-			Scene listview = new Scene(liststack,130*7,100*6+95);
+			Scene listview = new Scene(liststack,700,900);
 			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			listview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			displayCalendar.setup(cal);
+			DisplayList.setup(list);
 			
-			
-			primaryStage.setScene(calendarview);
+			primaryStage.setScene(listview);
 			primaryStage.show();
 			
 		} catch(Exception e) {
