@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -21,7 +22,7 @@ public class Main extends Application {
 			Pane list = new Pane();
 			StackPane calendarstack = new StackPane();
 			StackPane liststack = new StackPane();
-			calendarstack.getChildren().add(cal);
+			calendarstack.getChildren().add(newTask);
 			liststack.getChildren().add(list);
 			
 			Scene calendarview = new Scene(calendarstack,130*7,100*6+95);
@@ -29,8 +30,8 @@ public class Main extends Application {
 			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			listview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			displayCalendar.setup(cal);
-			
-			
+			displayTask.newTask = newTask;
+			displayTask.displayEvent();
 			primaryStage.setScene(calendarview);
 			primaryStage.show();
 			

@@ -11,6 +11,7 @@ public class DisplayList {
 		Button a = new Button(name + "\n" + hour + ":" + minute);
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		list.add(a);
+		
 	}
 	
 }
