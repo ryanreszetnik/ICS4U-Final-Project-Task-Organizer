@@ -1,11 +1,16 @@
-package application;
-
+package application; 
 import java.util.ArrayList;
+
+
 
 public class List {
 	public static ArrayList<Task> list = new ArrayList<>();
 
-	public void addTask(Task a) {
+	public static void addEventk(Task a) {
+		list.add(a);
+	}
+	
+	public static void addAssignment(Task a) {
 		list.add(a);
 	}
 

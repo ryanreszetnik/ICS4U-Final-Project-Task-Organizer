@@ -16,6 +16,7 @@ public class DisplayList {
 		Button a = new Button();
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		list.add(a);
+
 		a.setTranslateY(50 + (list.size() * 100));
 	}
 
@@ -43,8 +44,7 @@ public class DisplayList {
 
 	public static void buttonControl() {
 		addTask.setOnMouseClicked(event -> {
-			addButton();
-			System.out.print("added");
+			
 		});
 
 	}
