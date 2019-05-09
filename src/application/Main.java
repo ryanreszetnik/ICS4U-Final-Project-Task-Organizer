@@ -22,7 +22,9 @@ public class Main extends Application {
 			Pane list = new Pane();
 			StackPane calendarstack = new StackPane();
 			StackPane liststack = new StackPane();
-			calendarstack.getChildren().add(newTask);
+			calendarstack.getChildren().addAll(cal,newTask);
+			newTask.setTranslateX(160);
+			newTask.setTranslateY(150);
 			liststack.getChildren().add(list);
 			
 			Scene calendarview = new Scene(calendarstack,130*7,100*6+95);
@@ -34,6 +36,7 @@ public class Main extends Application {
 			displayTask.newTask = newTask;
 			displayTask.displayAssignment();
 			primaryStage.setScene(calendarview);
+			
 
 			DisplayList.setup(list);
 			
