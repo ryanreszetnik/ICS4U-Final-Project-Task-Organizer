@@ -23,6 +23,7 @@ public class displayCalendar {
 	public static Button next;
 	public static Button prev;
 	public ArrayList<Button> list = new ArrayList<>();
+	public static  Button toList;
 
 
 	public static Date currDate = new Date();
@@ -55,9 +56,12 @@ public class displayCalendar {
 		next.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		prev.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		
-		
-		
-		
+		toList = new Button("To List");
+		Font listFont = new Font(20);
+		toList.setFont(listFont);
+		toList.setTranslateX(800);
+		toList.setTranslateY(10);
+		toList.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 
 		Label[] dayTitles = new Label[7];
 		for (int i = 0; i < 7; i++) {
@@ -87,7 +91,7 @@ public class displayCalendar {
 		
 		
 		root.getChildren().addAll(MonthTitle, YearTitle);
-		root.getChildren().addAll(next,prev);
+		root.getChildren().addAll(next,prev, toList);
 		
 		setupDays(currDate.month, currDate.year);
 		buttonControl();

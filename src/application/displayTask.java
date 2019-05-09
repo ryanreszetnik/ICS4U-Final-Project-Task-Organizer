@@ -36,6 +36,7 @@ public class displayTask {
 		date = new DatePicker();
 		date.setTranslateY(220);
 		
+
 		System.out.println("event");
 		
 		done = new Button("Done");
@@ -44,6 +45,9 @@ public class displayTask {
 		done.setTranslateY(400);
 		newTask.getChildren().addAll(done,name,description,date,location);
 		buttonControls();
+
+		newTask.getChildren().addAll(name,description,date,location);
+
 	}
 	public static void displayAssignment(){
 		Rectangle background = new Rectangle(590,325);
