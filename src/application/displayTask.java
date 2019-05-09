@@ -22,15 +22,6 @@ public class displayTask {
 		description.setTranslateY(30);
 		DatePicker date = new DatePicker();
 		date.setTranslateY(220);
-		//ToggleGroup hl = new ToggleGroup();
-		//ToggleButton regular = new ToggleButton("Regular");
-		//ToggleButton high = new ToggleButton("High");
-		//regular.setToggleGroup(hl);
-		//high.setToggleGroup(hl);
-		//regular.setSelected(true);
-		//regular.setTranslateY(300);
-		//high.setTranslateY(300);
-		//high.setTranslateX(70);
 		
 		newTask.getChildren().addAll(name,description,date,location);
 	}
