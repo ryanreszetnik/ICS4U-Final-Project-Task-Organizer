@@ -23,16 +23,13 @@ public class Main extends Application {
 	static Scene calendarview = new Scene(calendarstack, 130 * 7, 100 * 6 + 95);
 	static Scene listview = new Scene(liststack, 700, 900);
 	public static boolean onListView = true;
+	public static boolean canCreate = true;
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 
-			// calendarstack.getChildren().addAll(cal,newTask);
-
-			calendarstack.getChildren().addAll(cal);// take out newTask if you
-													// want
-
+			calendarstack.getChildren().add(cal);
 			liststack.getChildren().add(list);
 			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			listview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -43,47 +40,56 @@ public class Main extends Application {
 			displayTask.displayEvent();
 			DisplayList.setup(list);
 			displayCalendar.setup(cal);
+
 			primaryStage.setScene(listview);
 			primaryStage.show();
-
+			// Add task List
 			DisplayList.addTask.setOnAction((e) -> {
+
 				int a = DisplayList.addTask.getSelectionModel().getSelectedIndex();
-				
+
 				DisplayList.addTask.setValue("Add New Task");
-				liststack.getChildren().remove(newAssignment);
-				liststack.getChildren().remove(newEvent);
+
 				if (a == 0) {
+					if (liststack.getChildren().contains(newEvent) == false
+							&& liststack.getChildren().contains(newAssignment) == false) {
+						liststack.getChildren().add(newEvent);
+					}
 
-					liststack.getChildren().add(newEvent);
-
-					// displayTask.displayEvent();
 				} else {
+					if (liststack.getChildren().contains(newEvent) == false
+							&& liststack.getChildren().contains(newAssignment) == false) {
+						liststack.getChildren().add(newAssignment);
+					}
 
-					liststack.getChildren().add(newAssignment);
-
-					// PUT DISPLAYASSIGNMENT CODE IN HERE
 				}
+
 			});
+			// Add task Calendar
 			displayCalendar.addTask.setOnAction((e) -> {
+
 				int a = displayCalendar.addTask.getSelectionModel().getSelectedIndex();
 
-				
 				displayCalendar.addTask.setValue("Add New Task");
-				calendarstack.getChildren().remove(newAssignment);
-				calendarstack.getChildren().remove(newEvent);
+
 				if (a == 0) {
 
-					calendarstack.getChildren().add(newEvent);
+					if (calendarstack.getChildren().contains(newAssignment) == false
+							&& calendarstack.getChildren().contains(newEvent) == false) {
+						calendarstack.getChildren().add(newEvent);
+					}
 
-					// displayTask.displayEvent();
 				} else {
 
-					calendarstack.getChildren().add(newAssignment);
+					if (calendarstack.getChildren().contains(newAssignment) == false
+							&& calendarstack.getChildren().contains(newEvent) == false) {
+						calendarstack.getChildren().add(newAssignment);
+					}
 
-					// PUT DISPLAYASSIGNMENT CODE IN HERE
 				}
-			});
 
+			});
+			// list--> calendar
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
 				newEvent.setTranslateX(160);
@@ -92,6 +98,7 @@ public class Main extends Application {
 				newAssignment.setTranslateY(150);
 				onListView = false;
 			});
+			// calendar--> list
 			displayCalendar.toList.setOnMouseClicked(event -> {
 				primaryStage.setScene(listview);
 				newEvent.setTranslateX(0);
@@ -100,31 +107,33 @@ public class Main extends Application {
 				newAssignment.setTranslateY(0);
 				onListView = true;
 			});
+			// cancel assignment
 			displayTask.cancelAssignment.setOnMouseClicked(event -> {
+
+				DisplayList.addTask.getSelectionModel().clearSelection();
+				displayCalendar.addTask.getSelectionModel().clearSelection();
 				if (onListView) {
-					DisplayList.addTask.getSelectionModel().clearSelection();
+
 					liststack.getChildren().remove(newAssignment);
-					liststack.getChildren().remove(newEvent);
 
 				} else {
 
-					displayCalendar.addTask.getSelectionModel().clearSelection();
-					calendarstack.getChildren().remove(newEvent);
 					calendarstack.getChildren().remove(newAssignment);
 				}
 
 			});
+			// cancel event
 			displayTask.cancelEvent.setOnMouseClicked(event -> {
+
+				DisplayList.addTask.getSelectionModel().clearSelection();
+				displayCalendar.addTask.getSelectionModel().clearSelection();
+
 				if (onListView) {
-					DisplayList.addTask.getSelectionModel().clearSelection();
 					liststack.getChildren().remove(newEvent);
-					liststack.getChildren().remove(newAssignment);
 
 				} else {
 
-					displayCalendar.addTask.getSelectionModel().clearSelection();
 					calendarstack.getChildren().remove(newEvent);
-					calendarstack.getChildren().remove(newAssignment);
 
 				}
 			});
