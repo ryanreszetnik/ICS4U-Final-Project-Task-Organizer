@@ -12,52 +12,84 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class displayTask {
-	public static Pane newTask;
+	public static Pane newEvent;
+	public static Pane newAssignment;
+	
 	public static TextField name;
 	public static TextArea description;
 	public static DatePicker date;
-	public static Button done;
-	public static Button cancel;
+	public static Button doneEvent;
+	public static Button doneAssignment;
+	public static Button cancelEvent;
+	public static Button cancelAssignment;
+	private static 	Label descriptionTitle;
+	
 	
 	public static boolean isEvent;
 	
-	
-	public static void displayEvent(){
-		isEvent = true;
-		name = new TextField(); 
-		TextField location = new TextField();
-		name.setPromptText("Name");
-		location.setPromptText("Location");
-		location.setTranslateX(200);
+	public static void setup(){
+		
+		
+		date = new DatePicker();
+		date.setTranslateY(300);
+		date.setTranslateX(25);
 		
 		description = new TextArea();
 		description.setPromptText("Description");
-		description.setTranslateY(30);
-		date = new DatePicker();
-		date.setTranslateY(220);
+		description.setTranslateY(75);
+		description.setTranslateX(25);
 		
-
-		System.out.println("event");
 		
-		done = new Button("Done");
-
-		done.setTranslateX(300);
-		done.setTranslateY(400);
-		newTask.getChildren().addAll(done,name,description,date,location);
-		buttonControls();
-
-		newTask.getChildren().addAll(name,description,date,location);
+		
+		name = new TextField(); 
+		name.setTranslateY(25);
+		name.setTranslateX(25);
+		
+		descriptionTitle = new Label("Description");
+		descriptionTitle.setTranslateX(265);
+		descriptionTitle.setTranslateY(55);
+		
+	}
+	
+	public static void displayEvent(){
+		Rectangle background = new Rectangle(590,350);
+		background.setFill(Color.DARKGREY);
+		isEvent = true;
+		
+		name.setPromptText("Event Name");
+		
+		TextField location = new TextField();
+		location.setPromptText("Location");
+		location.setTranslateX(200);
+		
+		doneEvent = new Button("Done");
+		doneEvent.setTranslateX(510);
+		doneEvent.setTranslateY(300);
+		
+		cancelEvent = new Button("Cancel");
+		cancelEvent.setTranslateX(440);
+		cancelEvent.setTranslateY(300);
+		
+		setup();
+		newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle);
 
 	}
 	public static void displayAssignment(){
-		Rectangle background = new Rectangle(590,325);
+		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = false;
-		name = new TextField(); 
-		TextField subject = new TextField();
+		setup();
+		
 		name.setPromptText("Assignment Name");
-		name.setTranslateY(25);
-		name.setTranslateX(25);
+		
+		doneAssignment = new Button("Done");
+		doneAssignment.setTranslateX(510);
+		doneAssignment.setTranslateY(300);
+		
+		cancelAssignment = new Button("Cancel");
+		cancelAssignment.setTranslateX(440);
+		cancelAssignment.setTranslateY(300);
+		TextField subject = new TextField();
 		subject.setPromptText("Subject");
 		subject.setTranslateX(225);
 		subject.setTranslateY(25);
@@ -74,23 +106,9 @@ public class displayTask {
 		priorityTitle.setTranslateX(485);
 		priorityTitle.setTranslateY(5);
 		
-		Label descriptionTitle = new Label("Description");
-		descriptionTitle.setTranslateX(265);
-		descriptionTitle.setTranslateY(55);
-		
 		Label dueDateTitle = new Label("Due Date");
 		dueDateTitle.setTranslateX(80);
-		dueDateTitle.setTranslateY(260);
-		
-		description = new TextArea();
-		description.setPromptText("Description");
-		description.setTranslateY(75);
-		description.setTranslateX(25);
-		
-		
-		date = new DatePicker();
-		date.setTranslateY(275);
-		date.setTranslateX(25);
+		dueDateTitle.setTranslateY(280);
 		
 		ToggleGroup hl = new ToggleGroup();
 		ToggleButton regular = new ToggleButton("Regular");
@@ -102,21 +120,12 @@ public class displayTask {
 		regular.setTranslateX(440);
 		high.setTranslateY(25);
 		high.setTranslateX(515);
-		done = new Button("Done");
-
-		done.setTranslateX(510);
-		done.setTranslateY(275);
-		cancel = new Button("Cancel");
-
-		cancel.setTranslateX(440);
-		cancel.setTranslateY(275);
-		newTask.getChildren().addAll(background,name,description,date,subject,done, high, regular,cancel, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
+		
+		newAssignment.getChildren().addAll(background,name,description,date,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
 		buttonControls();
 	}
 	public static void buttonControls(){
-		done.setOnMouseClicked(event -> {
-			
-		});
+		
 		
 	}
 	

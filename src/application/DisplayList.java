@@ -27,11 +27,12 @@ public class DisplayList {
 	}
 
 	public static void setup(Pane pane) {
+		pane.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #999999;");
 		addTask = new ComboBox<String>();
 		Font f1 = new Font(20);
 		calendarView.setFont(f1);
 		calendarView.setPrefHeight(60);
-		calendarView.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		calendarView.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		calendarView.setTranslateX(510);
 		Font fo = new Font(18);
 		assignment.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");

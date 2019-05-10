@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -24,13 +25,20 @@ public class displayCalendar {
 	public static Button prev;
 	public ArrayList<Button> list = new ArrayList<>();
 	public static  Button toList;
-
+	static ComboBox<String> addTask;
 
 	public static Date currDate = new Date();
 
 	public static void setup(Pane root) {
 		
 		root.setBackground(new Background(new BackgroundFill(Color.web("#777777"), CornerRadii.EMPTY, Insets.EMPTY)));
+		addTask = new ComboBox<String>();
+		addTask.getItems().add("Event");
+		addTask.getItems().add("Assignment");
+		addTask.setValue("Add New Task");
+		addTask.setTranslateX(650);
+		addTask.setTranslateY(10);
+		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		days = new Button[42];
 		double buttonsizex = 130;
 		double buttonsizey = 100;
@@ -90,7 +98,7 @@ public class displayCalendar {
 		
 		
 		
-		root.getChildren().addAll(MonthTitle, YearTitle);
+		root.getChildren().addAll(MonthTitle, YearTitle, addTask);
 		root.getChildren().addAll(next,prev, toList);
 		
 		setupDays(currDate.month, currDate.year);
