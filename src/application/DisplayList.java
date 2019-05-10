@@ -27,6 +27,7 @@ public class DisplayList {
 	}
 
 	public static void setup(Pane pane) {
+		pane.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #999999;");
 		addTask = new ComboBox<String>();
 		Font f1 = new Font(20);
 		calendarView.setFont(f1);

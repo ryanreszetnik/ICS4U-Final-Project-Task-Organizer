@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 
@@ -44,10 +45,7 @@ public class Main extends Application {
 			listview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 
-			displayTask.newTask = newTask;
-			displayTask.displayAssignment();
-			primaryStage.setScene(calendarview);
-			
+			displayTask.newTask = newTask;			
 
 			DisplayList.setup(list);
 			displayCalendar.setup(cal);
@@ -56,15 +54,16 @@ public class Main extends Application {
 			
 			
 			DisplayList.addTask.setOnAction((e) ->{
-				DisplayList.addTask.getSelectionModel().selectFirst();	
-				System.out.print("functioning");
+				int a = DisplayList.addTask.getSelectionModel().getSelectedIndex();	
+				if(a == 0) {
+					newTask.setTranslateX(50);
+					liststack.getChildren().add(newTask);
+					displayTask.displayAssignment();
+				}
+				else {
+				}
 			});
-			DisplayList.assignment.setOnMouseClicked(event -> {
-				System.out.print("assignment");
-			});
-			DisplayList.event.setOnMouseClicked(event -> {
-				System.out.print("event");
-			});
+			
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
 			});
