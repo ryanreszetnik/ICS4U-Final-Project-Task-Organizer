@@ -18,12 +18,10 @@ public class DisplayList {
 	static Button calendarView = new Button("Switch to Calendar");
 	
 
-	public static void addButton() {
-		Button a = new Button();
+	public static void addButton(Button a) {
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
-		list.add(a);
-
 		a.setTranslateY(50 + (list.size() * 100));
+		list.add(a);
 	}
 
 	public static void setup(Pane pane) {
@@ -49,15 +47,14 @@ public class DisplayList {
 		Rectangle top = new Rectangle(700, 60);
 		top.setFill(Color.rgb(96, 96, 96));
 		pane.getChildren().addAll(top, addTask, calendarView);
-
+	
+	}
+	
+	public static void displayTasks(Pane pane) {
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setFont(fo);
 			list.get(i).setPrefSize(650, 100);
-			list.get(i).setTranslateY(60 + (100 * i));
-			list.get(i).setText(List.list.get(list.size()-1).name + "\n" + (List.list.get(list.size()-1).date.hour + ":" + (List.list.get(list.size()-1).date.minute)));
 			pane.getChildren().add(list.get(i));
 		}
-	
 	}
 
 }

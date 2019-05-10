@@ -140,6 +140,7 @@ public class Main extends Application {
 
 				}
 			});
+			
 			displayCalendar.newEvent.setOnMouseClicked(event -> {
 				displayCalendar.pday = -1;
 				if (calendarstack.getChildren().contains(newAssignment) == false
@@ -164,8 +165,27 @@ public class Main extends Application {
 					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 				}
 			});
+			
+			//Done assignment
+					
+			displayTask.doneAssignment.setOnMouseClicked(event ->{
+				System.out.println(displayTask.assignmentname.getText());
+				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.description.getText(), "Functions", true);
+				List.addAssignment(a);
+				DisplayList.displayTasks(cal);
+				DisplayList.addTask.getSelectionModel().clearSelection();
+				displayCalendar.addTask.getSelectionModel().clearSelection();
+				if (onListView) {
+					liststack.getChildren().remove(newAssignment);
 
-		} catch (Exception e) {
+				} else {
+
+					calendarstack.getChildren().remove(newAssignment);
+
+				}
+			});
+
+			} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

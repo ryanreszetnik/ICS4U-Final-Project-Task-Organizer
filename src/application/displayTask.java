@@ -24,23 +24,26 @@ public class displayTask {
 	public static Button cancelEvent;
 	public static Button cancelAssignment;
 	private static 	Label descriptionTitle;
+	public static TextField eventname;
+	public static TextField assignmentname;
 	
 	
 	public static boolean isEvent;
 	
 	public static void setup(){
 		
-		
-		
+
+	
+
 		
 		description = new TextArea();
-		description.setPromptText("Description");
+		description.setPromptText("Enter Description");
 		description.setTranslateY(75);
 		description.setTranslateX(25);
 		
 		
 		
-		
+
 		
 		descriptionTitle = new Label("Description");
 		descriptionTitle.setTranslateX(265);
@@ -52,19 +55,26 @@ public class displayTask {
 		dateEvent = new DatePicker();
 		dateEvent.setTranslateY(300);
 		dateEvent.setTranslateX(25);
-		TextField name = new TextField(); 
-		name.setTranslateY(25);
-		name.setTranslateX(25);
+		eventname = new TextField(); 
+		eventname.setTranslateY(25);
+		eventname.setTranslateX(25);
 		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = true;
 		
-		name.setPromptText("Event Name");
-		
 		TextField location = new TextField();
-		location.setPromptText("Location");
+		location.setPromptText("Enter Location");
 		location.setTranslateX(200);
+		location.setTranslateY(25);
 		
+		Label locationLabel = new Label("Location");
+		locationLabel.setTranslateX(200);
+		locationLabel.setTranslateY(5);
+		
+		Label nameLabel = new Label("Name");
+		nameLabel.setTranslateX(25);
+		nameLabel.setTranslateY(5);
+				
 		doneEvent = new Button("Done");
 		doneEvent.setTranslateX(510);
 		doneEvent.setTranslateY(300);
@@ -74,23 +84,25 @@ public class displayTask {
 		cancelEvent.setTranslateY(300);
 		
 		setup();
-		newEvent.getChildren().addAll(background,name,description,dateEvent,doneEvent,cancelEvent,descriptionTitle);
+
+		newEvent.getChildren().addAll(background,eventname,description,dateEvent,doneEvent,cancelEvent,descriptionTitle);
+
+		//newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
+
 
 	}
 	public static void displayAssignment(){
 		dateAssignment = new DatePicker();
 		dateAssignment.setTranslateY(300);
 		dateAssignment.setTranslateX(25);
-		TextField name = new TextField(); 
-		name.setTranslateY(25);
-		name.setTranslateX(25);
+		assignmentname = new TextField(); 
+		assignmentname.setTranslateY(25);
+		assignmentname.setTranslateX(25);
 		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = false;
 		setup();
-		
-		name.setPromptText("Assignment Name");
-		
+			
 		doneAssignment = new Button("Done");
 		doneAssignment.setTranslateX(510);
 		doneAssignment.setTranslateY(300);
@@ -99,7 +111,7 @@ public class displayTask {
 		cancelAssignment.setTranslateX(440);
 		cancelAssignment.setTranslateY(300);
 		TextField subject = new TextField();
-		subject.setPromptText("Subject");
+		subject.setPromptText("Enter Subject");
 		subject.setTranslateX(225);
 		subject.setTranslateY(25);
 		
@@ -130,7 +142,7 @@ public class displayTask {
 		high.setTranslateY(25);
 		high.setTranslateX(515);
 		
-		newAssignment.getChildren().addAll(background,name,description,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
+		newAssignment.getChildren().addAll(background,assignmentname,description,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
 		buttonControls();
 	}
 	public static void buttonControls(){
