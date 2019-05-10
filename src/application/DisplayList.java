@@ -39,8 +39,9 @@ public class DisplayList {
 		event.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		event.setFont(fo);
 		addTask.getItems().add("Event");
-		addTask.setValue("Add New Task");
 		addTask.getItems().add("Assignment");
+		
+		addTask.setValue("Add New Task");
 		addTask.setPrefSize(150, 60);
 		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 

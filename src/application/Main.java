@@ -61,7 +61,8 @@ public class Main extends Application {
 			});
 			DisplayList.assignment.setOnMouseClicked(event -> {
 				System.out.print("assignment");
-			});
+				
+		});
 			DisplayList.event.setOnMouseClicked(event -> {
 				System.out.print("event");
 			});
@@ -70,6 +71,10 @@ public class Main extends Application {
 			});
 			displayCalendar.toList.setOnMouseClicked(event -> {
 				primaryStage.setScene(listview);
+			});
+			displayTask.cancel.setOnMouseClicked(event -> {
+				calendarstack.getChildren().remove(newTask);
+				liststack.getChildren().remove(newTask);
 			});
 			
 		} catch(Exception e) {

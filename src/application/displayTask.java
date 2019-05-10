@@ -117,9 +117,7 @@ public class displayTask {
 		done.setOnMouseClicked(event -> {
 			
 		});
-		cancel.setOnMouseClicked(event -> {
-			
-		});
+		
 	}
 	
 }
