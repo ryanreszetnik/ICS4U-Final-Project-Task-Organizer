@@ -1,5 +1,7 @@
 package application;
 
+import java.time.LocalDate;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -36,10 +38,11 @@ public class Main extends Application {
 
 			displayTask.newEvent = newEvent;
 			displayTask.newAssignment = newAssignment;
+			displayCalendar.root=cal;
 			displayTask.displayAssignment();
 			displayTask.displayEvent();
 			DisplayList.setup(list);
-			displayCalendar.setup(cal);
+			displayCalendar.setup();
 
 			primaryStage.setScene(listview);
 			primaryStage.show();
@@ -135,6 +138,30 @@ public class Main extends Application {
 
 					calendarstack.getChildren().remove(newEvent);
 
+				}
+			});
+			displayCalendar.newEvent.setOnMouseClicked(event -> {
+				displayCalendar.pday = -1;
+				if (calendarstack.getChildren().contains(newAssignment) == false
+						&& calendarstack.getChildren().contains(newEvent) == false) {
+					displayTask.dateEvent.setValue(LocalDate.of(displayCalendar.selectedDate.year, displayCalendar.selectedDate.month, displayCalendar.selectedDate.day));
+					calendarstack.getChildren().add(newEvent);
+				}
+				if(cal.getChildren().contains(displayCalendar.newEvent)){
+					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
+				}
+			});
+			displayCalendar.newAssignment.setOnMouseClicked(event -> {
+				displayCalendar.pday = -1;
+				if (calendarstack.getChildren().contains(newAssignment) == false
+						&& calendarstack.getChildren().contains(newEvent) == false) {
+					displayTask.dateAssignment.setValue(LocalDate.of(displayCalendar.selectedDate.year, displayCalendar.selectedDate.month, displayCalendar.selectedDate.day));
+					calendarstack.getChildren().add(newAssignment);
+				}
+				
+				//LocalDate temp = new LocalDate();
+				if(cal.getChildren().contains(displayCalendar.newEvent)){
+					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 				}
 			});
 

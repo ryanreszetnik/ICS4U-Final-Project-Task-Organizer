@@ -15,9 +15,10 @@ public class displayTask {
 	public static Pane newEvent;
 	public static Pane newAssignment;
 	
-	public static TextField name;
+	
 	public static TextArea description;
-	public static DatePicker date;
+	public static DatePicker dateEvent;
+	public static DatePicker dateAssignment;
 	public static Button doneEvent;
 	public static Button doneAssignment;
 	public static Button cancelEvent;
@@ -30,9 +31,7 @@ public class displayTask {
 	public static void setup(){
 		
 		
-		date = new DatePicker();
-		date.setTranslateY(300);
-		date.setTranslateX(25);
+		
 		
 		description = new TextArea();
 		description.setPromptText("Description");
@@ -41,9 +40,7 @@ public class displayTask {
 		
 		
 		
-		name = new TextField(); 
-		name.setTranslateY(25);
-		name.setTranslateX(25);
+		
 		
 		descriptionTitle = new Label("Description");
 		descriptionTitle.setTranslateX(265);
@@ -52,6 +49,12 @@ public class displayTask {
 	}
 	
 	public static void displayEvent(){
+		dateEvent = new DatePicker();
+		dateEvent.setTranslateY(300);
+		dateEvent.setTranslateX(25);
+		TextField name = new TextField(); 
+		name.setTranslateY(25);
+		name.setTranslateX(25);
 		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = true;
@@ -71,10 +74,16 @@ public class displayTask {
 		cancelEvent.setTranslateY(300);
 		
 		setup();
-		newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle);
+		newEvent.getChildren().addAll(background,name,description,dateEvent,doneEvent,cancelEvent,descriptionTitle);
 
 	}
 	public static void displayAssignment(){
+		dateAssignment = new DatePicker();
+		dateAssignment.setTranslateY(300);
+		dateAssignment.setTranslateX(25);
+		TextField name = new TextField(); 
+		name.setTranslateY(25);
+		name.setTranslateX(25);
 		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = false;
@@ -121,7 +130,7 @@ public class displayTask {
 		high.setTranslateY(25);
 		high.setTranslateX(515);
 		
-		newAssignment.getChildren().addAll(background,name,description,date,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
+		newAssignment.getChildren().addAll(background,name,description,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
 		buttonControls();
 	}
 	public static void buttonControls(){

@@ -26,10 +26,17 @@ public class displayCalendar {
 	public ArrayList<Button> list = new ArrayList<>();
 	public static  Button toList;
 	static ComboBox<String> addTask;
+	public static Pane root;
+	public static Button newEvent;
+	public static Button newAssignment;
+	public static double buttonsizex = 130;
+	public static double buttonsizey = 100;
+	public static int pday = -1;
 
 	public static Date currDate = new Date();
+	public static Date selectedDate = new Date();
 
-	public static void setup(Pane root) {
+	public static void setup() {
 		
 		root.setBackground(new Background(new BackgroundFill(Color.web("#777777"), CornerRadii.EMPTY, Insets.EMPTY)));
 		addTask = new ComboBox<String>();
@@ -40,9 +47,9 @@ public class displayCalendar {
 		addTask.setTranslateY(10);
 		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		days = new Button[42];
-		double buttonsizex = 130;
-		double buttonsizey = 100;
+	
 		for (int i = 0; i < 42; i++) {
+			
 			days[i] = new Button();
 			days[i].setPrefSize(buttonsizex, buttonsizey);
 			days[i].setTranslateX(i % 7 * buttonsizex);
@@ -50,6 +57,15 @@ public class displayCalendar {
 			days[i].setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 			root.getChildren().add(days[i]);
 		}
+		newEvent = new Button("New Event");
+		newAssignment = new Button("New Assignment");
+		
+		newEvent.setPrefSize(buttonsizex,25);
+		newAssignment.setPrefSize(buttonsizex,25);
+		newEvent.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color:#D2D2D2  ;");
+		newAssignment.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color:#D2D2D2  ;");
+		
+		
 		
 		next = new Button();
 		prev = new Button();
@@ -137,10 +153,18 @@ public class displayCalendar {
 		
 		prev.setOnMouseClicked(event -> {
 			currDate.prevMonth();
+			if(root.getChildren().contains(newEvent)){
+				root.getChildren().removeAll(newEvent, newAssignment);
+			}
+			pday = -1;
 			setupDays(currDate.month, currDate.year);
 		});
 		next.setOnMouseClicked(event -> {
 			currDate.nextMonth();
+			if(root.getChildren().contains(newEvent)){
+				root.getChildren().removeAll(newEvent, newAssignment);
+			}
+			pday = -1;
 			setupDays(currDate.month, currDate.year);
 			
 		});
@@ -149,10 +173,31 @@ public class displayCalendar {
 			//System.out.println(count);
 			days[i].setOnMouseClicked(event -> {
 				if(count >= day1 && count < day1+monthsize){
-					System.out.println(Calendar.monthName(currDate.month)+" "+(count-day1+1)+" "+currDate.year);
-				
+					selectedDate.day = count-day1+1;
+					selectedDate.month = currDate.month;
+					selectedDate.year = currDate.year;
+					//System.out.println(Calendar.monthName(currDate.month)+" "+(count-day1+1)+" "+currDate.year);
+					newEvent.setTranslateX(days[count].getTranslateX());
+					newAssignment.setTranslateX(days[count].getTranslateX());
+					newEvent.setTranslateY(days[count].getTranslateY()+buttonsizey);
+					newAssignment.setTranslateY(days[count].getTranslateY()+buttonsizey+25);
+					if(root.getChildren().contains(newEvent) == false){
+						root.getChildren().addAll(newEvent, newAssignment);
+					}
+					
+					if(pday == count){
+						root.getChildren().removeAll(newEvent, newAssignment);
+						pday = -1;
+					}else{
+						pday = count;
+					}
+					
+					
 				}
 			});
+			
+			
 		}
+		
 	}
 }
