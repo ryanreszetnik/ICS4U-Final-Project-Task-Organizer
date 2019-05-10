@@ -137,6 +137,24 @@ public class Main extends Application {
 
 				}
 			});
+			
+			//Done assignment
+			displayTask.doneAssignment.setOnMouseClicked(event ->{
+				System.out.println(displayTask.name.getText());
+				Task a = new Assignment(displayTask.name.getText(), displayTask.description.getText(), "Functions", true);
+				List.addAssignment(a);
+				DisplayList.displayTasks(cal);
+				DisplayList.addTask.getSelectionModel().clearSelection();
+				displayCalendar.addTask.getSelectionModel().clearSelection();
+				if (onListView) {
+					liststack.getChildren().remove(newEvent);
+
+				} else {
+
+					calendarstack.getChildren().remove(newEvent);
+
+				}
+			});
 
 		} catch (Exception e) {
 			e.printStackTrace();

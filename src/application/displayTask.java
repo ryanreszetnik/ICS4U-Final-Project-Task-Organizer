@@ -29,19 +29,19 @@ public class displayTask {
 	
 	public static void setup(){
 		
-		
 		date = new DatePicker();
 		date.setTranslateY(300);
 		date.setTranslateX(25);
 		
 		description = new TextArea();
-		description.setPromptText("Description");
+		description.setPromptText("Enter Description");
 		description.setTranslateY(75);
 		description.setTranslateX(25);
 		
 		
 		
 		name = new TextField(); 
+		name.setPromptText("Enter Name");
 		name.setTranslateY(25);
 		name.setTranslateX(25);
 		
@@ -56,12 +56,19 @@ public class displayTask {
 		background.setFill(Color.DARKGREY);
 		isEvent = true;
 		
-		name.setPromptText("Event Name");
-		
 		TextField location = new TextField();
-		location.setPromptText("Location");
+		location.setPromptText("Enter Location");
 		location.setTranslateX(200);
+		location.setTranslateY(25);
 		
+		Label locationLabel = new Label("Location");
+		locationLabel.setTranslateX(200);
+		locationLabel.setTranslateY(5);
+		
+		Label nameLabel = new Label("Name");
+		nameLabel.setTranslateX(25);
+		nameLabel.setTranslateY(5);
+				
 		doneEvent = new Button("Done");
 		doneEvent.setTranslateX(510);
 		doneEvent.setTranslateY(300);
@@ -71,7 +78,7 @@ public class displayTask {
 		cancelEvent.setTranslateY(300);
 		
 		setup();
-		newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle);
+		newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
 
 	}
 	public static void displayAssignment(){
@@ -79,9 +86,7 @@ public class displayTask {
 		background.setFill(Color.DARKGREY);
 		isEvent = false;
 		setup();
-		
-		name.setPromptText("Assignment Name");
-		
+			
 		doneAssignment = new Button("Done");
 		doneAssignment.setTranslateX(510);
 		doneAssignment.setTranslateY(300);
@@ -90,7 +95,7 @@ public class displayTask {
 		cancelAssignment.setTranslateX(440);
 		cancelAssignment.setTranslateY(300);
 		TextField subject = new TextField();
-		subject.setPromptText("Subject");
+		subject.setPromptText("Enter Subject");
 		subject.setTranslateX(225);
 		subject.setTranslateY(25);
 		
