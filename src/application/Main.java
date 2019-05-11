@@ -38,7 +38,7 @@ public class Main extends Application {
 
 			displayTask.newEvent = newEvent;
 			displayTask.newAssignment = newAssignment;
-			displayCalendar.root=cal;
+			displayCalendar.root = cal;
 			displayTask.displayAssignment();
 			displayTask.displayEvent();
 			DisplayList.setup(list);
@@ -142,15 +142,16 @@ public class Main extends Application {
 
 				}
 			});
-			
+
 			displayCalendar.newEvent.setOnMouseClicked(event -> {
 				displayCalendar.pday = -1;
 				if (calendarstack.getChildren().contains(newAssignment) == false
 						&& calendarstack.getChildren().contains(newEvent) == false) {
-					displayTask.dateEvent.setValue(LocalDate.of(displayCalendar.selectedDate.year, displayCalendar.selectedDate.month, displayCalendar.selectedDate.day));
+					displayTask.dateEvent.setValue(LocalDate.of(displayCalendar.selectedDate.year,
+							displayCalendar.selectedDate.month, displayCalendar.selectedDate.day));
 					calendarstack.getChildren().add(newEvent);
 				}
-				if(cal.getChildren().contains(displayCalendar.newEvent)){
+				if (cal.getChildren().contains(displayCalendar.newEvent)) {
 					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 				}
 			});
@@ -158,26 +159,28 @@ public class Main extends Application {
 				displayCalendar.pday = -1;
 				if (calendarstack.getChildren().contains(newAssignment) == false
 						&& calendarstack.getChildren().contains(newEvent) == false) {
-					displayTask.dateAssignment.setValue(LocalDate.of(displayCalendar.selectedDate.year, displayCalendar.selectedDate.month, displayCalendar.selectedDate.day));
+					displayTask.dateAssignment.setValue(LocalDate.of(displayCalendar.selectedDate.year,
+							displayCalendar.selectedDate.month, displayCalendar.selectedDate.day));
 					calendarstack.getChildren().add(newAssignment);
 				}
-				
-				//LocalDate temp = new LocalDate();
-				if(cal.getChildren().contains(displayCalendar.newEvent)){
+
+				// LocalDate temp = new LocalDate();
+				if (cal.getChildren().contains(displayCalendar.newEvent)) {
 					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 				}
 			});
-			
-			//Done assignment
-					
-			displayTask.doneAssignment.setOnMouseClicked(event ->{
-				System.out.println();
+
+			// Done assignment
+
+			displayTask.doneAssignment.setOnMouseClicked(event -> {
+
 				int yr = displayTask.dateAssignment.getValue().getYear();
 				int mo = displayTask.dateAssignment.getValue().getMonthValue();
 				int day = displayTask.dateAssignment.getValue().getDayOfMonth();
-				
-				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.description.getText(), displayTask.subject.getText(), displayTask.highPriority,yr,mo,day);
-				//a.date.parseDate();
+
+				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.description.getText(),
+						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
+
 				List.addAssignment(a);
 				DisplayList.addTask.getSelectionModel().clearSelection();
 				displayCalendar.addTask.getSelectionModel().clearSelection();
@@ -190,8 +193,30 @@ public class Main extends Application {
 
 				}
 			});
+			/*
+			displayTask.doneEvent.setOnMouseClicked(event -> {
 
-			} catch (Exception e) {
+				int yr = displayTask.dateEvent.getValue().getYear();
+				int mo = displayTask.dateEvent.getValue().getMonthValue();
+				int day = displayTask.dateEvent.getValue().getDayOfMonth();
+
+				Task a = new Event(displayTask.eventname.getText(), displayTask.description.getText(),
+						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
+
+				List.addAssignment(a);
+				DisplayList.addTask.getSelectionModel().clearSelection();
+				displayCalendar.addTask.getSelectionModel().clearSelection();
+				if (onListView) {
+					liststack.getChildren().remove(newAssignment);
+					DisplayList.displayTasks(list);
+				} else {
+					displayCalendar.displayTasks();
+					calendarstack.getChildren().remove(newAssignment);
+
+				}
+			});*/
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

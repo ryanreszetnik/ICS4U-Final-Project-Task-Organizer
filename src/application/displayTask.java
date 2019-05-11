@@ -27,6 +27,7 @@ public class displayTask {
 	public static TextField eventname;
 	public static TextField assignmentname;
 	public static TextField subject;
+	public static TextField location;
 	public static boolean highPriority;
 	
 	
@@ -46,17 +47,22 @@ public class displayTask {
 	}
 	
 	public static void displayEvent(){
+		Label nameTitle = new Label("Event Name");
+		nameTitle.setTranslateX(45);
+		nameTitle.setTranslateY(5);
+		
 		dateEvent = new DatePicker();
 		dateEvent.setTranslateY(300);
 		dateEvent.setTranslateX(25);
 		eventname = new TextField(); 
+		eventname.setPromptText("Name");
 		eventname.setTranslateY(25);
 		eventname.setTranslateX(25);
 		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = true;
 		
-		TextField location = new TextField();
+		location = new TextField();
 		location.setPromptText("Enter Location");
 		location.setTranslateX(200);
 		location.setTranslateY(25);
@@ -79,7 +85,7 @@ public class displayTask {
 		
 		setup();
 
-		newEvent.getChildren().addAll(background,eventname,description,dateEvent,doneEvent,cancelEvent,descriptionTitle);
+		newEvent.getChildren().addAll( background,nameTitle,eventname,description,dateEvent,doneEvent,cancelEvent,descriptionTitle, location, locationLabel);
 
 		//newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
 
