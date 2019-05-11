@@ -16,8 +16,8 @@ public class List {
 	
 	public static void addAssignment(Task a) {
 		list.add(a);
-		Button add = new Button(a.name);
-		DisplayList.addButton(add);
+		DisplayList.addTask(a);
+		displayCalendar.addTask(a);
 	}
 
 

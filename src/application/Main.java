@@ -100,6 +100,7 @@ public class Main extends Application {
 				newAssignment.setTranslateX(160);
 				newAssignment.setTranslateY(150);
 				onListView = false;
+				displayCalendar.displayTasks();
 			});
 			// calendar--> list
 			displayCalendar.toList.setOnMouseClicked(event -> {
@@ -109,6 +110,7 @@ public class Main extends Application {
 				newAssignment.setTranslateX(0);
 				newAssignment.setTranslateY(0);
 				onListView = true;
+				DisplayList.displayTasks(list);
 			});
 			// cancel assignment
 			displayTask.cancelAssignment.setOnMouseClicked(event -> {
@@ -169,17 +171,21 @@ public class Main extends Application {
 			//Done assignment
 					
 			displayTask.doneAssignment.setOnMouseClicked(event ->{
-				System.out.println(displayTask.assignmentname.getText());
-				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.description.getText(), "Functions", true);
+				System.out.println();
+				int yr = displayTask.dateAssignment.getValue().getYear();
+				int mo = displayTask.dateAssignment.getValue().getMonthValue();
+				int day = displayTask.dateAssignment.getValue().getDayOfMonth();
+				
+				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.description.getText(), displayTask.subject.getText(), displayTask.highPriority,yr,mo,day);
+				//a.date.parseDate();
 				List.addAssignment(a);
-				DisplayList.displayTasks(cal);
 				DisplayList.addTask.getSelectionModel().clearSelection();
 				displayCalendar.addTask.getSelectionModel().clearSelection();
 				if (onListView) {
 					liststack.getChildren().remove(newAssignment);
-
+					DisplayList.displayTasks(list);
 				} else {
-
+					displayCalendar.displayTasks();
 					calendarstack.getChildren().remove(newAssignment);
 
 				}

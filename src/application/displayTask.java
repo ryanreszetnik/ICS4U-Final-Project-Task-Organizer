@@ -26,24 +26,18 @@ public class displayTask {
 	private static 	Label descriptionTitle;
 	public static TextField eventname;
 	public static TextField assignmentname;
+	public static TextField subject;
+	public static boolean highPriority;
 	
 	
 	public static boolean isEvent;
 	
 	public static void setup(){
 		
-
-	
-
-		
 		description = new TextArea();
 		description.setPromptText("Enter Description");
 		description.setTranslateY(75);
 		description.setTranslateX(25);
-		
-		
-		
-
 		
 		descriptionTitle = new Label("Description");
 		descriptionTitle.setTranslateX(265);
@@ -110,7 +104,7 @@ public class displayTask {
 		cancelAssignment = new Button("Cancel");
 		cancelAssignment.setTranslateX(440);
 		cancelAssignment.setTranslateY(300);
-		TextField subject = new TextField();
+		subject = new TextField();
 		subject.setPromptText("Enter Subject");
 		subject.setTranslateX(225);
 		subject.setTranslateY(25);
@@ -142,9 +136,18 @@ public class displayTask {
 		high.setTranslateY(25);
 		high.setTranslateX(515);
 		
+		high.setOnMouseClicked(event ->{
+			highPriority = true;
+		});
+		regular.setOnMouseClicked(event ->{
+			highPriority = false;
+		});
+		
+		
 		newAssignment.getChildren().addAll(background,assignmentname,description,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,descriptionTitle,dueDateTitle);
 		buttonControls();
 	}
+	
 	public static void buttonControls(){
 		
 		

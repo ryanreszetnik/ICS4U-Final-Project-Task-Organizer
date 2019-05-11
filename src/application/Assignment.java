@@ -10,11 +10,13 @@ public class Assignment extends Task{
 		
 	}
 	
-	public Assignment(String name, String description, String subject, boolean priority) {
+	public Assignment(String name, String description, String subject, boolean priority, int year, int month, int day) {
 		this.name = name;
 		this.description = description;
 		this.subject = subject;
 		this.priority = priority;
+		this.date = new Date(year, month, day);
+		
 	}
 	
 	public void setSubject(String Subject) {

@@ -32,6 +32,8 @@ public class displayCalendar {
 	public static double buttonsizex = 130;
 	public static double buttonsizey = 100;
 	public static int pday = -1;
+	public static ArrayList<Button> tasks = new ArrayList<>();
+	static int[][] hasTask = new int[7][6];
 
 	public static Date currDate = new Date();
 	public static Date selectedDate = new Date();
@@ -139,6 +141,14 @@ public class displayCalendar {
 			count++;
 		}
 	}
+	public static int dayPos(String day){
+		for(int i = 0; i < 42; i++){
+			if(days[i].getText().equals(day)){
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	public static void resetButtons() {
 		for (int i = 0; i < 42; i++) {
@@ -158,6 +168,7 @@ public class displayCalendar {
 			}
 			pday = -1;
 			setupDays(currDate.month, currDate.year);
+			displayTasks();
 		});
 		next.setOnMouseClicked(event -> {
 			currDate.nextMonth();
@@ -166,6 +177,7 @@ public class displayCalendar {
 			}
 			pday = -1;
 			setupDays(currDate.month, currDate.year);
+			displayTasks();
 			
 		});
 		for (int i = 1; i < 42; i++) {
@@ -199,5 +211,32 @@ public class displayCalendar {
 			
 		}
 		
+		
 	}
+	public static void displayTasks(){
+		for (int i = 0; i < tasks.size(); i++) {
+			if(root.getChildren().contains(tasks.get(i))){
+				root.getChildren().remove(tasks.get(i));
+			}
+			if(List.list.get(i).date.month == currDate.month && List.list.get(i).date.year == currDate.year){
+				String day =""+List.list.get(i).date.day;
+				tasks.get(i).setPrefSize(buttonsizex, buttonsizey/5);
+				System.out.println(dayPos(day));
+				tasks.get(i).setTranslateX(dayPos(day)%7*buttonsizex);
+				tasks.get(i).setTranslateY(dayPos(day)/7*buttonsizey+95);
+				root.getChildren().add(tasks.get(i));
+			}
+			
+		}
+	}
+	public static void addButton(Button a) {
+		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		tasks.add(a);
+	}
+	public static void addTask(Task t){
+		Button newTask1 = new Button(t.name);
+		addButton(newTask1);
+	}
+	
+	
 }

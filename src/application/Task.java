@@ -22,7 +22,9 @@ public abstract class Task {
 	public void changeDate(int year, int month, int day){
 		date.setDate(year, month, day);
 	}
-	
+	public String toString(){
+		return name +" "+date.toString();
+	}
 	
 	
 	

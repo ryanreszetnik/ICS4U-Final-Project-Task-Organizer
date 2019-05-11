@@ -23,6 +23,10 @@ public class DisplayList {
 		a.setTranslateY(50 + (list.size() * 100));
 		list.add(a);
 	}
+	public static void addTask(Task t){
+		Button newTask = new Button(t.toString());
+		addButton(newTask);
+	}
 
 	public static void setup(Pane pane) {
 		pane.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #999999;");
@@ -53,7 +57,12 @@ public class DisplayList {
 	public static void displayTasks(Pane pane) {
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setPrefSize(650, 100);
-			pane.getChildren().add(list.get(i));
+			list.get(i).setTranslateX(0);
+			list.get(i).setTranslateY(50 + (i * 100));
+			if(pane.getChildren().contains(list.get(i)) == false){
+				pane.getChildren().add(list.get(i));
+			}
+	
 		}
 	}
 
