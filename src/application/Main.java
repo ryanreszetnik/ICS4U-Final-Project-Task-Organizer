@@ -47,49 +47,15 @@ public class Main extends Application {
 			primaryStage.setScene(listview);
 			primaryStage.show();
 			// Add task List
+			
+			
 			DisplayList.addTask.setOnAction((e) -> {
 
-				int a = DisplayList.addTask.getSelectionModel().getSelectedIndex();
-
-				DisplayList.addTask.setValue("Add New Task");
-
-				if (a == 0) {
-					if (liststack.getChildren().contains(newEvent) == false
-							&& liststack.getChildren().contains(newAssignment) == false) {
-						liststack.getChildren().add(newEvent);
-					}
-
-				} else {
-					if (liststack.getChildren().contains(newEvent) == false
-							&& liststack.getChildren().contains(newAssignment) == false) {
-						liststack.getChildren().add(newAssignment);
-					}
-
-				}
 
 			});
 			// Add task Calendar
-			displayCalendar.addTask.setOnAction((e) -> {
+			displayCalendar.addTask.setOnAction(e -> {
 
-				int a = displayCalendar.addTask.getSelectionModel().getSelectedIndex();
-
-				displayCalendar.addTask.setValue("Add New Task");
-
-				if (a == 0) {
-
-					if (calendarstack.getChildren().contains(newAssignment) == false
-							&& calendarstack.getChildren().contains(newEvent) == false) {
-						calendarstack.getChildren().add(newEvent);
-					}
-
-				} else {
-
-					if (calendarstack.getChildren().contains(newAssignment) == false
-							&& calendarstack.getChildren().contains(newEvent) == false) {
-						calendarstack.getChildren().add(newAssignment);
-					}
-
-				}
 
 			});
 			// list--> calendar
