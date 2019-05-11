@@ -58,9 +58,10 @@ public class Main extends Application {
 				if(a == 0) {
 					newTask.setTranslateX(50);
 					liststack.getChildren().add(newTask);
-					displayTask.displayAssignment();
+					displayTask.displayEvent();
 				}
 				else {
+					//PUT DISPLAYASSIGNMENT CODE IN HERE
 				}
 			});
 			
