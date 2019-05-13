@@ -1,5 +1,9 @@
 package application; 
+
 import java.util.ArrayList;
+import java.util.Collection;
+
+import javafx.scene.control.Button;
 
 
 
@@ -12,6 +16,8 @@ public class List {
 	
 	public static void addAssignment(Task a) {
 		list.add(a);
+		DisplayList.addTask(a);
+		displayCalendar.addTask(a);
 	}
 
 

@@ -18,12 +18,14 @@ public class DisplayList {
 	static Button calendarView = new Button("Switch to Calendar");
 	
 
-	public static void addButton() {
-		Button a = new Button();
+	public static void addButton(Button a) {
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
-		list.add(a);
-
 		a.setTranslateY(50 + (list.size() * 100));
+		list.add(a);
+	}
+	public static void addTask(Task t){
+		Button newTask = new Button(t.toString());
+		addButton(newTask);
 	}
 
 	public static void setup(Pane pane) {
@@ -32,7 +34,7 @@ public class DisplayList {
 		Font f1 = new Font(20);
 		calendarView.setFont(f1);
 		calendarView.setPrefHeight(60);
-		calendarView.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		calendarView.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		calendarView.setTranslateX(510);
 		Font fo = new Font(18);
 		assignment.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
@@ -40,23 +42,28 @@ public class DisplayList {
 		event.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		event.setFont(fo);
 		addTask.getItems().add("Event");
-		addTask.setValue("Add New Task");
 		addTask.getItems().add("Assignment");
+		
+		addTask.setValue("Add New Task");
 		addTask.setPrefSize(150, 60);
 		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 
 		Rectangle top = new Rectangle(700, 60);
 		top.setFill(Color.rgb(96, 96, 96));
 		pane.getChildren().addAll(top, addTask, calendarView);
-
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setFont(fo);
-			list.get(i).setPrefSize(650, 100);
-			list.get(i).setTranslateY(60 + (100 * i));
-			list.get(i).setText(List.list.get(list.size()-1).name + "\n" + (List.list.get(list.size()-1).date.hour + ":" + (List.list.get(list.size()-1).date.minute)));
-			pane.getChildren().add(list.get(i));
-		}
 	
+	}
+	
+	public static void displayTasks(Pane pane) {
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setPrefSize(650, 100);
+			list.get(i).setTranslateX(0);
+			list.get(i).setTranslateY(50 + (i * 100));
+			if(pane.getChildren().contains(list.get(i)) == false){
+				pane.getChildren().add(list.get(i));
+			}
+	
+		}
 	}
 
 }
