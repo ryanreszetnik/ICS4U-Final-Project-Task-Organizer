@@ -16,6 +16,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Main extends Application {
+
+   
+   
+   
 	static Pane cal = new Pane();
 	static Pane newEvent = new Pane();
 	static Pane newAssignment = new Pane();
