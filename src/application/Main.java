@@ -34,7 +34,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-//git good eilia
 			
 			calendarstack.getChildren().add(cal);
 			liststack.getChildren().add(list);
@@ -56,7 +55,7 @@ public class Main extends Application {
 
 				int a = DisplayList.addTask.getSelectionModel().getSelectedIndex();
 
-				DisplayList.addTask.setValue("Add New Task");
+			//	DisplayList.addTask.setValue("Add New Task");
 
 				if (a == 0) {
 					if (liststack.getChildren().contains(newEvent) == false
