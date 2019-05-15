@@ -167,6 +167,7 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newAssignment);
 
 				}
+				StoreData.writeFile();
 			});
 			
 			displayTask.doneEvent.setOnMouseClicked(event -> {
@@ -192,7 +193,10 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newEvent);
 
 				}
+				StoreData.writeFile();
 			});
+			StoreData.readFile();
+			DisplayList.displayTasks(list);
 
 		} catch (Exception e) {
 			e.printStackTrace();

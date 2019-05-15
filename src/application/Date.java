@@ -30,6 +30,16 @@ public class Date {
 		this.minute = minute;
 
 	}
+	public String toFile(){
+		String output = "";
+		output+=year + "\n";
+		output+=month + "\n";
+		output+=day + "\n";
+		output+=hour + "\n";
+		output+=minute + "\n";
+		
+		return output;
+	}
 
 	public void setDate(int year, int month, int day) {
 		this.year = year;

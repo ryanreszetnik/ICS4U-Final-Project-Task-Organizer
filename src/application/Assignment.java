@@ -22,10 +22,17 @@ public class Assignment extends Task{
 	public void setSubject(String Subject) {
 		this.subject = subject;
 	}
+	public String getSubject() {
+		return subject;
+	}
 	
 	public void setPriority(boolean priority){
 		this.priority = priority;
 	}
+	public boolean getPriority() {
+		return priority;
+	}
+	
 
 	@Override
 	public void display() {

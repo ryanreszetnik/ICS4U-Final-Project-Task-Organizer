@@ -12,10 +12,14 @@ public class List {
 
 	public static void addEvent(Task a) {
 		list.add(a);
+		a.isEvent = true;
+		DisplayList.addTask(a);
+		displayCalendar.addTask(a);
 	}
 	
 	public static void addAssignment(Task a) {
 		list.add(a);
+		a.isEvent = false;
 		DisplayList.addTask(a);
 		displayCalendar.addTask(a);
 	}
