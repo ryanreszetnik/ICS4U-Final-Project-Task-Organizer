@@ -48,7 +48,6 @@ public class StoreData {
 			int counter = 0;
 
 			while ((CurrentLine = br.readLine()) != null) {
-				System.out.println(CurrentLine);
 				// runs through file and reads each line
 				if (CurrentLine.equals("event")) {
 					counter = 0;
