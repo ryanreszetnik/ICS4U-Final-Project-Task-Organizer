@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-
+  
 public class DisplayList {
 	public static ArrayList<Button> list = new ArrayList<>();
 	static Button addTask;
@@ -22,16 +22,26 @@ public class DisplayList {
 	static Button newEvent = new Button("New Event");
 	static Button newAssignment = new Button("New Assignmentt");
 	static boolean isAssignment;
+	static boolean exists;
+	static int buttonIndex;
 	
 
 	public static void addButton(Button a) {
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
-		//a.setTranslateY(50 + (list.size() * 100));
 		list.add(a);
+	}
+	public static void updateButton(Button a) {
+		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		list.remove(buttonIndex);
+		list.set(buttonIndex, a);
 	}
 	public static void addTask(Task t){
 		Button newTask = new Button(t.toString());
 		addButton(newTask);
+	}
+	public static void updateTask(Task t) {
+		Button newTask = new Button(t.toString());
+		updateButton(newTask);
 	}
 
 	public static void setup(Pane pane) {
@@ -63,6 +73,7 @@ public class DisplayList {
 	}
 	
 	public static void displayTasks(Pane pane) {
+		System.out.println(list.size());
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setPrefSize(680, 100);
 			list.get(i).setTranslateX(10);
@@ -72,7 +83,9 @@ public class DisplayList {
 			if(pane.getChildren().contains(list.get(i)) == false){
 				pane.getChildren().add(list.get(i));
 			}
-			if(List.list.get(i).isAssignment()) {
+			if(!List.list.get(i).isEvent) {
+			//buttonIndex = i; 
+			//exists = true;
 			String name = List.list.get(i).name;
 			String description = List.list.get(i).description;
 			String subject = ((Assignment)(List.list.get(i))).getSubject();
@@ -81,8 +94,11 @@ public class DisplayList {
 			int month = date.month;
 			int day = date.day;
 			Boolean priority = ((Assignment)List.list.get(i)).getPriority();
+			int count = i; 
 			
 			list.get(i).setOnAction(e ->{
+					buttonIndex = count;
+					displayTask.newThing = false;
 					Main.liststack.getChildren().add(displayTask.newAssignment);
 					displayTask.assignmentname.setText(name);
 					displayTask.assignDescription.setText(description);
@@ -90,11 +106,15 @@ public class DisplayList {
 					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day));
 			});
 			}
+			
 			else {
+				int count = i;
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
 				String location = ((Event)List.list.get(i)).getLocation();
 				list.get(i).setOnAction(e ->{
+					displayTask.newThing = false;
+					buttonIndex = count;
 					Main.liststack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);

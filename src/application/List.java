@@ -23,6 +23,13 @@ public class List {
 		DisplayList.addTask(a);
 		displayCalendar.addTask(a);
 	}
+	
+	public static void updateTask(Task a) {
+		list.remove(DisplayList.buttonIndex);
+		list.set(DisplayList.buttonIndex, a);
+	}
+	
+
 
 
 }

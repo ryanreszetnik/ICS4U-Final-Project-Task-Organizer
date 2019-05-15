@@ -73,6 +73,7 @@ public class Main extends Application {
 			});
 			
 			DisplayList.newAssignment.setOnAction(e ->{
+				displayTask.newThing = true;
 				if(!(list.getChildren().contains(displayTask.newAssignment) && calendarstack.getChildren().contains(displayTask.newAssignment))) {
 					liststack.getChildren().add(displayTask.newAssignment);
 				}
@@ -81,6 +82,7 @@ public class Main extends Application {
 			});
 			
 			DisplayList.newEvent.setOnAction(e ->{
+				displayTask.newThing = true;
 				if(!(liststack.getChildren().contains(displayTask.newEvent) && calendarstack.getChildren().contains(displayTask.newEvent))) {
 					liststack.getChildren().add(displayTask.newEvent);
 				}
@@ -111,7 +113,7 @@ public class Main extends Application {
 			});
 			// cancel assignment
 			displayTask.cancelAssignment.setOnMouseClicked(event -> {
-				
+				displayTask.newThing = false;
 				if (liststack.getChildren().contains(displayTask.newAssignment)) {
 
 					liststack.getChildren().remove(newAssignment);
@@ -123,11 +125,13 @@ public class Main extends Application {
 				displayTask.assignmentname.clear();
 				displayTask.assignDescription.clear();
 				displayTask.subject.clear();
+				displayTask.dateAssignment.setValue(null);
+
 
 			});
 			// cancel event
 			displayTask.cancelEvent.setOnMouseClicked(event -> {
-				
+				displayTask.newThing = false;
 				if (liststack.getChildren().contains(displayTask.newEvent)) {
 					liststack.getChildren().remove(newEvent);
 
@@ -139,9 +143,12 @@ public class Main extends Application {
 				displayTask.eventname.clear();
 				displayTask.eventDescription.clear();
 				displayTask.location.clear();
-			});
+				displayTask.dateEvent.setValue(null);
 
+			});
+//			New Event
 			displayCalendar.newEvent.setOnMouseClicked(event -> {
+				displayTask.newThing = true;
 				displayCalendar.pday = -1;
 				if (calendarstack.getChildren().contains(newAssignment) == false
 						&& calendarstack.getChildren().contains(newEvent) == false) {
@@ -153,8 +160,10 @@ public class Main extends Application {
 					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 				}
 			});
+			//New Assignment
 			displayCalendar.newAssignment.setOnMouseClicked(event -> {
 				displayCalendar.pday = -1;
+				displayTask.newThing = true;
 				if (calendarstack.getChildren().contains(newAssignment) == false
 						&& calendarstack.getChildren().contains(newEvent) == false) {
 					displayTask.dateAssignment.setValue(LocalDate.of(displayCalendar.selectedDate.year,
@@ -192,6 +201,9 @@ public class Main extends Application {
 				displayTask.assignmentname.clear();
 				displayTask.assignDescription.clear();
 				displayTask.subject.clear();
+				displayTask.hour.clear();
+				displayTask.minute.clear();
+				displayTask.dateAssignment.setValue(null);
 				StoreData.writeFile();
 			});
 			
@@ -207,9 +219,15 @@ public class Main extends Application {
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(),
 						displayTask.subject.getText(), yr, mo, day,hr,min);
-
-				List.addEvent(a);
-				//DisplayList.addTask.getSelectionModel().clearSelection();
+				if(displayTask.newThing) {
+					List.addEvent(a);
+				}
+				else{ 
+					System.out.println(displayTask.newThing);
+					List.updateTask(a);
+				}
+					
+					
 			
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
@@ -222,6 +240,7 @@ public class Main extends Application {
 				displayTask.eventname.clear();
 				displayTask.eventDescription.clear();
 				displayTask.location.clear();
+				displayTask.dateEvent.setValue(null);
 				StoreData.writeFile();
 			});
 			
