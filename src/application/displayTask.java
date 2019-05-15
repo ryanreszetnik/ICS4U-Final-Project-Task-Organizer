@@ -33,7 +33,11 @@ public class displayTask {
 	public static int mornafternoon = 0;
 	//public static CalendarTimePicker time;
 	public static boolean highPriority;
-	
+	public static ToggleButton am;
+	public static ToggleButton pm;
+	public static ToggleButton regular;
+	public static ToggleButton high;
+
 	
 	public static boolean isEvent;
 	
@@ -104,8 +108,8 @@ public class displayTask {
 		
 		
 		ToggleGroup ampm = new ToggleGroup();
-		ToggleButton am = new ToggleButton("am");
-		ToggleButton pm = new ToggleButton("pm");
+		am = new ToggleButton("am");
+		pm = new ToggleButton("pm");
 		am.setToggleGroup(ampm);
 		pm.setToggleGroup(ampm);
 		am.setSelected(true);
@@ -179,8 +183,8 @@ public class displayTask {
 		dueDateTitle.setTranslateY(280);
 		
 		ToggleGroup hl = new ToggleGroup();
-		ToggleButton regular = new ToggleButton("Regular");
-		ToggleButton high = new ToggleButton("High");
+		regular = new ToggleButton("Regular");
+		high = new ToggleButton("High");
 		regular.setToggleGroup(hl);
 		high.setToggleGroup(hl);
 		regular.setSelected(true);
