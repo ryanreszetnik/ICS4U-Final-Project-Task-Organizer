@@ -199,7 +199,7 @@ public class Main extends Application {
 				Task a = new Event(displayTask.eventname.getText(), displayTask.description.getText(),
 						displayTask.subject.getText(), yr, mo, day,hr,min);
 
-				List.addAssignment(a);
+				List.addEvent(a);
 				//DisplayList.addTask.getSelectionModel().clearSelection();
 			
 				if (onListView) {
