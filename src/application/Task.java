@@ -12,6 +12,9 @@ public abstract class Task {
 		hasTime = true;
 
 	}
+	public String Format(){
+		return name + date.getTime();		
+	}
 	
 	public void setDescription(String description){
 		this.description = description;

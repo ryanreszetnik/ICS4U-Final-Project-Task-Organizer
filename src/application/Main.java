@@ -16,9 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Main extends Application {
-
-   
-   
    
 	static Pane cal = new Pane();
 	static Pane newEvent = new Pane();
@@ -51,51 +48,30 @@ public class Main extends Application {
 			primaryStage.setScene(listview);
 			primaryStage.show();
 			// Add task List
-			DisplayList.addTask.setOnAction((e) -> {
 
-				int a = DisplayList.addTask.getSelectionModel().getSelectedIndex();
+			
+			
+			
+			DisplayList.addTask.setOnMouseClicked((e) -> {
+				
+				displayCalendar.newAssignment.setTranslateX(10);
+				displayCalendar.newAssignment.setTranslateY(65);
+				
+				displayCalendar.newEvent.setTranslateX(10);
+				displayCalendar.newEvent.setTranslateY(100);
+				
+				
+				if(!(list.getChildren().contains(displayCalendar.newAssignment) && list.getChildren().contains(displayCalendar.newEvent))) {
+					list.getChildren().addAll(displayCalendar.newEvent, displayCalendar.newAssignment);
+				}
+				else {
+					list.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 
-			//	DisplayList.addTask.setValue("Add New Task");
-
-				if (a == 0) {
-					if (liststack.getChildren().contains(newEvent) == false
-							&& liststack.getChildren().contains(newAssignment) == false) {
-						liststack.getChildren().add(newEvent);
-					}
-
-				} else {
-					if (liststack.getChildren().contains(newEvent) == false
-							&& liststack.getChildren().contains(newAssignment) == false) {
-						liststack.getChildren().add(newAssignment);
-					}
 
 				}
 
 			});
-			// Add task Calendar
-			displayCalendar.addTask.setOnAction((e) -> {
-
-				int a = displayCalendar.addTask.getSelectionModel().getSelectedIndex();
-
-				displayCalendar.addTask.setValue("Add New Task");
-
-				if (a == 0) {
-
-					if (calendarstack.getChildren().contains(newAssignment) == false
-							&& calendarstack.getChildren().contains(newEvent) == false) {
-						calendarstack.getChildren().add(newEvent);
-					}
-
-				} else {
-
-					if (calendarstack.getChildren().contains(newAssignment) == false
-							&& calendarstack.getChildren().contains(newEvent) == false) {
-						calendarstack.getChildren().add(newAssignment);
-					}
-
-				}
-
-			});
+			
 			// list--> calendar
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
@@ -118,9 +94,7 @@ public class Main extends Application {
 			});
 			// cancel assignment
 			displayTask.cancelAssignment.setOnMouseClicked(event -> {
-
-				DisplayList.addTask.getSelectionModel().clearSelection();
-				displayCalendar.addTask.getSelectionModel().clearSelection();
+				
 				if (onListView) {
 
 					liststack.getChildren().remove(newAssignment);
@@ -133,9 +107,7 @@ public class Main extends Application {
 			});
 			// cancel event
 			displayTask.cancelEvent.setOnMouseClicked(event -> {
-
-				DisplayList.addTask.getSelectionModel().clearSelection();
-				displayCalendar.addTask.getSelectionModel().clearSelection();
+				
 
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
@@ -186,8 +158,7 @@ public class Main extends Application {
 						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
 
 				List.addAssignment(a);
-				DisplayList.addTask.getSelectionModel().clearSelection();
-				displayCalendar.addTask.getSelectionModel().clearSelection();
+
 				if (onListView) {
 					liststack.getChildren().remove(newAssignment);
 					DisplayList.displayTasks(list);
@@ -197,28 +168,30 @@ public class Main extends Application {
 
 				}
 			});
-			/*
+			
 			displayTask.doneEvent.setOnMouseClicked(event -> {
 
 				int yr = displayTask.dateEvent.getValue().getYear();
 				int mo = displayTask.dateEvent.getValue().getMonthValue();
 				int day = displayTask.dateEvent.getValue().getDayOfMonth();
+				int hr = Integer.valueOf(displayTask.hour.getText());
+				int min = Integer.valueOf(displayTask.minute.getText());
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.description.getText(),
-						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
+						displayTask.subject.getText(), yr, mo, day,hr,min);
 
 				List.addAssignment(a);
-				DisplayList.addTask.getSelectionModel().clearSelection();
-				displayCalendar.addTask.getSelectionModel().clearSelection();
+				//DisplayList.addTask.getSelectionModel().clearSelection();
+			
 				if (onListView) {
-					liststack.getChildren().remove(newAssignment);
+					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks(list);
 				} else {
 					displayCalendar.displayTasks();
-					calendarstack.getChildren().remove(newAssignment);
+					calendarstack.getChildren().remove(newEvent);
 
 				}
-			});*/
+			});
 
 		} catch (Exception e) {
 			e.printStackTrace();

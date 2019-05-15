@@ -2,6 +2,7 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Background;
@@ -12,10 +13,11 @@ import javafx.scene.text.Font;
 
 public class DisplayList {
 	public static ArrayList<Button> list = new ArrayList<>();
-	static ComboBox<String> addTask;
+	static Button addTask;
 	static Button assignment = new Button("Assignment");
 	static Button event = new Button("Event");
 	static Button calendarView = new Button("Switch to Calendar");
+	static String[] values = {"Add New Task", "Event", "Assignment"};
 	
 
 	public static void addButton(Button a) {
@@ -30,7 +32,7 @@ public class DisplayList {
 
 	public static void setup(Pane pane) {
 		pane.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #999999;");
-		addTask = new ComboBox<String>();
+		addTask = new Button("New Task");
 		Font f1 = new Font(20);
 		calendarView.setFont(f1);
 		calendarView.setPrefHeight(60);
@@ -41,10 +43,10 @@ public class DisplayList {
 		assignment.setFont(fo);
 		event.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		event.setFont(fo);
-		addTask.getItems().add("Event");
-		addTask.getItems().add("Assignment");
+//		addTask.getItems().add("Add New Task");
+//		addTask.getItems().add("Event");
+//		addTask.getItems().add("Assignment");
 		
-		addTask.setValue("Add New Task");
 		addTask.setPrefSize(150, 60);
 		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 

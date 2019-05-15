@@ -28,6 +28,9 @@ public class displayTask {
 	public static TextField assignmentname;
 	public static TextField subject;
 	public static TextField location;
+	public static TextField hour;
+	public static TextField minute;
+	public static int mornafternoon = 0;
 	//public static CalendarTimePicker time;
 	public static boolean highPriority;
 	
@@ -84,9 +87,46 @@ public class displayTask {
 		cancelEvent.setTranslateX(440);
 		cancelEvent.setTranslateY(300);
 		
+		hour = new TextField();
+		minute = new TextField();
+		hour.setPrefWidth(35);
+		minute.setPrefWidth(35);
+		hour.setPromptText("00");
+		minute.setPromptText("00");
+		hour.setTranslateX(400);
+		minute.setTranslateX(440);
+		hour.setTranslateY(25);
+		minute.setTranslateY(25);
+		Label time = new Label("Time:");
+		Label timecolon = new Label(":");
+		time.setTranslateX(400);
+		time.setTranslateY(5);
+		timecolon.setTranslateX(435);
+		timecolon.setTranslateY(27);
+		
+		
+		ToggleGroup ampm = new ToggleGroup();
+		ToggleButton am = new ToggleButton("am");
+		ToggleButton pm = new ToggleButton("pm");
+		am.setToggleGroup(ampm);
+		pm.setToggleGroup(ampm);
+		am.setSelected(true);
+		am.setTranslateY(25);
+		am.setTranslateX(485);
+		pm.setTranslateY(25);
+		pm.setTranslateX(520);
+		
+		am.setOnMouseClicked(event ->{
+			mornafternoon = 0;
+		});
+		pm.setOnMouseClicked(event ->{
+			mornafternoon = 12;
+		});
+		
+		
 		setup();
 
-		newEvent.getChildren().addAll( background,nameTitle,eventname,description,dateEvent,doneEvent,cancelEvent,descriptionTitle, location, locationLabel);
+		newEvent.getChildren().addAll( background,nameTitle,eventname,description,dateEvent,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm);
 
 		//newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
 

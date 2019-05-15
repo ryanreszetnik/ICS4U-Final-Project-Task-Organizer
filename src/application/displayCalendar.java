@@ -25,7 +25,6 @@ public class displayCalendar {
 	public static Button prev;
 	public ArrayList<Button> list = new ArrayList<>();
 	public static  Button toList;
-	static ComboBox<String> addTask;
 	public static Pane root;
 	public static Button newEvent;
 	public static Button newAssignment;
@@ -41,13 +40,7 @@ public class displayCalendar {
 	public static void setup() {
 		
 		root.setBackground(new Background(new BackgroundFill(Color.web("#777777"), CornerRadii.EMPTY, Insets.EMPTY)));
-		addTask = new ComboBox<String>();
-		addTask.getItems().add("Event");
-		addTask.getItems().add("Assignment");
-		addTask.setValue("Add New Task");
-		addTask.setTranslateX(650);
-		addTask.setTranslateY(10);
-		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		
 		days = new Button[42];
 	
 		for (int i = 0; i < 42; i++) {
@@ -116,7 +109,7 @@ public class displayCalendar {
 		
 		
 		
-		root.getChildren().addAll(MonthTitle, YearTitle, addTask);
+		root.getChildren().addAll(MonthTitle, YearTitle);
 		root.getChildren().addAll(next,prev, toList);
 		
 		setupDays(currDate.month, currDate.year);
@@ -234,7 +227,7 @@ public class displayCalendar {
 		tasks.add(a);
 	}
 	public static void addTask(Task t){
-		Button newTask1 = new Button(t.name);
+		Button newTask1 = new Button(t.Format());
 		addButton(newTask1);
 	}
 	

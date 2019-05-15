@@ -84,6 +84,7 @@ public class Date {
 	public String getTime() {
 		String time = "";
 		String morning = " am";
+		String min = ""+minute;
 		int hr = hour;
 		if (hr >= 0 && minute >= 0) {
 			if (hr >= 12) {
@@ -95,7 +96,10 @@ public class Date {
 			if (hr == 0) {
 				hr = 12;
 			}
-			time += hr + ":" + minute + morning;
+			if(minute == 0){
+				min+= "0";
+			}
+			time += " " +hr + ":" + min + morning;
 		}
 		return time;
 	}
