@@ -12,6 +12,9 @@ public abstract class Task {
 		hasTime = true;
 
 	}
+	public String Format(){
+		return name + date.getTime();		
+	}
 	
 	public void setDescription(String description){
 		this.description = description;
@@ -23,7 +26,7 @@ public abstract class Task {
 		date.setDate(year, month, day);
 	}
 	public String toString(){
-		return name +" "+date.toString();
+		return "Name: "+name +"   Date: "+date.toString();
 	}
 	
 	
