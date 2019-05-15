@@ -1,5 +1,6 @@
 package application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -74,19 +75,30 @@ public class DisplayList {
 			if(List.list.get(i).isAssignment()) {
 			String name = List.list.get(i).name;
 			String description = List.list.get(i).description;
+			String subject = ((Assignment)(List.list.get(i))).getSubject();
+			Date date = List.list.get(i).date;
+			int year = date.year;
+			int month = date.month;
+			int day = date.day;
+			Boolean priority = ((Assignment)List.list.get(i)).getPriority();
+			
 			list.get(i).setOnAction(e ->{
 					Main.liststack.getChildren().add(displayTask.newAssignment);
 					displayTask.assignmentname.setText(name);
 					displayTask.assignDescription.setText(description);
+					displayTask.subject.setText(subject);
+					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day));
 			});
 			}
 			else {
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
+				String location = ((Event)List.list.get(i)).getLocation();
 				list.get(i).setOnAction(e ->{
 					Main.liststack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
+					displayTask.location.setText(location);
 				});
 				
 			}

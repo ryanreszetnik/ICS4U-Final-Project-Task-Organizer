@@ -162,7 +162,6 @@ public class Main extends Application {
 					calendarstack.getChildren().add(newAssignment);
 				}
 
-				// LocalDate temp = new LocalDate();
 				if (cal.getChildren().contains(displayCalendar.newEvent)) {
 					cal.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
 				}

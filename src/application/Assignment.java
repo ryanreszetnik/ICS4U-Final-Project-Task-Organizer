@@ -16,10 +16,9 @@ public class Assignment extends Task{
 		this.subject = subject;
 		this.priority = priority;
 		this.date = new Date(year, month, day);
-		
 	}
 	
-	public void setSubject(String Subject) {
+	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 	public String getSubject() {
