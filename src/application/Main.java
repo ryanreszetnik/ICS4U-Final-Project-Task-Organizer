@@ -54,24 +54,41 @@ public class Main extends Application {
 			
 			DisplayList.addTask.setOnMouseClicked((e) -> {
 				
-				displayCalendar.newAssignment.setTranslateX(10);
-				displayCalendar.newAssignment.setTranslateY(65);
+				DisplayList.newAssignment.setTranslateX(3);
+				DisplayList.newAssignment.setTranslateY(65);
 				
-				displayCalendar.newEvent.setTranslateX(10);
-				displayCalendar.newEvent.setTranslateY(100);
+				DisplayList.newEvent.setTranslateX(3);
+				DisplayList.newEvent.setTranslateY(100);
 				
 				
-				if(!(list.getChildren().contains(displayCalendar.newAssignment) && list.getChildren().contains(displayCalendar.newEvent))) {
-					list.getChildren().addAll(displayCalendar.newEvent, displayCalendar.newAssignment);
+				if(!(list.getChildren().contains(DisplayList.newAssignment) && list.getChildren().contains(DisplayList.newEvent))) {
+					list.getChildren().addAll(DisplayList.newEvent, DisplayList.newAssignment);
 				}
 				else {
-					list.getChildren().removeAll(displayCalendar.newEvent, displayCalendar.newAssignment);
+					list.getChildren().removeAll(DisplayList.newEvent, DisplayList.newAssignment);
 
 
 				}
 
 			});
 			
+			DisplayList.newAssignment.setOnAction(e ->{
+				if(!(list.getChildren().contains(displayTask.newAssignment) && calendarstack.getChildren().contains(displayTask.newAssignment))) {
+					liststack.getChildren().add(displayTask.newAssignment);
+				}
+				list.getChildren().remove(DisplayList.newAssignment);
+				list.getChildren().remove(DisplayList.newEvent);
+			});
+			
+			DisplayList.newEvent.setOnAction(e ->{
+				if(!(liststack.getChildren().contains(displayTask.newEvent) && calendarstack.getChildren().contains(displayTask.newEvent))) {
+					liststack.getChildren().add(displayTask.newEvent);
+				}
+				list.getChildren().remove(DisplayList.newAssignment);
+				list.getChildren().remove(DisplayList.newEvent);
+			});
+			
+
 			// list--> calendar
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
@@ -95,7 +112,7 @@ public class Main extends Application {
 			// cancel assignment
 			displayTask.cancelAssignment.setOnMouseClicked(event -> {
 				
-				if (onListView) {
+				if (liststack.getChildren().contains(displayTask.newAssignment)) {
 
 					liststack.getChildren().remove(newAssignment);
 
@@ -108,8 +125,7 @@ public class Main extends Application {
 			// cancel event
 			displayTask.cancelEvent.setOnMouseClicked(event -> {
 				
-
-				if (onListView) {
+				if (liststack.getChildren().contains(displayTask.newEvent)) {
 					liststack.getChildren().remove(newEvent);
 
 				} else {
@@ -170,6 +186,7 @@ public class Main extends Application {
 				StoreData.writeFile();
 			});
 			
+//			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
 
 				int yr = displayTask.dateEvent.getValue().getYear();

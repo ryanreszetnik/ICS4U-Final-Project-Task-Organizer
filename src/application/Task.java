@@ -27,7 +27,7 @@ public abstract class Task {
 		date.setDate(year, month, day);
 	}
 	public String toString(){
-		return name +" "+date.toString();
+		return "Name: "+name +"   Date: "+date.toString();
 	}
 	
 	
