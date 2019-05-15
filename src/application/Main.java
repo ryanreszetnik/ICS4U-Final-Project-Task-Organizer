@@ -220,8 +220,13 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newEvent);
 
 				}
+				displayTask.eventname.clear();
+				displayTask.description.clear();
+				displayTask.location.clear();
 				StoreData.writeFile();
 			});
+			
+			
 			StoreData.readFile();
 			DisplayList.displayTasks(list);
 

@@ -71,14 +71,25 @@ public class DisplayList {
 			if(pane.getChildren().contains(list.get(i)) == false){
 				pane.getChildren().add(list.get(i));
 			}
+			if(List.list.get(i).isAssignment()) {
+			String name = List.list.get(i).name;
+			String description = List.list.get(i).description;
 			list.get(i).setOnAction(e ->{
-				if(displayTask.isEvent) {
-					Main.liststack.getChildren().add(displayTask.newEvent);
-				}
-				else {
 					Main.liststack.getChildren().add(displayTask.newAssignment);
-				}
+					displayTask.assignmentname.setText(name);
+					displayTask.description.setText(description);
 			});
+			}
+			else {
+				String name = List.list.get(i).name;
+				String description = List.list.get(i).description;
+				list.get(i).setOnAction(e ->{
+					Main.liststack.getChildren().add(displayTask.newEvent);
+					displayTask.eventname.setText(name);
+					displayTask.description.setText(description);
+				});
+				
+			}
 		}
 	}
 
