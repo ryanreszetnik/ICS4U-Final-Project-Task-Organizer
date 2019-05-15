@@ -57,7 +57,11 @@ public class StoreData {
 					counter = 0;
 					Task a = new Assignment(name, desc, locationOrSubject, priority, year, month, day);
 					List.addAssignment(a);
-				} else {
+				} else if(CurrentLine.equals("done") == false && counter == 1){
+					desc += "\n" + CurrentLine;
+				}
+					else {
+				
 					switch (counter) {
 					case 0:
 						name = CurrentLine;
@@ -105,6 +109,7 @@ public class StoreData {
 				Task temp = List.list.get(i);
 				data += temp.name + "\n";
 				data += temp.description + "\n";
+				data += "done\n";
 				data += temp.date.toFile();
 				if(temp.isEvent){
 					data += ((Event)(temp)).getLocation() +"\n";

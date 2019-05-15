@@ -121,7 +121,7 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newAssignment);
 				}
 				displayTask.assignmentname.clear();
-				displayTask.description.clear();
+	//			displayTask.description.clear();
 				displayTask.subject.clear();
 
 			});
@@ -137,7 +137,7 @@ public class Main extends Application {
 
 				}
 				displayTask.eventname.clear();
-				displayTask.description.clear();
+//				displayTask.description.clear();
 				displayTask.location.clear();
 			});
 
@@ -175,8 +175,8 @@ public class Main extends Application {
 				int yr = displayTask.dateAssignment.getValue().getYear();
 				int mo = displayTask.dateAssignment.getValue().getMonthValue();
 				int day = displayTask.dateAssignment.getValue().getDayOfMonth();
-
-				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.description.getText(),
+				System.out.println(displayTask.assignDescription.getText());
+				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.assignDescription.getText(),
 						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
 
 				List.addAssignment(a);
@@ -191,14 +191,14 @@ public class Main extends Application {
 				}
 				
 				displayTask.assignmentname.clear();
-				displayTask.description.clear();
+//				displayTask.description.clear();
 				displayTask.subject.clear();
 				StoreData.writeFile();
 			});
 			
 //			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
-
+				System.out.println(displayTask.eventDescription.getText());
 				int yr = displayTask.dateEvent.getValue().getYear();
 				int mo = displayTask.dateEvent.getValue().getMonthValue();
 				int day = displayTask.dateEvent.getValue().getDayOfMonth();
@@ -206,7 +206,7 @@ public class Main extends Application {
 				int min = Integer.valueOf(displayTask.minute.getText());
 				System.out.println(hr+" " + min);
 
-				Task a = new Event(displayTask.eventname.getText(), displayTask.description.getText(),
+				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(),
 						displayTask.subject.getText(), yr, mo, day,hr,min);
 
 				List.addEvent(a);
