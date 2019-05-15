@@ -4,6 +4,7 @@ public abstract class Task {
 	public String name;
 	public String description;
 	public Date date;
+	public boolean isEvent;
 	boolean hasTime = false;
 	
 	public abstract void display();

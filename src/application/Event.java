@@ -20,6 +20,9 @@ public class Event extends Task{
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	public String getLocation(){
+		return location;
+	}
 	
 	public boolean isAssignment() {
 		return false;

@@ -183,6 +183,7 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newAssignment);
 
 				}
+				StoreData.writeFile();
 			});
 			
 //			Done Event
@@ -209,7 +210,10 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newEvent);
 
 				}
+				StoreData.writeFile();
 			});
+			StoreData.readFile();
+			DisplayList.displayTasks(list);
 
 		} catch (Exception e) {
 			e.printStackTrace();
