@@ -57,7 +57,7 @@ public class StoreData {
 					counter = 0;
 					Task a = new Assignment(name, desc, locationOrSubject, priority, year, month, day);
 					List.addAssignment(a);
-				} else if(CurrentLine.equals("HNTHStas6XdRtmDt") == false && counter == 1){
+				} else if(!CurrentLine.equals("HNTHStas6XdRtmDt") && counter == 1){
 					//please don't type HNTHStas6XdRtmDt into the description please
 					desc += "\n" + CurrentLine;
 				}

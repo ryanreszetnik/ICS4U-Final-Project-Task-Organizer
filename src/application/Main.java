@@ -197,16 +197,16 @@ public class Main extends Application {
 			
 //			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
-				System.out.println(displayTask.eventDescription.getText());
+				//System.out.println(displayTask.eventDescription.getText());
 				int yr = displayTask.dateEvent.getValue().getYear();
 				int mo = displayTask.dateEvent.getValue().getMonthValue();
 				int day = displayTask.dateEvent.getValue().getDayOfMonth();
 				int hr = Integer.valueOf(displayTask.hour.getText())+displayTask.mornafternoon;
 				int min = Integer.valueOf(displayTask.minute.getText());
-				System.out.println(hr+" " + min);
+			//	System.out.println(hr+" " + min);
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(),
-						displayTask.subject.getText(), yr, mo, day,hr,min);
+						displayTask.location.getText(), yr, mo, day,hr,min);
 
 				List.addEvent(a);
 				//DisplayList.addTask.getSelectionModel().clearSelection();
