@@ -221,7 +221,7 @@ public class Main extends Application {
 
 				}
 				displayTask.eventname.clear();
-				displayTask.description.clear();
+				displayTask.eventDescription.clear();
 				displayTask.location.clear();
 				StoreData.writeFile();
 			});

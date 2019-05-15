@@ -77,7 +77,7 @@ public class DisplayList {
 			list.get(i).setOnAction(e ->{
 					Main.liststack.getChildren().add(displayTask.newAssignment);
 					displayTask.assignmentname.setText(name);
-					displayTask.description.setText(description);
+					displayTask.assignDescription.setText(description);
 			});
 			}
 			else {
@@ -86,7 +86,7 @@ public class DisplayList {
 				list.get(i).setOnAction(e ->{
 					Main.liststack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
-					displayTask.description.setText(description);
+					displayTask.eventDescription.setText(description);
 				});
 				
 			}
