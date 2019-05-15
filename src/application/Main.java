@@ -93,6 +93,18 @@ public class Main extends Application {
 				}
 
 			});
+			
+			displayCalendar.newAssignment.setOnAction(e ->{
+				if(!(cal.getChildren()         .contains(displayTask.newAssignment) && (cal.getChildren().contains(displayTask.newEvent)))){
+					cal.getChildren().remove(displayTask.newAssignment);
+					list.getChildren().add(displayTask.newAssignment);
+				}
+			});
+			
+			displayCalendar.newEvent.setOnAction(e ->{
+				
+			});
+			
 			// list--> calendar
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
