@@ -63,8 +63,6 @@ public class DisplayList {
 	
 	public static void displayTasks(Pane pane) {
 		for (int i = 0; i < list.size(); i++) {
-			
-			
 			list.get(i).setPrefSize(680, 100);
 			list.get(i).setTranslateX(10);
 			list.get(i).setTranslateY(65 + (i * 100));
@@ -74,8 +72,12 @@ public class DisplayList {
 				pane.getChildren().add(list.get(i));
 			}
 			list.get(i).setOnAction(e ->{
-					System.out.print("ooga");
-						Main.liststack.getChildren().add(displayTask.newAssignment);
+				if(displayTask.isEvent) {
+					Main.liststack.getChildren().add(displayTask.newEvent);
+				}
+				else {
+					Main.liststack.getChildren().add(displayTask.newAssignment);
+				}
 			});
 		}
 	}

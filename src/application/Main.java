@@ -120,6 +120,9 @@ public class Main extends Application {
 
 					calendarstack.getChildren().remove(newAssignment);
 				}
+				displayTask.assignmentname.clear();
+				displayTask.description.clear();
+				displayTask.subject.clear();
 
 			});
 			// cancel event
@@ -133,6 +136,9 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newEvent);
 
 				}
+				displayTask.eventname.clear();
+				displayTask.description.clear();
+				displayTask.location.clear();
 			});
 
 			displayCalendar.newEvent.setOnMouseClicked(event -> {
@@ -183,6 +189,10 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newAssignment);
 
 				}
+				
+				displayTask.assignmentname.clear();
+				displayTask.description.clear();
+				displayTask.subject.clear();
 				StoreData.writeFile();
 			});
 			
