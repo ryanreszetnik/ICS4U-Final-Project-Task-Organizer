@@ -99,7 +99,7 @@ public class Date {
 			if(minute == 0){
 				min+= "0";
 			}
-			time += " " +hr + ":" + min + morning;
+			time = " " +hr + ":" + min + morning;
 		}
 		return time;
 	}
