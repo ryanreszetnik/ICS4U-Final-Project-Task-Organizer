@@ -121,7 +121,7 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newAssignment);
 				}
 				displayTask.assignmentname.clear();
-	//			displayTask.description.clear();
+				displayTask.assignDescription.clear();
 				displayTask.subject.clear();
 
 			});
@@ -137,7 +137,7 @@ public class Main extends Application {
 
 				}
 				displayTask.eventname.clear();
-//				displayTask.description.clear();
+				displayTask.eventDescription.clear();
 				displayTask.location.clear();
 			});
 
@@ -191,7 +191,7 @@ public class Main extends Application {
 				}
 				
 				displayTask.assignmentname.clear();
-//				displayTask.description.clear();
+				displayTask.assignDescription.clear();
 				displayTask.subject.clear();
 				StoreData.writeFile();
 			});
