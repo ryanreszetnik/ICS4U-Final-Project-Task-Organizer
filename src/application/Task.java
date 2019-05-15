@@ -16,6 +16,8 @@ public abstract class Task {
 		return name + date.getTime();		
 	}
 	
+	public abstract boolean isAssignment();
+	
 	public void setDescription(String description){
 		this.description = description;
 	}

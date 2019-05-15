@@ -32,4 +32,9 @@ public class Assignment extends Task{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean isAssignment() {
+		return true;
+	}
 }

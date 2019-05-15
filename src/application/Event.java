@@ -21,4 +21,8 @@ public class Event extends Task{
 		this.location = location;
 	}
 	
+	public boolean isAssignment() {
+		return false;
+	}
+	
 }
