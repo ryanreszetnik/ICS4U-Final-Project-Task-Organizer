@@ -28,7 +28,7 @@ public class List {
 		a.isEvent = true;
 		if(DisplayList.buttonIndex < list.size()-1) {
 			list.remove(DisplayList.buttonIndex);
-			list.set(DisplayList.buttonIndex, a);
+			list.add(DisplayList.buttonIndex, a);
 		}
 		
 		else {
@@ -41,7 +41,7 @@ public class List {
 		if(DisplayList.buttonIndex < list.size()-1) {
 			a.isEvent = false;
 			list.remove(DisplayList.buttonIndex);
-			list.set(DisplayList.buttonIndex, a);
+			list.add(DisplayList.buttonIndex, a);
 		}
 		
 		else {

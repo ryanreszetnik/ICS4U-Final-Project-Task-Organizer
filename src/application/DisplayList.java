@@ -73,7 +73,6 @@ public class DisplayList {
 	}
 	
 	public static void displayTasks(Pane pane) {
-		System.out.println(list.size());
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setPrefSize(680, 100);
 			list.get(i).setTranslateX(10);
@@ -138,8 +137,6 @@ public class DisplayList {
 						displayTask.am.setSelected(false);
 						displayTask.pm.setSelected(true);
 						displayTask.hour.setText(hour+"");
-						
-					
 					}
 
 				});
