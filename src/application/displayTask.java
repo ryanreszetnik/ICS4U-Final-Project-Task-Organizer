@@ -18,6 +18,7 @@ public class displayTask {
 	
 	public static TextArea eventDescription;
 	public static TextArea assignDescription;
+	
 	public static DatePicker dateEvent;
 	public static DatePicker dateAssignment;
 	public static Button doneEvent;
