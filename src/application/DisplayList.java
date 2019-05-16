@@ -111,6 +111,10 @@ public class DisplayList {
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
 				String location = ((Event)List.list.get(i)).getLocation();
+				Date date = List.list.get(i).date;
+				int year = date.year;
+				int month = date.month;
+				int day = date.day;
 				list.get(i).setOnAction(e ->{
 					displayTask.newThing = false;
 					buttonIndex = count;
@@ -118,6 +122,7 @@ public class DisplayList {
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
 					displayTask.location.setText(location);
+					displayTask.dateAssignment.setValue(LocalDate.of(year, month, day));
 				});
 				
 			}

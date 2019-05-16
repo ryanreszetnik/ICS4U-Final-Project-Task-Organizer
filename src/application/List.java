@@ -25,12 +25,21 @@ public class List {
 	}
 	
 	public static void updateEvent(Task a) {
-		list.remove(DisplayList.buttonIndex);
-		list.set(DisplayList.buttonIndex, a);
+		a.isEvent = true;
+		if(DisplayList.buttonIndex < list.size()-1) {
+			list.remove(DisplayList.buttonIndex);
+			list.set(DisplayList.buttonIndex, a);
+		}
+		
+		else {
+			list.remove(DisplayList.buttonIndex);
+			list.add(a);
+		}
 	}
 	
 	public static void updateAssignment(Task a) {
 		if(DisplayList.buttonIndex < list.size()-1) {
+			a.isEvent = false;
 			list.remove(DisplayList.buttonIndex);
 			list.set(DisplayList.buttonIndex, a);
 		}
