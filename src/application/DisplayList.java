@@ -116,7 +116,7 @@ public class DisplayList {
 				int month = date.month;
 				int day = date.day;
 				System.out.println("hour:" +date.hour);
-				int hour = date.hour;
+				int hour = date.getHour();
 				int min = date.minute;
 				boolean morn = date.isMorining();
 				
@@ -138,11 +138,8 @@ public class DisplayList {
 					}else{
 						displayTask.am.setSelected(false);
 						displayTask.pm.setSelected(true);
-						if(hour > 12){
-							displayTask.hour.setText(hour-12+"");
-						}else{
-							displayTask.hour.setText(hour+"");
-						}
+						displayTask.hour.setText(hour+"");
+						
 						
 					}
 				});
