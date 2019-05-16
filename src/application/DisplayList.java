@@ -83,6 +83,8 @@ public class DisplayList {
 			if(pane.getChildren().contains(list.get(i)) == false){
 				pane.getChildren().add(list.get(i));
 			}
+			
+			
 			if(!List.list.get(i).isEvent) {
 			buttonIndex = i;
 			String name = List.list.get(i).name;
@@ -92,9 +94,7 @@ public class DisplayList {
 			int year = date.year;
 			int month = date.month;
 			int day = date.day;
-			Boolean priority = ((Assignment)List.list.get(i)).getPriority();
 			int count = i; 
-			
 			list.get(i).setOnAction(e ->{
 					buttonIndex = count;
 					displayTask.newThing = false;
@@ -102,7 +102,7 @@ public class DisplayList {
 					displayTask.assignmentname.setText(name);
 					displayTask.assignDescription.setText(description);
 					displayTask.subject.setText(subject);
-					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day));
+					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day)); 
 			});
 			}
 			
@@ -115,6 +115,7 @@ public class DisplayList {
 				int year = date.year;
 				int month = date.month;
 				int day = date.day;
+				displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
 				list.get(i).setOnAction(e ->{
 					displayTask.newThing = false;
 					buttonIndex = count;
@@ -122,7 +123,7 @@ public class DisplayList {
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
 					displayTask.location.setText(location);
-					displayTask.dateAssignment.setValue(LocalDate.of(year, month, day));
+					displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
 				});
 				
 			}
