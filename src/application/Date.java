@@ -113,6 +113,20 @@ public class Date {
 		}
 		return time;
 	}
+	public int getHour(){
+		if(hour > 12){
+			return hour-12;
+		}
+		return hour;
+		
+	}
+	public boolean isMorining(){
+		if(hour >=12){
+			return false;
+		}
+		return true;
+	}
+	
 
 	public String getDate() {
 		return day + "/" + month + "/" + year;

@@ -110,23 +110,42 @@ public class DisplayList {
 				int count = i;
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
-				String location = ((Event)List.list.get(i)).getLocation();
+				String location = ((Event)(List.list.get(i))).getLocation();
 				Date date = List.list.get(i).date;
 				int year = date.year;
 				int month = date.month;
 				int day = date.day;
 				displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
+				int hour = date.getHour();
+				int min = date.minute;
+				boolean morn = date.isMorining();
+				
 				list.get(i).setOnAction(e ->{
-					displayTask.newThing = false;
 					buttonIndex = count;
 					Main.liststack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
 					displayTask.location.setText(location);
 					displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
+			
+					displayTask.minute.setText(min+"");
+					if(morn){
+						displayTask.am.setSelected(true);
+						displayTask.pm.setSelected(false);
+						displayTask.hour.setText(hour+"");
+					}
+					else{
+						displayTask.am.setSelected(false);
+						displayTask.pm.setSelected(true);
+						displayTask.hour.setText(hour+"");
+						
+					
+					}
+
 				});
 				
 			}
+		
 		}
 	}
 

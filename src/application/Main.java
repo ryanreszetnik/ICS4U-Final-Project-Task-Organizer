@@ -222,7 +222,7 @@ public class Main extends Application {
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(),
 
-						displayTask.subject.getText(), yr, mo, day,hr,min);
+						displayTask.location.getText(), yr, mo, day,hr,min);
 				if(displayTask.newThing) {
 					List.addEvent(a);
 				}
