@@ -38,6 +38,7 @@ public class displayTask {
 	public static ToggleButton pm;
 	public static ToggleButton regular;
 	public static ToggleButton high;
+	public static boolean newThing;
 
 	
 	public static boolean isEvent;
