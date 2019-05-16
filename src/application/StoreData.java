@@ -131,7 +131,6 @@ public class StoreData {
 					data+= "assignment\n";
 				}
 			}
-
 			BufferedWriter out = new BufferedWriter(new FileWriter("Tasks"));
 			// makes a buffered writer for the new score list
 			out.write(data);// changes the text to the new tasks

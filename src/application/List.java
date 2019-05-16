@@ -24,9 +24,21 @@ public class List {
 		displayCalendar.addTask(a);
 	}
 	
-	public static void updateTask(Task a) {
+	public static void updateEvent(Task a) {
 		list.remove(DisplayList.buttonIndex);
 		list.set(DisplayList.buttonIndex, a);
+	}
+	
+	public static void updateAssignment(Task a) {
+		if(DisplayList.buttonIndex < list.size()-1) {
+			list.remove(DisplayList.buttonIndex);
+			list.set(DisplayList.buttonIndex, a);
+		}
+		
+		else {
+			list.remove(DisplayList.buttonIndex);
+			list.add(a);
+		}
 	}
 	
 

@@ -84,8 +84,7 @@ public class DisplayList {
 				pane.getChildren().add(list.get(i));
 			}
 			if(!List.list.get(i).isEvent) {
-			//buttonIndex = i; 
-			//exists = true;
+			buttonIndex = i;
 			String name = List.list.get(i).name;
 			String description = List.list.get(i).description;
 			String subject = ((Assignment)(List.list.get(i))).getSubject();

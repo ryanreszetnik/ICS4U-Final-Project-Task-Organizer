@@ -187,7 +187,12 @@ public class Main extends Application {
 				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.assignDescription.getText(),
 						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
 
-				List.addAssignment(a);
+				if(displayTask.newThing) {
+					List.addAssignment(a);
+				}
+				else {
+					List.updateAssignment(a);
+				}
 
 				if (onListView) {
 					liststack.getChildren().remove(newAssignment);
@@ -209,13 +214,11 @@ public class Main extends Application {
 			
 //			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
-				//System.out.println(displayTask.eventDescription.getText());
 				int yr = displayTask.dateEvent.getValue().getYear();
 				int mo = displayTask.dateEvent.getValue().getMonthValue();
 				int day = displayTask.dateEvent.getValue().getDayOfMonth();
 				int hr = Integer.valueOf(displayTask.hour.getText())+displayTask.mornafternoon;
 				int min = Integer.valueOf(displayTask.minute.getText());
-			//	System.out.println(hr+" " + min);
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(),
 
@@ -224,15 +227,8 @@ public class Main extends Application {
 					List.addEvent(a);
 				}
 				else{ 
-					System.out.println(displayTask.newThing);
-					List.updateTask(a);
+					List.updateEvent(a);
 				}
-					
-
-			//	List.addEvent(a);
-				//DisplayList.addTask.getSelectionModel().clearSelection();
-
-			
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks(list);
