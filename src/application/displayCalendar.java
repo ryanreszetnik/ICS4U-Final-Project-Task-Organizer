@@ -207,16 +207,23 @@ public class displayCalendar {
 		
 	}
 	public static void displayTasks(){
+		for(int i = 0; i <7; i++){
+			for(int p = 0; p < 6; p++){
+				hasTask[i][p] = 0;
+			}
+		}
 		for (int i = 0; i < tasks.size(); i++) {
 			if(root.getChildren().contains(tasks.get(i))){
 				root.getChildren().remove(tasks.get(i));
 			}
+			
 			if(List.list.get(i).date.month == currDate.month && List.list.get(i).date.year == currDate.year){
 				String day =""+List.list.get(i).date.day;
 				tasks.get(i).setPrefSize(buttonsizex, buttonsizey/5);
-				System.out.println(dayPos(day));
+//				System.out.println(dayPos(day));
 				tasks.get(i).setTranslateX(dayPos(day)%7*buttonsizex);
-				tasks.get(i).setTranslateY(dayPos(day)/7*buttonsizey+95);
+				tasks.get(i).setTranslateY(dayPos(day)/7*buttonsizey+115+hasTask[dayPos(day)%7][dayPos(day)/7]*25);
+				hasTask[dayPos(day)%7][dayPos(day)/7]++;
 				root.getChildren().add(tasks.get(i));
 			}
 			

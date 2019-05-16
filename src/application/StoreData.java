@@ -46,9 +46,12 @@ public class StoreData {
 			String locationOrSubject = "";
 			boolean priority = false;
 			int counter = 0;
+			int discLength = 0;
+			int discCounter = 0;
 
 			while ((CurrentLine = br.readLine()) != null) {
 				// runs through file and reads each line
+				
 				if (CurrentLine.equals("event")) {
 					counter = 0;
 					Task a = new Event(name, desc, locationOrSubject, year, month, day, hour, minute);
@@ -57,38 +60,44 @@ public class StoreData {
 					counter = 0;
 					Task a = new Assignment(name, desc, locationOrSubject, priority, year, month, day);
 					List.addAssignment(a);
-				} else if(!CurrentLine.equals("HNTHStas6XdRtmDt") && counter == 1){
-					//please don't type HNTHStas6XdRtmDt into the description please
-					desc += "\n" + CurrentLine;
+					
 				}
-					else {
+				else if(!CurrentLine.equals("")){
 				
 					switch (counter) {
 					case 0:
 						name = CurrentLine;
 						break;
 					case 1:
-						desc = CurrentLine;
+						discLength = Integer.valueOf(CurrentLine);
+						discCounter = 0;
 						break;
 					case 2:
-						year = Integer.valueOf(CurrentLine);
+						desc +=CurrentLine + "\n";
+						discCounter++;
+						if(discCounter < discLength){
+							counter--;
+						}
 						break;
 					case 3:
-						month = Integer.valueOf(CurrentLine);
+						year = Integer.valueOf(CurrentLine);
 						break;
 					case 4:
-						day = Integer.valueOf(CurrentLine);
+						month = Integer.valueOf(CurrentLine);
 						break;
 					case 5:
-						hour = Integer.valueOf(CurrentLine);
+						day = Integer.valueOf(CurrentLine);
 						break;
 					case 6:
-						minute = Integer.valueOf(CurrentLine);
+						hour = Integer.valueOf(CurrentLine);
 						break;
 					case 7:
-						locationOrSubject = CurrentLine;
+						minute = Integer.valueOf(CurrentLine);
 						break;
 					case 8:
+						locationOrSubject = CurrentLine;
+						break;
+					case 9:
 						priority = Boolean.valueOf(CurrentLine);
 						break;
 					}
@@ -109,8 +118,9 @@ public class StoreData {
 			for (int i = 0; i < List.list.size(); i++) {
 				Task temp = List.list.get(i);
 				data += temp.name + "\n";
+				String[] lineArray = temp.description.split("\n");
+				data += lineArray.length + "\n";
 				data += temp.description + "\n";
-				data += "HNTHStas6XdRtmDt\n";
 				data += temp.date.toFile();
 				if(temp.isEvent){
 					data += ((Event)(temp)).getLocation() +"\n";

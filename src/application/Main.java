@@ -221,15 +221,14 @@ public class Main extends Application {
 				int min = Integer.valueOf(displayTask.minute.getText());
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(),
+
 						displayTask.subject.getText(), yr, mo, day,hr,min);
 				if(displayTask.newThing) {
 					List.addEvent(a);
 				}
 				else{ 
-					System.out.println(displayTask.newThing);
 					List.updateEvent(a);
 				}
-								
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks(list);
