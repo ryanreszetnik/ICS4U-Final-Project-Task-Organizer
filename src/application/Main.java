@@ -48,7 +48,8 @@ public class Main extends Application {
 			primaryStage.setScene(listview);
 			primaryStage.show();
 			// Add task List
-
+			
+			
 			
 			//scrolling
 			listview.setOnKeyPressed(e -> {
@@ -97,6 +98,7 @@ public class Main extends Application {
 			});
 			
 			DisplayList.newEvent.setOnAction(e ->{
+				displayTask.dateEvent.setValue(null);
 				displayTask.newThing = true;
 				if(!(liststack.getChildren().contains(displayTask.newEvent) && calendarstack.getChildren().contains(displayTask.newEvent))) {
 					liststack.getChildren().add(displayTask.newEvent);
