@@ -50,7 +50,22 @@ public class Main extends Application {
 			// Add task List
 
 			
-			
+			//scrolling
+			listview.setOnKeyPressed(e -> {
+				switch (e.getCode()) {
+				case UP:
+					for(int i = 0; i < DisplayList.list.size();i++){
+						DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()+100);
+					}
+					break;
+				case DOWN:
+					for(int i = 0; i < DisplayList.list.size();i++){
+						DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()-100);
+					}
+					break;
+
+				}
+			});
 			
 			DisplayList.addTask.setOnMouseClicked((e) -> {
 				

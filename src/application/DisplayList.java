@@ -24,6 +24,7 @@ public class DisplayList {
 	static boolean isAssignment;
 	static boolean exists;
 	static int buttonIndex;
+	static Rectangle top;
 	
 
 	public static void addButton(Button a) {
@@ -66,7 +67,7 @@ public class DisplayList {
 		addTask.setPrefSize(150, 60);
 		addTask.setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 
-		Rectangle top = new Rectangle(700, 60);
+		top = new Rectangle(700, 60);
 		top.setFill(Color.rgb(96, 96, 96));
 		pane.getChildren().addAll(top, addTask, calendarView);
 	
@@ -83,6 +84,8 @@ public class DisplayList {
 			if(pane.getChildren().contains(list.get(i)) == false){
 				pane.getChildren().add(list.get(i));
 			}
+			pane.getChildren().removeAll(top, addTask, calendarView);
+			pane.getChildren().addAll(top, addTask, calendarView);
 			if(!List.list.get(i).isEvent) {
 			buttonIndex = i;
 			String name = List.list.get(i).name;
