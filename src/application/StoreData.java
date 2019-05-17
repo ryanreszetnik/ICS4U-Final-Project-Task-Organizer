@@ -62,8 +62,8 @@ public class StoreData {
 					List.addAssignment(a);
 					
 				}
-				else {
-				
+
+				else{
 					switch (counter) {
 					case 0:
 						name = CurrentLine;

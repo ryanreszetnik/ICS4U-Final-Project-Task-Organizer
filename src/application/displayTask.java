@@ -208,5 +208,30 @@ public class displayTask {
 		
 		
 	}
+	public static boolean timeFilled(){
+		if(hour.getText().equals("") || minute.getText().equals("")){
+			return false;
+		}
+		if(contains(hour.getText(),"0123456789") && contains(minute.getText(),"0123456789")){
+			return true;
+		}
+		return false;
+	}
+	public static boolean contains(String input, String good){
+		boolean isgood = false;
+		for(int i = 0; i < input.length(); i++){
+			for(int p = 0; p < good.length(); p++){
+				if(input.charAt(i) == good.charAt(p)){
+					isgood = true;
+				}
+			}
+			if(!isgood){
+				return false;
+			}
+			isgood = false;
+		}
+	
+		return true;
+	}
 	
 }

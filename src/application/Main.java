@@ -51,9 +51,6 @@ public class Main extends Application {
 			primaryStage.show();
 
 			// Add task List
-			
-			
-			
 			//scrolling
 			listview.setOnKeyPressed(e -> {
 				switch (e.getCode()) {
@@ -234,6 +231,7 @@ public class Main extends Application {
 				else {
 					List.updateAssignment(a);
 					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
+					displayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
 
 				if (onListView) {
@@ -258,9 +256,9 @@ public class Main extends Application {
 			
 //			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
-				if(displayTask.hour.getText().equals("") || displayTask.minute.getText().equals("") || 
-					displayTask.dateEvent.getValue() == null || displayTask.eventname.getText() == null) {
-					missing.setText("Required Fields: Name, Date, and Time");
+				if (!displayTask.timeFilled() || 
+						displayTask.dateEvent.getValue() == null || displayTask.eventname.getText().equals("")) {
+					Label missing = new Label("Fields Required: Name, Date, Time");
 					missing.setTextFill(Color.DARKRED);
 					missing.setTranslateY(275);
 					missing.setTranslateX(40);
@@ -274,7 +272,7 @@ public class Main extends Application {
 				int yr = displayTask.dateEvent.getValue().getYear();
 				int mo = displayTask.dateEvent.getValue().getMonthValue();
 				int day = displayTask.dateEvent.getValue().getDayOfMonth();
-				int hr = Integer.valueOf(displayTask.hour.getText())+displayTask.mornafternoon;
+				int hr = Integer.valueOf(displayTask.hour.getText())+ displayTask.mornafternoon;
 				int min = Integer.valueOf(displayTask.minute.getText());
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(), 
@@ -296,6 +294,7 @@ public class Main extends Application {
 					calendarstack.getChildren().remove(newEvent);
 
 				}
+				
 				displayTask.eventname.clear();
 				displayTask.eventDescription.clear();
 				displayTask.location.clear();
@@ -306,7 +305,7 @@ public class Main extends Application {
 				displayTask.newEvent.getChildren().remove(missing);
 				requiredFields = false;
 				}
-				
+			
 			});
 			
 			

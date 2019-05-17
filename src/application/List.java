@@ -38,8 +38,8 @@ public class List {
 	}
 	
 	public static void updateAssignment(Task a) {
+		a.isEvent = false;
 		if(DisplayList.buttonIndex < list.size()-1) {
-			a.isEvent = false;
 			list.remove(DisplayList.buttonIndex);
 			list.add(DisplayList.buttonIndex, a);
 		}
