@@ -47,8 +47,28 @@ public class Main extends Application {
 
 			primaryStage.setScene(listview);
 			primaryStage.show();
-			
+
 			// Add task List
+			
+			
+			
+			//scrolling
+			listview.setOnKeyPressed(e -> {
+				switch (e.getCode()) {
+				case UP:
+					for(int i = 0; i < DisplayList.list.size();i++){
+						DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()+100);
+					}
+					break;
+				case DOWN:
+					for(int i = 0; i < DisplayList.list.size();i++){
+						DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()-100);
+					}
+					break;
+
+				}
+			});
+			
 			DisplayList.addTask.setOnMouseClicked((e) -> {
 				
 				DisplayList.newAssignment.setTranslateX(3);
@@ -147,7 +167,6 @@ public class Main extends Application {
 				displayTask.dateEvent.setValue(null);
 				displayTask.hour.clear();
 				displayTask.minute.clear();
-
 			});
 			
 //			New Event
@@ -232,7 +251,8 @@ public class Main extends Application {
 			
 //			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
-				if(displayTask.hour.getText() == null || displayTask.minute.getText() == null || displayTask.dateEvent.getValue() == null || displayTask.eventname.getText() == null) {
+				if(displayTask.hour.getText() == null || displayTask.minute.getText() == null || 
+						displayTask.dateEvent.getValue() == null || displayTask.eventname.getText() == null) {
 					Label missing = new Label("Fields Required: Name, Date, Time");
 					missing.setTextFill(Color.DARKRED);
 					missing.setTranslateY(275);
@@ -283,7 +303,11 @@ public class Main extends Application {
 			
 			StoreData.readFile();
 			DisplayList.displayTasks(list);
+			displayCalendar.displayTasks();
+
+
 			displayCalendar.editTasks();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
