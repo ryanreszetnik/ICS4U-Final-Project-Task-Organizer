@@ -52,11 +52,11 @@ public class StoreData {
 			while ((CurrentLine = br.readLine()) != null) {
 				// runs through file and reads each line
 				
-				if (CurrentLine.equals("event")) {
+				if (CurrentLine.equals("event")&& counter > 8) {
 					counter = 0;
 					Task a = new Event(name, desc, locationOrSubject, year, month, day, hour, minute);
 					List.addEvent(a);
-				} else if (CurrentLine.equals("assignment")) {
+				} else if (CurrentLine.equals("assignment")&& counter > 8) {
 					counter = 0;
 					Task a = new Assignment(name, desc, locationOrSubject, priority, year, month, day);
 					List.addAssignment(a);
