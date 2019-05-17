@@ -230,6 +230,7 @@ public class Main extends Application {
 				else {
 					List.updateAssignment(a);
 					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
+					displayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
 
 				if (onListView) {
@@ -251,8 +252,8 @@ public class Main extends Application {
 			
 //			Done Event
 			displayTask.doneEvent.setOnMouseClicked(event -> {
-				if(displayTask.hour.getText() == null || displayTask.minute.getText() == null || 
-						displayTask.dateEvent.getValue() == null || displayTask.eventname.getText() == null) {
+				if (!displayTask.timeFilled() || 
+						displayTask.dateEvent.getValue() == null || displayTask.eventname.getText().equals("")) {
 					Label missing = new Label("Fields Required: Name, Date, Time");
 					missing.setTextFill(Color.DARKRED);
 					missing.setTranslateY(275);
@@ -276,6 +277,7 @@ public class Main extends Application {
 						displayTask.location.getText(), yr, mo, day,hr,min);
 				if(displayTask.newThing) {
 					List.addEvent(a);
+					System.out.println("bad");
 				}
 				
 				else{ 

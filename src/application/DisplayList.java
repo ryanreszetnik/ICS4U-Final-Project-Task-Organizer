@@ -26,6 +26,7 @@ public class DisplayList {
 	static int buttonIndex;
 	static Rectangle top;
 	
+	
 
 	public static void addButton(Button a) {
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
@@ -119,6 +120,7 @@ public class DisplayList {
 				
 				list.get(i).setOnAction(e ->{
 					buttonIndex = count;
+					displayTask.newThing = false;
 					Main.liststack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
