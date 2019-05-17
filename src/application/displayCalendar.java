@@ -240,7 +240,10 @@ public class displayCalendar {
 	}
 	
 	public static void editTasks() {
+		
 		for (int i = 0; i < list.size(); i++) {
+			
+			//Code for if an Assignment is pressed
 			if(!List.list.get(i).isEvent) {
 			DisplayList.buttonIndex = i;
 			String name = List.list.get(i).name;
@@ -262,6 +265,7 @@ public class displayCalendar {
 			});
 			}
 			
+			//Code for if an Event is pressed
 			else {
 				int count = i;
 				String name = List.list.get(i).name;

@@ -20,7 +20,7 @@ public class DisplayList {
 	static Button calendarView = new Button("Switch to Calendar");
 	static String[] values = {"Add New Task", "Event", "Assignment"};
 	static Button newEvent = new Button("New Event");
-	static Button newAssignment = new Button("New Assignmentt");
+	static Button newAssignment = new Button("New Assignment");
 	static boolean isAssignment;
 	static boolean exists;
 	static int buttonIndex;
@@ -30,19 +30,13 @@ public class DisplayList {
 		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		list.add(a);
 	}
-	public static void updateButton(Button a) {
-		a.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
-		list.remove(buttonIndex);
-		list.set(buttonIndex, a);
-	}
+	
 	public static void addTask(Task t){
 		Button newTask = new Button(t.toString());
 		addButton(newTask);
 	}
-	public static void updateTask(Task t) {
-		Button newTask = new Button(t.toString());
-		updateButton(newTask);
-	}
+	
+	
 
 	public static void setup(Pane pane) {
 		newEvent.setPrefSize(140, 30);
@@ -82,7 +76,6 @@ public class DisplayList {
 			if(pane.getChildren().contains(list.get(i)) == false){
 				pane.getChildren().add(list.get(i));
 			}
-			
 			
 			if(!List.list.get(i).isEvent) {
 			buttonIndex = i;

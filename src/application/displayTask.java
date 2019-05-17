@@ -149,6 +149,7 @@ public class displayTask {
 		dateAssignment.setTranslateY(300);
 		dateAssignment.setTranslateX(25);
 		assignmentname = new TextField(); 
+		assignmentname.setPromptText("Enter Name");
 		assignmentname.setTranslateY(25);
 		assignmentname.setTranslateX(25);
 		Rectangle background = new Rectangle(590,350);
@@ -180,10 +181,6 @@ public class displayTask {
 		priorityTitle.setTranslateX(485);
 		priorityTitle.setTranslateY(5);
 		
-		Label dueDateTitle = new Label("Due Date");
-		dueDateTitle.setTranslateX(80);
-		dueDateTitle.setTranslateY(280);
-		
 		ToggleGroup hl = new ToggleGroup();
 		regular = new ToggleButton("Regular");
 		high = new ToggleButton("High");
@@ -203,7 +200,7 @@ public class displayTask {
 		});
 		
 		
-		newAssignment.getChildren().addAll(background,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle,dueDateTitle);
+		newAssignment.getChildren().addAll(background,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle);
 		buttonControls();
 	}
 	
