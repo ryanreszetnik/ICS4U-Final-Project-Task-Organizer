@@ -74,7 +74,6 @@ public class DisplayList {
 	}
 	
 	public static void displayTasks(Pane pane) {
-		System.out.println(List.list.size() +"====" + list.size());
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setPrefSize(680, 100);
 			list.get(i).setTranslateX(10);
@@ -84,8 +83,10 @@ public class DisplayList {
 			if(pane.getChildren().contains(list.get(i)) == false){
 				pane.getChildren().add(list.get(i));
 			}
+
 			pane.getChildren().removeAll(top, addTask, calendarView);
 			pane.getChildren().addAll(top, addTask, calendarView);
+
 			if(!List.list.get(i).isEvent) {
 			buttonIndex = i;
 			String name = List.list.get(i).name;
@@ -95,9 +96,7 @@ public class DisplayList {
 			int year = date.year;
 			int month = date.month;
 			int day = date.day;
-			Boolean priority = ((Assignment)List.list.get(i)).getPriority();
 			int count = i; 
-			
 			list.get(i).setOnAction(e ->{
 					buttonIndex = count;
 					displayTask.newThing = false;
@@ -105,7 +104,7 @@ public class DisplayList {
 					displayTask.assignmentname.setText(name);
 					displayTask.assignDescription.setText(description);
 					displayTask.subject.setText(subject);
-					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day));
+					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day)); 
 			});
 			}
 			
@@ -118,36 +117,35 @@ public class DisplayList {
 				int year = date.year;
 				int month = date.month;
 				int day = date.day;
-				System.out.println("hour:" +date.hour);
+				displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
 				int hour = date.getHour();
 				int min = date.minute;
 				boolean morn = date.isMorining();
 				
 				list.get(i).setOnAction(e ->{
-					
-					displayTask.newThing = false;
 					buttonIndex = count;
 					Main.liststack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
 					displayTask.location.setText(location);
 					displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
-					
+			
 					displayTask.minute.setText(min+"");
 					if(morn){
 						displayTask.am.setSelected(true);
 						displayTask.pm.setSelected(false);
 						displayTask.hour.setText(hour+"");
-					}else{
+					}
+					else{
 						displayTask.am.setSelected(false);
 						displayTask.pm.setSelected(true);
 						displayTask.hour.setText(hour+"");
-						
-						
 					}
+
 				});
 				
 			}
+		
 		}
 	}
 
