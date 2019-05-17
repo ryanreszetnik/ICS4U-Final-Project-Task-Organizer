@@ -62,7 +62,7 @@ public class StoreData {
 					List.addAssignment(a);
 					
 				}
-				else if(!CurrentLine.equals("")){
+				else {
 				
 					switch (counter) {
 					case 0:
