@@ -247,6 +247,7 @@ public class Main extends Application {
 			
 			StoreData.readFile();
 			DisplayList.displayTasks(list);
+			displayCalendar.displayTasks();
 
 		} catch (Exception e) {
 			e.printStackTrace();
