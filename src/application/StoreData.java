@@ -62,6 +62,7 @@ public class StoreData {
 					List.addAssignment(a);
 					
 				}
+
 				else{
 					switch (counter) {
 					case 0:

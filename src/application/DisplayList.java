@@ -84,18 +84,17 @@ public class DisplayList {
 			pane.getChildren().addAll(top, addTask, calendarView);
 
 			if(!List.list.get(i).isEvent) {
-			buttonIndex = i;
+			int count = i;
 			String name = List.list.get(i).name;
 			String description = List.list.get(i).description;
 			String subject = ((Assignment)(List.list.get(i))).getSubject();
 			Date date = List.list.get(i).date;
 			int year = date.year;
 			int month = date.month;
-			int day = date.day;
-			int count = i; 
+			int day = date.day; 
 			list.get(i).setOnAction(e ->{
+				displayTask.newThing = false;
 					buttonIndex = count;
-					displayTask.newThing = false;
 					Main.liststack.getChildren().add(displayTask.newAssignment);
 					displayTask.assignmentname.setText(name);
 					displayTask.assignDescription.setText(description);
@@ -119,6 +118,7 @@ public class DisplayList {
 				boolean morn = date.isMorining();
 				
 				list.get(i).setOnAction(e ->{
+					displayTask.newThing = false;
 					buttonIndex = count;
 					displayTask.newThing = false;
 					Main.liststack.getChildren().add(displayTask.newEvent);
