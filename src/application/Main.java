@@ -53,23 +53,9 @@ public class Main extends Application {
 			primaryStage.setScene(listview);
 			primaryStage.show();
 
-			// Add task List
+			
 			//scrolling
-			listview.setOnKeyPressed(e -> {
-				switch (e.getCode()) {
-				case UP:
-					for(int i = 0; i < DisplayList.list.size();i++){
-						DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()+100);
-					}
-					break;
-				case DOWN:
-					for(int i = 0; i < DisplayList.list.size();i++){
-						DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()-100);
-					}
-					break;
-
-				}
-			});
+			scroll();
 			
 			
 			// calendar--> list
@@ -95,23 +81,7 @@ public class Main extends Application {
 				onListView = false;
 				DisplayCalendar.displayTasks();
 			});
-			DisplayList.addTask.setOnMouseClicked((e) -> {
-				
-				DisplayList.newAssignment.setTranslateX(3);
-				DisplayList.newAssignment.setTranslateY(65);
-				
-				DisplayList.newEvent.setTranslateX(3);
-				DisplayList.newEvent.setTranslateY(100);
-				
-				
-				if(!(list.getChildren().contains(DisplayList.newAssignment) && list.getChildren().contains(DisplayList.newEvent))) {
-					list.getChildren().addAll(DisplayList.newEvent, DisplayList.newAssignment);
-				}
-				else {
-					list.getChildren().removeAll(DisplayList.newEvent, DisplayList.newAssignment);
-				}
-
-			});
+			
 			
 			newEventButtons();
 			newAssignmentButtons();
@@ -341,5 +311,22 @@ public class Main extends Application {
 						DisplayTask.newEvent.getChildren().remove(missing);
 						requiredFields = false;
 					});
+	}
+	public static void scroll(){
+		listview.setOnKeyPressed(e -> {
+			switch (e.getCode()) {
+			case UP:
+				for(int i = 0; i < DisplayList.list.size();i++){
+					DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()+100);
+				}
+				break;
+			case DOWN:
+				for(int i = 0; i < DisplayList.list.size();i++){
+					DisplayList.list.get(i).setTranslateY(DisplayList.list.get(i).getTranslateY()-100);
+				}
+				break;
+
+			}
+		});
 	}
 }

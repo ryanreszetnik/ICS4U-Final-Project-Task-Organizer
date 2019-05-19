@@ -44,6 +44,12 @@ public class DisplayList {
 		newEvent.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		newAssignment.setPrefSize(140, 30);
 		newAssignment.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		newAssignment.setTranslateX(3);
+		newAssignment.setTranslateY(65);
+		
+		newEvent.setTranslateX(3);
+		newEvent.setTranslateY(100);
+		
 		pane.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #999999;");
 		addTask = new Button("New Task");
 		Font f1 = new Font(20);
@@ -64,6 +70,16 @@ public class DisplayList {
 		top = new Rectangle(700, 60);
 		top.setFill(Color.rgb(96, 96, 96));
 		pane.getChildren().addAll(top, addTask, calendarView);
+		addTask.setOnMouseClicked((e) -> {
+
+			if(!(pane.getChildren().contains(newAssignment) && pane.getChildren().contains(newEvent))) {
+				pane.getChildren().addAll(newEvent, newAssignment);
+			}
+			else {
+				pane.getChildren().removeAll(newEvent, newAssignment);
+			}
+
+		});
 	
 	}
 	
