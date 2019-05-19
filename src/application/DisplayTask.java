@@ -37,13 +37,16 @@ public class DisplayTask {
 	public static ToggleButton regular;
 	public static ToggleButton high;
 	public static boolean newThing;
-	public static Button deleteTask = new Button("Delete");
+	public static Button deleteEvent;
+	public static Button deleteAssign;
 	
 	public static boolean isEvent;
 	
 	
 	
 	public static void displayEvent(){
+		
+		
 		eventDescription = new TextArea();
 		eventDescription.setPromptText("Enter Description");
 		eventDescription.setTranslateY(75);
@@ -89,6 +92,10 @@ public class DisplayTask {
 		cancelEvent.setTranslateX(440);
 		cancelEvent.setTranslateY(300);
 		
+		deleteEvent = new Button("Delete");
+		deleteEvent.setTranslateX(370);
+		deleteEvent.setTranslateY(300);
+		
 		hour = new TextField();
 		minute = new TextField();
 		hour.setPrefWidth(35);
@@ -126,8 +133,18 @@ public class DisplayTask {
 		});
 		
 	
-
-		newEvent.getChildren().addAll( background,nameTitle,eventname,eventDescription,dateEvent,doneEvent,cancelEvent,eventDescriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm);
+		deleteEvent.setOnMouseClicked(event ->{
+			DisplayList.pane.getChildren().remove(DisplayList.list.get(DisplayList.buttonIndex));
+			DisplayCalendar.root.getChildren().remove(DisplayCalendar.tasks.get(DisplayList.buttonIndex));
+			List.list.remove(DisplayList.buttonIndex);
+			DisplayList.list.remove(DisplayList.buttonIndex);
+			DisplayCalendar.tasks.remove(DisplayList.buttonIndex);
+			Main.cancelEvent();
+			DisplayList.displayTasks();
+			DisplayCalendar.displayTasks();
+			StoreData.writeFile();
+		});
+		newEvent.getChildren().addAll( background,nameTitle,eventname,eventDescription,dateEvent,doneEvent,cancelEvent,eventDescriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm,deleteEvent);
 
 		//newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
 
@@ -162,6 +179,11 @@ public class DisplayTask {
 		cancelAssignment = new Button("Cancel");
 		cancelAssignment.setTranslateX(440);
 		cancelAssignment.setTranslateY(300);
+		
+		deleteAssign = new Button("Delete");
+		deleteAssign.setTranslateX(370);
+		deleteAssign.setTranslateY(300);
+		
 		subject = new TextField();
 		subject.setPromptText("Enter Subject");
 		subject.setTranslateX(225);
@@ -201,9 +223,19 @@ public class DisplayTask {
 			
 			highPriority = false;
 		});
+		deleteAssign.setOnMouseClicked(event ->{
+			DisplayList.pane.getChildren().remove(DisplayList.list.get(DisplayList.buttonIndex));
+			DisplayCalendar.root.getChildren().remove(DisplayCalendar.tasks.get(DisplayList.buttonIndex));
+			List.list.remove(DisplayList.buttonIndex);
+			DisplayList.list.remove(DisplayList.buttonIndex);
+			DisplayCalendar.tasks.remove(DisplayList.buttonIndex);
+			DisplayList.displayTasks();
+			DisplayCalendar.displayTasks();
+			Main.cancelAssignment();
+			StoreData.writeFile();
+		});
 		
-		
-		newAssignment.getChildren().addAll(background,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle);
+		newAssignment.getChildren().addAll(background,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle,deleteAssign);
 		
 	}
 	
