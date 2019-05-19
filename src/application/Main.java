@@ -73,7 +73,6 @@ public class Main extends Application {
 			// list--> calendar
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
-				System.out.println("done");
 				newEvent.setTranslateX(160);
 				newEvent.setTranslateY(150);
 				newAssignment.setTranslateX(160);
@@ -134,6 +133,8 @@ public class Main extends Application {
 		DisplayCalendar.newAssignment.setOnMouseClicked(event -> {
 			DisplayCalendar.pday = -1;
 			DisplayTask.newThing = true;
+			DisplayTask.highPriority = false;
+			DisplayTask.regular.setSelected(true);
 			if (calendarstack.getChildren().contains(newAssignment) == false
 					&& calendarstack.getChildren().contains(newEvent) == false) {
 				DisplayTask.dateAssignment.setValue(LocalDate.of(DisplayCalendar.selectedDate.year,
@@ -147,6 +148,8 @@ public class Main extends Application {
 		});
 		DisplayList.newAssignment.setOnAction(e ->{
 			DisplayTask.newThing = true;
+			DisplayTask.highPriority = false;
+			DisplayTask.regular.setSelected(true);
 			if(!(list.getChildren().contains(DisplayTask.newAssignment) && calendarstack.getChildren().contains(DisplayTask.newAssignment))) {
 				liststack.getChildren().add(DisplayTask.newAssignment);
 			}
