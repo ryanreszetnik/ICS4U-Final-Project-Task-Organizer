@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class DisplayTask {
+	//declarations for everything
+	//does separate ones for events and assignment to avoid getting text issues
 	public static Pane newEvent;
 	public static Pane newAssignment;
 	
@@ -43,7 +45,8 @@ public class DisplayTask {
 	public static boolean isEvent;
 	
 	
-	
+	//all the code for creating the newEvent window
+	//does all of the declarations, formatting and translating for everything
 	public static void displayEvent(){
 		
 		
@@ -118,7 +121,7 @@ public class DisplayTask {
 		timecolon.setTranslateX(435);
 		timecolon.setTranslateY(27);
 		
-		
+		//uses toggle group for am/pm buttons so only 1 is selected
 		ToggleGroup ampm = new ToggleGroup();
 		am = new ToggleButton("am");
 		pm = new ToggleButton("pm");
@@ -130,6 +133,7 @@ public class DisplayTask {
 		pm.setTranslateY(25);
 		pm.setTranslateX(520);
 		
+		//event handlers for am / pm (morningafternoon converts 12hr based time to 24hr based time)
 		am.setOnMouseClicked(event ->{
 			mornafternoon = 0;
 		});
@@ -137,7 +141,7 @@ public class DisplayTask {
 			mornafternoon = 12;
 		});
 		
-	
+		//code for when you delete an event
 		deleteEvent.setOnMouseClicked(event ->{
 			DisplayList.pane.getChildren().remove(DisplayList.list.get(DisplayList.buttonIndex));
 			DisplayCalendar.root.getChildren().remove(DisplayCalendar.tasks.get(DisplayList.buttonIndex));
@@ -149,10 +153,13 @@ public class DisplayTask {
 			DisplayCalendar.displayTasks();
 			StoreData.writeFile();
 		});
+		//adds everything to the pane
 		newEvent.getChildren().addAll( background,nameTitle,dateLabel,eventname,eventDescription,dateEvent,doneEvent,cancelEvent,eventDescriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm,deleteEvent);
 
 
 	}
+	//all the code for creating the newAssignment window
+	//does all of the declarations, formatting and translating for everything
 	public static void displayAssignment(){
 		assignDescription = new TextArea();
 		assignDescription.setPromptText("Enter Description");
@@ -207,7 +214,7 @@ public class DisplayTask {
 		Label priorityTitle = new Label("Priority");
 		priorityTitle.setTranslateX(485);
 		priorityTitle.setTranslateY(5);
-		
+		//toggle group for priority
 		ToggleGroup hl = new ToggleGroup();
 		regular = new ToggleButton("Regular");
 		high = new ToggleButton("High");
@@ -221,7 +228,7 @@ public class DisplayTask {
 		high.setTranslateX(515);
 		high.setTextFill(Color.DARKRED);
 		
-		
+		//event handlers for changing priority
 		high.setOnMouseClicked(event ->{
 			
 			highPriority = true;
@@ -230,6 +237,7 @@ public class DisplayTask {
 			
 			highPriority = false;
 		});
+		//event handler for when you delete an assignment
 		deleteAssign.setOnMouseClicked(event ->{
 			DisplayList.pane.getChildren().remove(DisplayList.list.get(DisplayList.buttonIndex));
 			DisplayCalendar.root.getChildren().remove(DisplayCalendar.tasks.get(DisplayList.buttonIndex));
@@ -241,12 +249,12 @@ public class DisplayTask {
 			Main.cancelAssignment();
 			StoreData.writeFile();
 		});
-		
+		//adds everything to the pane
 		newAssignment.getChildren().addAll(background,dateLabel,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle,deleteAssign);
 		
 	}
 	
-	
+	//checks if the time fields are filled properly with numbers and within the 12 hr clock time range
 	public static boolean timeFilled(){
 		if(hour.getText().equals("") || minute.getText().equals("")){
 			return false;
@@ -258,6 +266,7 @@ public class DisplayTask {
 		}
 		return false;
 	}
+	//used to check if the time text field only has numbers (called in timeFilled) 
 	public static boolean contains(String input, String good){
 		boolean isgood = false;
 		for(int i = 0; i < input.length(); i++){

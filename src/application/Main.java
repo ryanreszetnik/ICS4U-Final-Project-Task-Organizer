@@ -95,7 +95,7 @@ public class Main extends Application {
 			DisplayList.displayTasks();
 			DisplayCalendar.displayTasks();
 
-			DisplayCalendar.editTasks();
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();

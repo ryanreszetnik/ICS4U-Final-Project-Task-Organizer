@@ -20,18 +20,18 @@ public class StoreData {
 		
 		File f = new File("Tasks");
 		try {
-			//
-			if (f.exists() == false) {// if the file doesn't exist
-				PrintWriter writer = new PrintWriter("Tasks");// makes
-																// a
-																// new
-																// file
-				writer.close();// closes the file
+			//checks if the file already exists
+			if (f.exists() == false) {
+				//creates the file
+				PrintWriter writer = new PrintWriter("Tasks");
+				//close file
+				writer.close();
 			}
+			// reads the file
 			br = new BufferedReader(new FileReader("Tasks"));
-			// makes a buffered reader for that file
+			// for what is on each line
 			String CurrentLine;
-			// for storing what is on each line
+			// variables that will be used to create the objects
 			String name = "";
 			String desc = "";
 			int year = 0;
@@ -45,23 +45,24 @@ public class StoreData {
 			int discLength = 0;
 			int discCounter = 0;
 			
-
+			// runs through file and reads each line
 			while ((CurrentLine = br.readLine()) != null) {
-				// runs through file and reads each line
 				
+				//if it needs to create an event
 				if (CurrentLine.equals("event")&& counter > 8) {
 					counter = 0;
 					Task a = new Event(name, desc, locationOrSubject, year, month, day, hour, minute);
 					List.addTask(a);
+				//if it needs to create an assignment
 				} else if (CurrentLine.equals("assignment")&& counter > 8) {
 					counter = 0;
 					Task a = new Assignment(name, desc, locationOrSubject, priority, year, month, day);
 					List.addTask(a);
 					
 				}
-
+				// if it is reading lines with info about the task
 				else{
-					
+					// depending on which line it is reading, it sets the variables above to that line
 					switch (counter) {
 					case 0:
 						
@@ -112,10 +113,12 @@ public class StoreData {
 			e.printStackTrace();
 		}
 	}
-
+// when it needs to write to the file
 	public static void writeFile() {
+		//the string everything is put into
 		String data = "";
 		try {
+			//loops though all of the tasks and adds every necessary variable to the string
 			for (int i = 0; i < List.list.size(); i++) {
 				Task temp = List.list.get(i);
 				data += temp.name + "\n";
@@ -133,10 +136,12 @@ public class StoreData {
 					data+= "assignment\n";
 				}
 			}
+			//edits the file named "Tasks"
 			BufferedWriter out = new BufferedWriter(new FileWriter("Tasks"));
-			// makes a buffered writer for the new score list
-			out.write(data);// changes the text to the new tasks
-			out.close();// closes the file
+			//changes the text of the file to the string
+			out.write(data);
+			//closes the file
+			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
