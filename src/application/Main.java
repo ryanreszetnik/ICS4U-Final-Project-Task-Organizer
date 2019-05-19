@@ -4,14 +4,13 @@ import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class Main extends Application {
-
+	//All initializations for main
 	static Pane cal = new Pane();
 	static Pane newEvent = new Pane();
 	static Pane newAssignment = new Pane();
@@ -21,7 +20,7 @@ public class Main extends Application {
 	static StackPane liststack = new StackPane();
 	static Scene calendarview = new Scene(calendarstack, 130 * 7, 100 * 6 + 95);
 	static Scene listview = new Scene(liststack, 700, 900);
-	static Scene instructionScene = new Scene(instructionView, 700, 900);
+	static Scene instructionScene = new Scene(instructionView, 900, 900);
 	static boolean onListView = true;
 	static boolean canCreate = true;
 	static Label missing = new Label();
@@ -30,7 +29,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
+			
+			//Sets up the panes for calendar, list, and instructions
 			calendarstack.getChildren().add(cal);
 			liststack.getChildren().add(list);
 			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -41,19 +41,22 @@ public class Main extends Application {
 			DisplayCalendar.root = cal;
 			DisplayList.pane = list;
 
+			//Runs the setup/display methods in the DisplayList, DisplayCalendar, DisplayTask, and Instructions classes
 			DisplayTask.displayAssignment();
 			DisplayTask.displayEvent();
 			DisplayList.setup();
 			DisplayCalendar.setup();
 			Instructions.setup(instructionView);
 
+			//Sets the main stage's scene to the list view and displays the stage
 			primaryStage.setScene(listview);
 			primaryStage.show();
 
-			// scrolling
+			//Runs the scroll method in Main
 			scroll();
 
-			// calendar--> list
+			//The event handler for the buttin that switches from calendar to list
+			//It switches the scene to listview and changes the position of the newEvent and new Assignment menus. It also updates some logic variables
 			DisplayCalendar.toList.setOnMouseClicked(event -> {
 				primaryStage.setScene(listview);
 				newEvent.setTranslateX(0);
@@ -64,7 +67,7 @@ public class Main extends Application {
 				DisplayList.displayTasks();
 			});
 
-			// list--> calendar
+			//Similar to the eventhandler above, except it switches from list to calendar. Updates done as required
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
 				newEvent.setTranslateX(160);
@@ -75,12 +78,12 @@ public class Main extends Application {
 				DisplayCalendar.displayTasks();
 			});
 			
-			//List --> Instructions
+			//Switches the scene from view to instructionScene
 			DisplayList.toInstructions.setOnMouseClicked(event ->{
 				primaryStage.setScene(instructionScene);
 			});
 			
-			//Instructions --> List
+			//Switche the scene from instructionScene to listview
 			Instructions.toList.setOnMouseClicked(event -> {
 				primaryStage.setScene(listview);
 			});
@@ -95,7 +98,6 @@ public class Main extends Application {
 			DisplayList.displayTasks();
 			DisplayCalendar.displayTasks();
 
-			DisplayCalendar.editTasks();
 
 		} catch (Exception e) {
 			e.printStackTrace();

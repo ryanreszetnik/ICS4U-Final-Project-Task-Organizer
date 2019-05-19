@@ -148,7 +148,6 @@ public class DisplayList {
 				//The actual eventhandler for when the button is pressed
 				list.get(i).setOnAction(e ->{
 					//The code in here fills out the DisplayTask "form" depending on the variables initialized above
-					//The code in here fills out the 
 					if(!DisplayTask.newAssignment.getChildren().contains(DisplayTask.deleteAssign)){
 						DisplayTask.newAssignment.getChildren().add(DisplayTask.deleteAssign);
 					}
@@ -182,10 +181,14 @@ public class DisplayList {
 				int min = date.minute;
 				boolean morn = date.isMorining();
 				
+				//The actual eventhandler for when the button is pressed
 				list.get(i).setOnAction(e ->{
+					
+					//This checks for the existence of the delete button and adds it if it is not there already
 					if(!DisplayTask.newEvent.getChildren().contains(DisplayTask.deleteEvent)){
 						DisplayTask.newEvent.getChildren().add(DisplayTask.deleteEvent);
 					}
+					//The code in here fills out the DisplayTask "form" depending on the variables initialized above
 					DisplayTask.newThing = false;
 					buttonIndex = count;
 					DisplayTask.newThing = false;
@@ -194,8 +197,9 @@ public class DisplayList {
 					DisplayTask.eventDescription.setText(description);
 					DisplayTask.location.setText(location);
 					DisplayTask.dateEvent.setValue(LocalDate.of(year, month, day));
-			
 					DisplayTask.minute.setText(min+"");
+					
+					//This logic determines whether the am or pm box should be selected in the menu
 					if(morn){
 						DisplayTask.am.setSelected(true);
 						DisplayTask.pm.setSelected(false);
