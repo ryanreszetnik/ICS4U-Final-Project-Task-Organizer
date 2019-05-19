@@ -34,6 +34,7 @@ public class DisplayCalendar {
 	public static final double buttonsizey = 100;
 	public static int pday = -1;
 	public static ArrayList<Button> tasks = new ArrayList<>();
+	public static ArrayList<Label> moreTasks = new ArrayList<>();
 	static int[][] hasTask = new int[7][6];
 
 	public static Date currDate = new Date();
@@ -235,10 +236,26 @@ public class DisplayCalendar {
 				tasks.get(i).setTranslateY(
 						dayPos(day) / 7 * buttonsizey + 115 + hasTask[dayPos(day) % 7][dayPos(day) / 7] * 25);
 				hasTask[dayPos(day) % 7][dayPos(day) / 7]++;
-				
-				root.getChildren().add(tasks.get(i));
+				if(hasTask[dayPos(day) % 7][dayPos(day) / 7] <= 2){
+					root.getChildren().add(tasks.get(i));
+				}
 			}
 
+		}
+		for(int i= 0; i < moreTasks.size(); i++){
+			root.getChildren().remove(moreTasks.get(i));
+		}
+		moreTasks.clear();
+		for(int i = 0; i < 7; i++){
+			for(int p = 0; p< 6; p++){
+				if(hasTask[i][p] > 2){
+					Label l = new Label("+" + (hasTask[i][p]-2) + " more");
+					l.setTranslateX(i*buttonsizex+40);
+					l.setTranslateY(p*buttonsizey+170);
+					moreTasks.add(l);
+					root.getChildren().add(l);
+				}
+			}
 		}
 		for (int i = 0; i < tasks.size(); i++) {
 
