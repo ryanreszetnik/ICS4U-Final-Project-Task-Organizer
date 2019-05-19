@@ -148,6 +148,10 @@ public class DisplayList {
 				//The actual eventhandler for when the button is pressed
 				list.get(i).setOnAction(e ->{
 					//The code in here fills out the 
+					if(!DisplayTask.newAssignment.getChildren().contains(DisplayTask.deleteAssign)){
+						DisplayTask.newAssignment.getChildren().add(DisplayTask.deleteAssign);
+					}
+					
 					DisplayTask.newThing = false;
 					buttonIndex = count;
 					Main.liststack.getChildren().add(DisplayTask.newAssignment);
@@ -176,6 +180,9 @@ public class DisplayList {
 				boolean morn = date.isMorining();
 				
 				list.get(i).setOnAction(e ->{
+					if(!DisplayTask.newEvent.getChildren().contains(DisplayTask.deleteEvent)){
+						DisplayTask.newEvent.getChildren().add(DisplayTask.deleteEvent);
+					}
 					DisplayTask.newThing = false;
 					buttonIndex = count;
 					DisplayTask.newThing = false;

@@ -146,8 +146,6 @@ public class DisplayTask {
 		});
 		newEvent.getChildren().addAll( background,nameTitle,eventname,eventDescription,dateEvent,doneEvent,cancelEvent,eventDescriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm,deleteEvent);
 
-		//newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
-
 
 	}
 	public static void displayAssignment(){
