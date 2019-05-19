@@ -290,9 +290,8 @@ public class Main extends Application {
 					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks(list);
 				} else {
-					displayCalendar.displayTasks();
 					calendarstack.getChildren().remove(newEvent);
-
+					displayCalendar.displayTasks();
 				}
 				
 				displayTask.eventname.clear();
