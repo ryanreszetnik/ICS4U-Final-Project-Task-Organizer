@@ -24,7 +24,6 @@ public class Main extends Application {
 	static Scene instructionScene = new Scene(instructionView, 700, 900);
 	static boolean onListView = true;
 	static boolean canCreate = true;
-	static boolean requiredFields = false;
 	static Label missing = new Label();
 	static int scrollCount = 0;
 
@@ -187,12 +186,12 @@ public class Main extends Application {
 				Label missing = new Label("Fields Required: Name, Date, Time");
 				missing.setTextFill(Color.DARKRED);
 				missing.setTranslateY(275);
-				missing.setTranslateX(40);
-
-				if (!requiredFields) {
+				missing.setTranslateX(370);
+				if(!DisplayTask.newEvent.getChildren().contains(missing)){
 					DisplayTask.newEvent.getChildren().add(missing);
-					requiredFields = true;
 				}
+
+				
 			} else {
 				if(!newEvent.getChildren().contains(DisplayTask.deleteEvent)){
 					newEvent.getChildren().add(DisplayTask.deleteEvent);
@@ -207,9 +206,9 @@ public class Main extends Application {
 						DisplayTask.location.getText(), yr, mo, day, hr, min);
 
 				if (DisplayTask.newThing) {
-					List.addEvent(a);
+					List.addTask(a);
 				} else {
-					List.updateEvent(a);
+					List.updateTask(a);
 
 					DisplayList.list.get(DisplayList.buttonIndex)
 							.setText(List.list.get(DisplayList.buttonIndex).toString());
@@ -237,7 +236,7 @@ public class Main extends Application {
 				DisplayTask.minute.clear();
 				StoreData.writeFile();
 				DisplayTask.newEvent.getChildren().remove(missing);
-				requiredFields = false;
+			
 			}
 
 		});
@@ -251,11 +250,11 @@ public class Main extends Application {
 				missing.setText("Required Fields: Name and Date");
 				missing.setTextFill(Color.DARKRED);
 				missing.setTranslateY(275);
-				missing.setTranslateX(40);
+				missing.setTranslateX(370);
+				
 
-				if (!requiredFields) {
+				if(!DisplayTask.newAssignment.getChildren().contains(missing)){
 					DisplayTask.newAssignment.getChildren().add(missing);
-					requiredFields = true;
 				}
 
 			}
@@ -272,10 +271,10 @@ public class Main extends Application {
 						DisplayTask.subject.getText(), DisplayTask.highPriority, yr, mo, day);
 
 				if (DisplayTask.newThing) {
-					List.addAssignment(a);
+					List.addTask(a);
 				} else {
 
-					List.updateAssignment(a);
+					List.updateTask(a);
 					DisplayList.list.get(DisplayList.buttonIndex)
 							.setText(List.list.get(DisplayList.buttonIndex).toString());
 					DisplayCalendar.tasks.get(DisplayList.buttonIndex)
@@ -288,7 +287,7 @@ public class Main extends Application {
 				} else {
 					DisplayCalendar.displayTasks();
 					calendarstack.getChildren().remove(newAssignment);
-					requiredFields = false;
+			
 
 				}
 
@@ -331,7 +330,7 @@ public class Main extends Application {
 		DisplayTask.hour.clear();
 		DisplayTask.minute.clear();
 		DisplayTask.newEvent.getChildren().remove(missing);
-		requiredFields = false;
+		
 	}
 	public static void cancelAssignment(){
 		DisplayTask.newThing = false;
@@ -348,7 +347,7 @@ public class Main extends Application {
 		DisplayTask.subject.clear();
 		DisplayTask.dateAssignment.setValue(null);
 		DisplayTask.newAssignment.getChildren().remove(missing);
-		requiredFields = false;
+		
 	}
 
 	public static void scroll() {

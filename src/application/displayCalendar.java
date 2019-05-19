@@ -272,6 +272,9 @@ public class DisplayCalendar {
 				int count = i;
 
 				tasks.get(i).setOnAction(e -> {
+					if(!DisplayTask.newAssignment.getChildren().contains(DisplayTask.deleteAssign)){
+						DisplayTask.newAssignment.getChildren().add(DisplayTask.deleteAssign);
+					}
 					DisplayList.buttonIndex = count;
 					DisplayTask.high.setSelected(highPri);
 					DisplayTask.regular.setSelected(!highPri);
@@ -300,7 +303,9 @@ public class DisplayCalendar {
 				boolean morn = date.isMorining();
 
 				tasks.get(i).setOnAction(e -> {
-
+					if(!DisplayTask.newEvent.getChildren().contains(DisplayTask.deleteEvent)){
+						DisplayTask.newEvent.getChildren().add(DisplayTask.deleteEvent);
+					}
 					DisplayTask.newThing = false;
 					DisplayList.buttonIndex = count;
 					Main.calendarstack.getChildren().add(DisplayTask.newEvent);

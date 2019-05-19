@@ -67,6 +67,7 @@ public class DisplayTask {
 		eventname.setPromptText("Name");
 		eventname.setTranslateY(25);
 		eventname.setTranslateX(25);
+		
 		Rectangle background = new Rectangle(590,350);
 		background.setFill(Color.DARKGREY);
 		isEvent = true;
@@ -83,6 +84,10 @@ public class DisplayTask {
 		Label nameLabel = new Label("Name");
 		nameLabel.setTranslateX(25);
 		nameLabel.setTranslateY(5);
+		
+		Label dateLabel = new Label("Date");
+		dateLabel.setTranslateX(100);
+		dateLabel.setTranslateY(275);
 				
 		doneEvent = new Button("Done");
 		doneEvent.setTranslateX(510);
@@ -144,9 +149,7 @@ public class DisplayTask {
 			DisplayCalendar.displayTasks();
 			StoreData.writeFile();
 		});
-		newEvent.getChildren().addAll( background,nameTitle,eventname,eventDescription,dateEvent,doneEvent,cancelEvent,eventDescriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm,deleteEvent);
-
-		//newEvent.getChildren().addAll(background,name,description,date,doneEvent,cancelEvent,descriptionTitle, location, locationLabel, nameLabel);
+		newEvent.getChildren().addAll( background,nameTitle,dateLabel,eventname,eventDescription,dateEvent,doneEvent,cancelEvent,eventDescriptionTitle, location, locationLabel, time, timecolon, hour, minute,am,pm,deleteEvent);
 
 
 	}
@@ -159,6 +162,10 @@ public class DisplayTask {
 		Label assignDescriptionTitle = new Label("Description");
 		assignDescriptionTitle.setTranslateX(265);
 		assignDescriptionTitle.setTranslateY(55);
+		
+		Label dateLabel = new Label("Date");
+		dateLabel.setTranslateX(100);
+		dateLabel.setTranslateY(275);
 		
 		dateAssignment = new DatePicker();
 		dateAssignment.setTranslateY(300);
@@ -235,7 +242,7 @@ public class DisplayTask {
 			StoreData.writeFile();
 		});
 		
-		newAssignment.getChildren().addAll(background,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle,deleteAssign);
+		newAssignment.getChildren().addAll(background,dateLabel,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle,deleteAssign);
 		
 	}
 	
@@ -245,7 +252,9 @@ public class DisplayTask {
 			return false;
 		}
 		if(contains(hour.getText(),"0123456789") && contains(minute.getText(),"0123456789")){
-			return true;
+			if(Integer.valueOf(hour.getText())<= 12 && Integer.valueOf(minute.getText()) <=  59){
+				return true;
+			}
 		}
 		return false;
 	}

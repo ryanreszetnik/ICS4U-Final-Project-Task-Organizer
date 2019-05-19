@@ -56,11 +56,11 @@ public class StoreData {
 				if (CurrentLine.equals("event")&& counter > 8) {
 					counter = 0;
 					Task a = new Event(name, desc, locationOrSubject, year, month, day, hour, minute);
-					List.addEvent(a);
+					List.addTask(a);
 				} else if (CurrentLine.equals("assignment")&& counter > 8) {
 					counter = 0;
 					Task a = new Assignment(name, desc, locationOrSubject, priority, year, month, day);
-					List.addAssignment(a);
+					List.addTask(a);
 					
 				}
 

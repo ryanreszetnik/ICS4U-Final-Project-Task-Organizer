@@ -6,10 +6,13 @@ public abstract class Task {
 	public Date date;
 	boolean hasTime = false;
 	
+	//Mutator method for the time 
 	public void setTime(int hour, int min) {
 		date.setTime(hour, min);
 		hasTime = true;
 	}
+	
+	//
 	public String Format(){
 		return name + date.getTime();		
 	}
