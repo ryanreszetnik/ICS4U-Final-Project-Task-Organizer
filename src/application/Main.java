@@ -29,6 +29,7 @@ public class Main extends Application {
 	static boolean canCreate = true;
 	static boolean requiredFields = false;
 	static Label missing = new Label();
+	
 
 
 	@Override
@@ -70,6 +71,30 @@ public class Main extends Application {
 				}
 			});
 			
+			
+			// calendar--> list
+			DisplayCalendar.toList.setOnMouseClicked(event -> {
+				primaryStage.setScene(listview);
+				newEvent.setTranslateX(0);
+				newEvent.setTranslateY(0);
+				newAssignment.setTranslateX(0);
+				newAssignment.setTranslateY(0);
+				onListView = true;
+				DisplayList.displayTasks();
+			});
+			
+			
+			// list--> calendar
+			DisplayList.calendarView.setOnMouseClicked(event -> {
+				primaryStage.setScene(calendarview);
+				System.out.println("done");
+				newEvent.setTranslateX(160);
+				newEvent.setTranslateY(150);
+				newAssignment.setTranslateX(160);
+				newAssignment.setTranslateY(150);
+				onListView = false;
+				DisplayCalendar.displayTasks();
+			});
 			DisplayList.addTask.setOnMouseClicked((e) -> {
 				
 				DisplayList.newAssignment.setTranslateX(3);
@@ -88,236 +113,11 @@ public class Main extends Application {
 
 			});
 			
-			
-			//Creates a new assignment 
-			DisplayList.newAssignment.setOnAction(e ->{
-				DisplayTask.newThing = true;
-				if(!(list.getChildren().contains(DisplayTask.newAssignment) && calendarstack.getChildren().contains(DisplayTask.newAssignment))) {
-					liststack.getChildren().add(DisplayTask.newAssignment);
-				}
-				list.getChildren().remove(DisplayList.newAssignment);
-				list.getChildren().remove(DisplayList.newEvent);
-			});
-
-			//Creates a new event 
-			DisplayList.newEvent.setOnAction(e ->{
-				DisplayTask.dateEvent.setValue(null);
-				DisplayTask.newThing = true;
-				if(!(liststack.getChildren().contains(DisplayTask.newEvent) && calendarstack.getChildren().contains(DisplayTask.newEvent))) {
-					liststack.getChildren().add(DisplayTask.newEvent);
-				}
-				list.getChildren().remove(DisplayList.newAssignment);
-				list.getChildren().remove(DisplayList.newEvent);
-			});
-			
-
-			// list--> calendar
-			DisplayList.calendarView.setOnMouseClicked(event -> {
-				primaryStage.setScene(calendarview);
-				newEvent.setTranslateX(160);
-				newEvent.setTranslateY(150);
-				newAssignment.setTranslateX(160);
-				newAssignment.setTranslateY(150);
-				onListView = false;
-				DisplayCalendar.displayTasks();
-			});
-			// calendar--> list
-			DisplayCalendar.toList.setOnMouseClicked(event -> {
-				primaryStage.setScene(listview);
-				newEvent.setTranslateX(0);
-				newEvent.setTranslateY(0);
-				newAssignment.setTranslateX(0);
-				newAssignment.setTranslateY(0);
-				onListView = true;
-				DisplayList.displayTasks();
-			});
-			
-			// cancel assignment
-			DisplayTask.cancelAssignment.setOnMouseClicked(event -> {
-				DisplayTask.newThing = false;
-				if (liststack.getChildren().contains(DisplayTask.newAssignment)) {
-
-					liststack.getChildren().remove(newAssignment);
-
-				} else {
-
-					calendarstack.getChildren().remove(newAssignment);
-				}
-				DisplayTask.assignmentname.clear();
-				DisplayTask.assignDescription.clear();
-				DisplayTask.subject.clear();
-				DisplayTask.dateAssignment.setValue(null);
-				DisplayTask.newAssignment.getChildren().remove(missing);
-				requiredFields = false;
-			});
-		
-			// Cancel event
-			DisplayTask.cancelEvent.setOnMouseClicked(event -> {
-				DisplayTask.newThing = false;
-				if (liststack.getChildren().contains(DisplayTask.newEvent)) {
-					liststack.getChildren().remove(newEvent);
-
-				} else {
-
-					calendarstack.getChildren().remove(newEvent);
-
-				}
-				DisplayTask.eventname.clear();
-				DisplayTask.eventDescription.clear();
-				DisplayTask.location.clear();
-				DisplayTask.dateEvent.setValue(null);
-				DisplayTask.hour.clear();
-				DisplayTask.minute.clear();
-				DisplayTask.newEvent.getChildren().remove(missing);
-				requiredFields = false;
-			});
-			
-//			New Event
-			DisplayCalendar.newEvent.setOnMouseClicked(event -> {
-				DisplayTask.newThing = true;
-				DisplayCalendar.pday = -1;
-				if (calendarstack.getChildren().contains(newAssignment) == false
-						&& calendarstack.getChildren().contains(newEvent) == false) {
-					DisplayTask.dateEvent.setValue(LocalDate.of(DisplayCalendar.selectedDate.year,
-							DisplayCalendar.selectedDate.month, DisplayCalendar.selectedDate.day));
-					calendarstack.getChildren().add(newEvent);
-				}
-				if (cal.getChildren().contains(DisplayCalendar.newEvent)) {
-					cal.getChildren().removeAll(DisplayCalendar.newEvent, DisplayCalendar.newAssignment);
-				}
-			});
-			
-			//New Assignment
-			DisplayCalendar.newAssignment.setOnMouseClicked(event -> {
-				DisplayCalendar.pday = -1;
-				DisplayTask.newThing = true;
-				if (calendarstack.getChildren().contains(newAssignment) == false
-						&& calendarstack.getChildren().contains(newEvent) == false) {
-					DisplayTask.dateAssignment.setValue(LocalDate.of(DisplayCalendar.selectedDate.year,
-							DisplayCalendar.selectedDate.month, DisplayCalendar.selectedDate.day));
-					calendarstack.getChildren().add(newAssignment);
-				}
-
-				if (cal.getChildren().contains(DisplayCalendar.newEvent)) {
-					cal.getChildren().removeAll(DisplayCalendar.newEvent, DisplayCalendar.newAssignment);
-				}
-			});
-
-			// Done assignment
-			DisplayTask.doneAssignment.setOnMouseClicked(event -> {
-				
-				if(DisplayTask.dateAssignment.getValue() == null || DisplayTask.assignmentname.getText().equals("")) {
-					missing.setText("Required Fields: Name and Date");
-					missing.setTextFill(Color.DARKRED);
-					missing.setTranslateY(275);
-					missing.setTranslateX(40);
-					
-					if(!requiredFields) {
-						DisplayTask.newAssignment.getChildren().add(missing);
-						requiredFields = true;
-					}
-					
-				}
-
-				else {
-				int yr = DisplayTask.dateAssignment.getValue().getYear();
-				int mo = DisplayTask.dateAssignment.getValue().getMonthValue();
-				int day = DisplayTask.dateAssignment.getValue().getDayOfMonth();
-
-				Task a = new Assignment(DisplayTask.assignmentname.getText(), DisplayTask.assignDescription.getText(),
-						DisplayTask.subject.getText(), DisplayTask.highPriority, yr, mo, day);
-
-				if(DisplayTask.newThing) {
-					List.addAssignment(a);
-				}
-				else {
-					
-					List.updateAssignment(a);
-					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
-					DisplayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
-				}
-
-
-				if (onListView) {
-					DisplayList.displayTasks();
-					liststack.getChildren().remove(newAssignment);
-				} else {
-					DisplayCalendar.displayTasks();
-					calendarstack.getChildren().remove(newAssignment);
-					requiredFields = false;
-
-				}
-				
-				DisplayTask.assignmentname.clear();
-				DisplayTask.assignDescription.clear();
-				DisplayTask.subject.clear();
-				DisplayTask.dateAssignment.setValue(null);
-				StoreData.writeFile();
-				DisplayTask.newAssignment.getChildren().remove(missing);
-				}
-
-			});
-			
-//			Done Event
-			DisplayTask.doneEvent.setOnMouseClicked(event -> {
-				if (!DisplayTask.timeFilled() || 
-						DisplayTask.dateEvent.getValue() == null || DisplayTask.eventname.getText().equals("")) {
-					Label missing = new Label("Fields Required: Name, Date, Time");
-					missing.setTextFill(Color.DARKRED);
-					missing.setTranslateY(275);
-					missing.setTranslateX(40);
-					
-					if(!requiredFields) {
-						DisplayTask.newEvent.getChildren().add(missing);
-						requiredFields = true;
-					}
-				}
-				else {
-				int yr = DisplayTask.dateEvent.getValue().getYear();
-				int mo = DisplayTask.dateEvent.getValue().getMonthValue();
-				int day = DisplayTask.dateEvent.getValue().getDayOfMonth();
-				int hr = Integer.valueOf(DisplayTask.hour.getText())+ DisplayTask.mornafternoon;
-				int min = Integer.valueOf(DisplayTask.minute.getText());
-
-				Task a = new Event(DisplayTask.eventname.getText(), DisplayTask.eventDescription.getText(), 
-						DisplayTask.location.getText(), yr, mo, day,hr,min);
-			
-				if(DisplayTask.newThing) {
-					List.addEvent(a);
-				}else{ 
-					List.updateEvent(a);
-			
-					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
-					DisplayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
-				}
-				if (onListView) {
-					liststack.getChildren().remove(newEvent);
-					DisplayList.displayTasks();
-				} else {
-
-					
-					calendarstack.getChildren().remove(newEvent);
-					DisplayCalendar.displayTasks();
-
-
-					calendarstack.getChildren().remove(newEvent);
-					DisplayCalendar.displayTasks();
-
-				}
-				
-				DisplayTask.eventname.clear();
-				DisplayTask.eventDescription.clear();
-				DisplayTask.location.clear();
-				DisplayTask.dateEvent.setValue(null);
-				DisplayTask.hour.clear();
-				DisplayTask.minute.clear();
-				StoreData.writeFile();
-				DisplayTask.newEvent.getChildren().remove(missing);
-				requiredFields = false;
-				}
-			
-			});
-			
+			newEventButtons();
+			newAssignmentButtons();
+			doneEventButton();
+			doneAssignmnetButton();
+			cancelButtons();
 			
 			StoreData.readFile();
 			DisplayList.displayTasks();
@@ -332,5 +132,214 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	public static void newEventButtons(){
+		//Creates a new event 
+		DisplayList.newEvent.setOnAction(e ->{
+			DisplayTask.dateEvent.setValue(null);
+			DisplayTask.newThing = true;
+			if(!(liststack.getChildren().contains(DisplayTask.newEvent) && calendarstack.getChildren().contains(DisplayTask.newEvent))) {
+				liststack.getChildren().add(DisplayTask.newEvent);
+			}
+			list.getChildren().remove(DisplayList.newAssignment);
+			list.getChildren().remove(DisplayList.newEvent);
+		});
+//		New Event
+		DisplayCalendar.newEvent.setOnMouseClicked(event -> {
+			DisplayTask.newThing = true;
+			DisplayCalendar.pday = -1;
+			if (calendarstack.getChildren().contains(newAssignment) == false
+					&& calendarstack.getChildren().contains(newEvent) == false) {
+				DisplayTask.dateEvent.setValue(LocalDate.of(DisplayCalendar.selectedDate.year,
+						DisplayCalendar.selectedDate.month, DisplayCalendar.selectedDate.day));
+				calendarstack.getChildren().add(newEvent);
+			}
+			if (cal.getChildren().contains(DisplayCalendar.newEvent)) {
+				cal.getChildren().removeAll(DisplayCalendar.newEvent, DisplayCalendar.newAssignment);
+			}
+		});
+	}
+	public static void newAssignmentButtons(){
+		//New Assignment
+		DisplayCalendar.newAssignment.setOnMouseClicked(event -> {
+			DisplayCalendar.pday = -1;
+			DisplayTask.newThing = true;
+			if (calendarstack.getChildren().contains(newAssignment) == false
+					&& calendarstack.getChildren().contains(newEvent) == false) {
+				DisplayTask.dateAssignment.setValue(LocalDate.of(DisplayCalendar.selectedDate.year,
+						DisplayCalendar.selectedDate.month, DisplayCalendar.selectedDate.day));
+				calendarstack.getChildren().add(newAssignment);
+			}
+
+			if (cal.getChildren().contains(DisplayCalendar.newEvent)) {
+				cal.getChildren().removeAll(DisplayCalendar.newEvent, DisplayCalendar.newAssignment);
+			}
+		});
+		DisplayList.newAssignment.setOnAction(e ->{
+			DisplayTask.newThing = true;
+			if(!(list.getChildren().contains(DisplayTask.newAssignment) && calendarstack.getChildren().contains(DisplayTask.newAssignment))) {
+				liststack.getChildren().add(DisplayTask.newAssignment);
+			}
+			list.getChildren().remove(DisplayList.newAssignment);
+			list.getChildren().remove(DisplayList.newEvent);
+		});
+	}
+	public static void doneEventButton(){
+//		Done Event
+		DisplayTask.doneEvent.setOnMouseClicked(event -> {
+			if (!DisplayTask.timeFilled() || 
+					DisplayTask.dateEvent.getValue() == null || DisplayTask.eventname.getText().equals("")) {
+				Label missing = new Label("Fields Required: Name, Date, Time");
+				missing.setTextFill(Color.DARKRED);
+				missing.setTranslateY(275);
+				missing.setTranslateX(40);
+				
+				if(!requiredFields) {
+					DisplayTask.newEvent.getChildren().add(missing);
+					requiredFields = true;
+				}
+			}
+			else {
+			int yr = DisplayTask.dateEvent.getValue().getYear();
+			int mo = DisplayTask.dateEvent.getValue().getMonthValue();
+			int day = DisplayTask.dateEvent.getValue().getDayOfMonth();
+			int hr = Integer.valueOf(DisplayTask.hour.getText())+ DisplayTask.mornafternoon;
+			int min = Integer.valueOf(DisplayTask.minute.getText());
+
+			Task a = new Event(DisplayTask.eventname.getText(), DisplayTask.eventDescription.getText(), 
+					DisplayTask.location.getText(), yr, mo, day,hr,min);
+		
+			if(DisplayTask.newThing) {
+				List.addEvent(a);
+			}else{ 
+				List.updateEvent(a);
+		
+				DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
+				DisplayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
+			}
+			if (onListView) {
+				liststack.getChildren().remove(newEvent);
+				DisplayList.displayTasks();
+			} else {
+
+				
+				calendarstack.getChildren().remove(newEvent);
+				DisplayCalendar.displayTasks();
+
+
+				calendarstack.getChildren().remove(newEvent);
+				DisplayCalendar.displayTasks();
+
+			}
+			
+			DisplayTask.eventname.clear();
+			DisplayTask.eventDescription.clear();
+			DisplayTask.location.clear();
+			DisplayTask.dateEvent.setValue(null);
+			DisplayTask.hour.clear();
+			DisplayTask.minute.clear();
+			StoreData.writeFile();
+			DisplayTask.newEvent.getChildren().remove(missing);
+			requiredFields = false;
+			}
+		
+		});
+	}
+	public static void doneAssignmnetButton(){
+		// Done assignment
+					DisplayTask.doneAssignment.setOnMouseClicked(event -> {
+						
+						if(DisplayTask.dateAssignment.getValue() == null || DisplayTask.assignmentname.getText().equals("")) {
+							missing.setText("Required Fields: Name and Date");
+							missing.setTextFill(Color.DARKRED);
+							missing.setTranslateY(275);
+							missing.setTranslateX(40);
+							
+							if(!requiredFields) {
+								DisplayTask.newAssignment.getChildren().add(missing);
+								requiredFields = true;
+							}
+							
+						}
+
+						else {
+						int yr = DisplayTask.dateAssignment.getValue().getYear();
+						int mo = DisplayTask.dateAssignment.getValue().getMonthValue();
+						int day = DisplayTask.dateAssignment.getValue().getDayOfMonth();
+
+						Task a = new Assignment(DisplayTask.assignmentname.getText(), DisplayTask.assignDescription.getText(),
+								DisplayTask.subject.getText(), DisplayTask.highPriority, yr, mo, day);
+
+						if(DisplayTask.newThing) {
+							List.addAssignment(a);
+						}
+						else {
+							
+							List.updateAssignment(a);
+							DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
+							DisplayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
+						}
+
+
+						if (onListView) {
+							DisplayList.displayTasks();
+							liststack.getChildren().remove(newAssignment);
+						} else {
+							DisplayCalendar.displayTasks();
+							calendarstack.getChildren().remove(newAssignment);
+							requiredFields = false;
+
+						}
+						
+						DisplayTask.assignmentname.clear();
+						DisplayTask.assignDescription.clear();
+						DisplayTask.subject.clear();
+						DisplayTask.dateAssignment.setValue(null);
+						StoreData.writeFile();
+						DisplayTask.newAssignment.getChildren().remove(missing);
+						}
+
+					});
+	}
+	public static void cancelButtons(){
+		// cancel assignment
+					DisplayTask.cancelAssignment.setOnMouseClicked(event -> {
+						DisplayTask.newThing = false;
+						if (liststack.getChildren().contains(DisplayTask.newAssignment)) {
+
+							liststack.getChildren().remove(newAssignment);
+
+						} else {
+
+							calendarstack.getChildren().remove(newAssignment);
+						}
+						DisplayTask.assignmentname.clear();
+						DisplayTask.assignDescription.clear();
+						DisplayTask.subject.clear();
+						DisplayTask.dateAssignment.setValue(null);
+						DisplayTask.newAssignment.getChildren().remove(missing);
+						requiredFields = false;
+					});
+				
+					// Cancel event
+					DisplayTask.cancelEvent.setOnMouseClicked(event -> {
+						DisplayTask.newThing = false;
+						if (liststack.getChildren().contains(DisplayTask.newEvent)) {
+							liststack.getChildren().remove(newEvent);
+
+						} else {
+
+							calendarstack.getChildren().remove(newEvent);
+
+						}
+						DisplayTask.eventname.clear();
+						DisplayTask.eventDescription.clear();
+						DisplayTask.location.clear();
+						DisplayTask.dateEvent.setValue(null);
+						DisplayTask.hour.clear();
+						DisplayTask.minute.clear();
+						DisplayTask.newEvent.getChildren().remove(missing);
+						requiredFields = false;
+					});
 	}
 }
