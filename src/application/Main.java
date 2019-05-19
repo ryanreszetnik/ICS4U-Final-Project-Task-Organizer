@@ -4,14 +4,13 @@ import java.time.LocalDate;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class Main extends Application {
-
+	//All initializations for main
 	static Pane cal = new Pane();
 	static Pane newEvent = new Pane();
 	static Pane newAssignment = new Pane();
@@ -21,7 +20,7 @@ public class Main extends Application {
 	static StackPane liststack = new StackPane();
 	static Scene calendarview = new Scene(calendarstack, 130 * 7, 100 * 6 + 95);
 	static Scene listview = new Scene(liststack, 700, 900);
-	static Scene instructionScene = new Scene(instructionView, 700, 900);
+	static Scene instructionScene = new Scene(instructionView, 900, 900);
 	static boolean onListView = true;
 	static boolean canCreate = true;
 	static Label missing = new Label();
@@ -30,7 +29,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
+			
+			//Sets up the panes for calendar, list, and instructions
 			calendarstack.getChildren().add(cal);
 			liststack.getChildren().add(list);
 			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -41,19 +41,22 @@ public class Main extends Application {
 			DisplayCalendar.root = cal;
 			DisplayList.pane = list;
 
+			//Runs the setup/display methods in the DisplayList, DisplayCalendar, DisplayTask, and Instructions classes
 			DisplayTask.displayAssignment();
 			DisplayTask.displayEvent();
 			DisplayList.setup();
 			DisplayCalendar.setup();
 			Instructions.setup(instructionView);
 
+			//Sets the main stage's scene to the list view and displays the stage
 			primaryStage.setScene(listview);
 			primaryStage.show();
 
-			// scrolling
+			//Runs the scroll method in Main
 			scroll();
 
-			// calendar--> list
+			//The event handler for the buttin that switches from calendar to list
+			//It switches the scene to listview and changes the position of the newEvent and new Assignment menus. It also updates some logic variables
 			DisplayCalendar.toList.setOnMouseClicked(event -> {
 				primaryStage.setScene(listview);
 				newEvent.setTranslateX(0);
@@ -64,7 +67,7 @@ public class Main extends Application {
 				DisplayList.displayTasks();
 			});
 
-			// list--> calendar
+			//Similar to the eventhandler above, except it switches from list to calendar. Updates done as required
 			DisplayList.calendarView.setOnMouseClicked(event -> {
 				primaryStage.setScene(calendarview);
 				newEvent.setTranslateX(160);
@@ -75,16 +78,17 @@ public class Main extends Application {
 				DisplayCalendar.displayTasks();
 			});
 			
-			//List --> Instructions
+			//Switches the scene from view to instructionScene
 			DisplayList.toInstructions.setOnMouseClicked(event ->{
 				primaryStage.setScene(instructionScene);
 			});
 			
-			//Instructions --> List
+			//Switches the scene from instructionScene to listview
 			Instructions.toList.setOnMouseClicked(event -> {
 				primaryStage.setScene(listview);
 			});
 
+			//calls all of the event handler methods
 			newEventButtons();
 			newAssignmentButtons();
 			doneEventButton();
@@ -95,7 +99,7 @@ public class Main extends Application {
 			DisplayList.displayTasks();
 			DisplayCalendar.displayTasks();
 
-		
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,7 +112,9 @@ public class Main extends Application {
 
 	public static void newEventButtons() {
 		// Creates a new event
+		//removes all of the text that is already filled in and  adds the new event pane 
 		DisplayList.newEvent.setOnAction(e -> {
+			
 			if(newEvent.getChildren().contains(DisplayTask.deleteEvent)){
 				newEvent.getChildren().remove(DisplayTask.deleteEvent);
 			}
@@ -121,7 +127,7 @@ public class Main extends Application {
 			list.getChildren().remove(DisplayList.newAssignment);
 			list.getChildren().remove(DisplayList.newEvent);
 		});
-		// New Event
+		// Does the same thing but for the calendar
 		DisplayCalendar.newEvent.setOnMouseClicked(event -> {
 			if(newEvent.getChildren().contains(DisplayTask.deleteEvent)){
 				newEvent.getChildren().remove(DisplayTask.deleteEvent);
@@ -141,7 +147,8 @@ public class Main extends Application {
 	}
 
 	public static void newAssignmentButtons() {
-		// New Assignment
+		// New Assignment event handlers
+		//removes all of the text that is already filled in and  adds the new event pane 
 		DisplayCalendar.newAssignment.setOnMouseClicked(event -> {
 			if(newAssignment.getChildren().contains(DisplayTask.deleteAssign)){
 				newAssignment.getChildren().remove(DisplayTask.deleteAssign);
@@ -162,6 +169,7 @@ public class Main extends Application {
 				cal.getChildren().removeAll(DisplayCalendar.newEvent, DisplayCalendar.newAssignment);
 			}
 		});
+		//same thing but for the calendar
 		DisplayList.newAssignment.setOnAction(e -> {
 			if(newAssignment.getChildren().contains(DisplayTask.deleteAssign)){
 				newAssignment.getChildren().remove(DisplayTask.deleteAssign);
@@ -177,10 +185,11 @@ public class Main extends Application {
 			list.getChildren().remove(DisplayList.newEvent);
 		});
 	}
-
+	//for when you press the done button
 	public static void doneEventButton() {
-		// Done Event
+		// Done Event code
 		DisplayTask.doneEvent.setOnMouseClicked(event -> {
+			//checks if everything required is filled in and gives the error if not
 			if (!DisplayTask.timeFilled() || DisplayTask.dateEvent.getValue() == null
 					|| DisplayTask.eventname.getText().equals("")) {
 				Label missing = new Label("Fields Required: Name, Date, Time");
@@ -191,7 +200,7 @@ public class Main extends Application {
 					DisplayTask.newEvent.getChildren().add(missing);
 				}
 
-				
+				//creates the new task and adds it to the array list
 			} else {
 				if(!newEvent.getChildren().contains(DisplayTask.deleteEvent)){
 					newEvent.getChildren().add(DisplayTask.deleteEvent);
@@ -215,6 +224,7 @@ public class Main extends Application {
 					DisplayCalendar.tasks.get(DisplayList.buttonIndex)
 							.setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
+				//updates the screen
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks();
@@ -227,7 +237,7 @@ public class Main extends Application {
 					DisplayCalendar.displayTasks();
 
 				}
-
+				//resets all the fields and writes it to the file
 				DisplayTask.eventname.clear();
 				DisplayTask.eventDescription.clear();
 				DisplayTask.location.clear();
@@ -243,9 +253,9 @@ public class Main extends Application {
 	}
 
 	public static void doneAssignmnetButton() {
-		// Done assignment
+		// Done assignment code
 		DisplayTask.doneAssignment.setOnMouseClicked(event -> {
-
+			// checks if required fields are filled in and if not it gives that error
 			if (DisplayTask.dateAssignment.getValue() == null || DisplayTask.assignmentname.getText().equals("")) {
 				missing.setText("Required Fields: Name and Date");
 				missing.setTextFill(Color.DARKRED);
@@ -258,7 +268,7 @@ public class Main extends Application {
 				}
 
 			}
-
+			// creates the assignment
 			else {
 				if(!newAssignment.getChildren().contains(DisplayTask.deleteAssign)){
 					newAssignment.getChildren().add(DisplayTask.deleteAssign);
@@ -280,7 +290,7 @@ public class Main extends Application {
 					DisplayCalendar.tasks.get(DisplayList.buttonIndex)
 							.setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
-
+				//updates the scenes
 				if (onListView) {
 					DisplayList.displayTasks();
 					liststack.getChildren().remove(newAssignment);
@@ -290,7 +300,7 @@ public class Main extends Application {
 			
 
 				}
-
+				//resets the text fields and writes to file
 				DisplayTask.assignmentname.clear();
 				DisplayTask.assignDescription.clear();
 				DisplayTask.subject.clear();
@@ -301,7 +311,7 @@ public class Main extends Application {
 
 		});
 	}
-
+	//for when you press cancel
 	public static void cancelButtons() {
 		// cancel assignment
 		DisplayTask.cancelAssignment.setOnMouseClicked(event -> {
@@ -313,8 +323,10 @@ public class Main extends Application {
 			cancelEvent();
 		});
 	}
+	//code for cancel (also used when you press delete)
 	public static void cancelEvent(){
 		DisplayTask.newThing = false;
+		//removes the pane
 		if (liststack.getChildren().contains(DisplayTask.newEvent)) {
 			liststack.getChildren().remove(newEvent);
 
@@ -323,6 +335,7 @@ public class Main extends Application {
 			calendarstack.getChildren().remove(newEvent);
 
 		}
+		//clears the textfields
 		DisplayTask.eventname.clear();
 		DisplayTask.eventDescription.clear();
 		DisplayTask.location.clear();
@@ -332,8 +345,10 @@ public class Main extends Application {
 		DisplayTask.newEvent.getChildren().remove(missing);
 		
 	}
+	//code for when you cancel an assignment
 	public static void cancelAssignment(){
 		DisplayTask.newThing = false;
+		//removes the pane
 		if (liststack.getChildren().contains(DisplayTask.newAssignment)) {
 
 			liststack.getChildren().remove(newAssignment);
@@ -342,6 +357,7 @@ public class Main extends Application {
 
 			calendarstack.getChildren().remove(newAssignment);
 		}
+		//clears all of the text fields
 		DisplayTask.assignmentname.clear();
 		DisplayTask.assignDescription.clear();
 		DisplayTask.subject.clear();
@@ -349,13 +365,14 @@ public class Main extends Application {
 		DisplayTask.newAssignment.getChildren().remove(missing);
 		
 	}
-
+	// code for scrolling
 	public static void scroll() {
-
+		
 		listview.setOnKeyPressed(e -> {
 			switch (e.getCode()) {
+			//if you press up
 			case UP:
-				
+				//makes sure you don't go off screen then translates all of the tasks
 				if (scrollCount > 0) {
 					scrollCount--;
 					for (int i = 0; i < DisplayList.list.size(); i++) {
@@ -363,8 +380,9 @@ public class Main extends Application {
 					}
 				}
 				break;
+				//if you press down
 			case DOWN:
-				
+				//makes sure you don't go off screen then translates all of the tasks
 				if (scrollCount < List.list.size()-7) {
 					scrollCount++;
 					for (int i = 0; i < DisplayList.list.size(); i++) {

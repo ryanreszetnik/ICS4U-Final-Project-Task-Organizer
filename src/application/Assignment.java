@@ -32,7 +32,7 @@ public class Assignment extends Task{
 		return priority;
 	}
 	
-	//Used to determine whether the object is of type Assignment or Event.
+	//Used to determine whether the object is of type Assignment or Event
 	public boolean isAssignment() {
 		return true;
 	}

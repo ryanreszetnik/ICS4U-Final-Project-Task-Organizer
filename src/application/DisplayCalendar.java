@@ -369,5 +369,6 @@ public class DisplayCalendar {
 		Button newTask1 = new Button(t.Format());
 		addButton(newTask1);
 	}
+
 	
 }
