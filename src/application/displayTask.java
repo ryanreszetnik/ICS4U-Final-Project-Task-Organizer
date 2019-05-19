@@ -32,7 +32,6 @@ public class displayTask {
 	public static TextField hour;
 	public static TextField minute;
 	public static int mornafternoon = 0;
-	//public static CalendarTimePicker time;
 	public static boolean highPriority;
 	public static ToggleButton am;
 	public static ToggleButton pm;
@@ -192,11 +191,15 @@ public class displayTask {
 		regular.setTranslateX(440);
 		high.setTranslateY(25);
 		high.setTranslateX(515);
+		high.setTextFill(Color.DARKRED);
+		
 		
 		high.setOnMouseClicked(event ->{
+			((Assignment)List.list.get(DisplayList.buttonIndex)).setPriority(true);
 			highPriority = true;
 		});
 		regular.setOnMouseClicked(event ->{
+			((Assignment)List.list.get(DisplayList.buttonIndex)).setPriority(false);
 			highPriority = false;
 		});
 		

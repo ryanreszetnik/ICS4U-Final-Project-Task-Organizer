@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -73,6 +71,13 @@ public class DisplayList {
 			list.get(i).setPrefSize(680, 100);
 			list.get(i).setTranslateX(10);
 			list.get(i).setTranslateY(65 + (i * 100));
+			if( !List.list.get(i).isEvent && ((Assignment)List.list.get(i)).getPriority()){				
+				list.get(i).setStyle("-fx-border-color: #990000; -fx-border-width: 5px; -fx-background-color: #5e5e5e;");
+			}
+			else {
+			list.get(i).setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+			}
+			
 			Font fo = new Font(25);
 			list.get(i).setFont(fo);
 			if(pane.getChildren().contains(list.get(i)) == false){
