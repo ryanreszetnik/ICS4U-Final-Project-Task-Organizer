@@ -4,7 +4,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
@@ -38,7 +37,7 @@ public class DisplayTask {
 	public static ToggleButton regular;
 	public static ToggleButton high;
 	public static boolean newThing;
-
+	public static Button deleteTask = new Button("Delete");
 	
 	public static boolean isEvent;
 	
@@ -205,13 +204,10 @@ public class DisplayTask {
 		
 		
 		newAssignment.getChildren().addAll(background,assignmentname,assignDescription,dateAssignment,subject,doneAssignment, high, regular,cancelAssignment, nameTitle,subjectTitle,priorityTitle,assignDescriptionTitle);
-		buttonControls();
+		
 	}
 	
-	public static void buttonControls(){
-		
-		
-	}
+	
 	public static boolean timeFilled(){
 		if(hour.getText().equals("") || minute.getText().equals("")){
 			return false;
