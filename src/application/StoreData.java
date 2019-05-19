@@ -48,6 +48,7 @@ public class StoreData {
 			int counter = 0;
 			int discLength = 0;
 			int discCounter = 0;
+			
 
 			while ((CurrentLine = br.readLine()) != null) {
 				// runs through file and reads each line
@@ -67,9 +68,11 @@ public class StoreData {
 					
 					switch (counter) {
 					case 0:
+						
 						name = CurrentLine;
 						break;
 					case 1:
+						desc = "";
 						discLength = Integer.valueOf(CurrentLine);
 						discCounter = 0;
 						break;
@@ -121,10 +124,11 @@ public class StoreData {
 				Task temp = List.list.get(i);
 				data += temp.name + "\n";
 				String[] lineArray = temp.description.split("\n");
+				System.out.print("desc start|" + temp.description +"|end");
 				data += lineArray.length + "\n";
 				data += temp.description + "\n";
 				data += temp.date.toFile();
-				if(temp.isEvent){
+				if(!temp.isAssignment()){
 					data += ((Event)(temp)).getLocation() +"\n";
 					data+= "event\n";
 				}else{

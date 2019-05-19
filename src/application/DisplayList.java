@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
   
 public class DisplayList {
 	public static ArrayList<Button> list = new ArrayList<>();
+	public static Pane pane;
 	static Button addTask;
 	static Button assignment = new Button("Assignment");
 	static Button event = new Button("Event");
@@ -38,11 +39,17 @@ public class DisplayList {
 	
 	
 
-	public static void setup(Pane pane) {
+	public static void setup() {
 		newEvent.setPrefSize(140, 30);
 		newEvent.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		newAssignment.setPrefSize(140, 30);
 		newAssignment.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		newAssignment.setTranslateX(3);
+		newAssignment.setTranslateY(65);
+		
+		newEvent.setTranslateX(3);
+		newEvent.setTranslateY(100);
+		
 		pane.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #999999;");
 		addTask = new Button("New Task");
 		Font f1 = new Font(20);
@@ -63,15 +70,25 @@ public class DisplayList {
 		top = new Rectangle(700, 60);
 		top.setFill(Color.rgb(96, 96, 96));
 		pane.getChildren().addAll(top, addTask, calendarView);
+		addTask.setOnMouseClicked((e) -> {
+
+			if(!(pane.getChildren().contains(newAssignment) && pane.getChildren().contains(newEvent))) {
+				pane.getChildren().addAll(newEvent, newAssignment);
+			}
+			else {
+				pane.getChildren().removeAll(newEvent, newAssignment);
+			}
+
+		});
 	
 	}
 	
-	public static void displayTasks(Pane pane) {
+	public static void displayTasks() {
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setPrefSize(680, 100);
 			list.get(i).setTranslateX(10);
 			list.get(i).setTranslateY(65 + (i * 100));
-			if( !List.list.get(i).isEvent && ((Assignment)List.list.get(i)).getPriority()){				
+			if( List.list.get(i).isAssignment() && ((Assignment)List.list.get(i)).getPriority()){				
 				list.get(i).setStyle("-fx-border-color: #990000; -fx-border-width: 5px; -fx-background-color: #5e5e5e;");
 			}
 			else {
@@ -88,7 +105,7 @@ public class DisplayList {
 			pane.getChildren().removeAll(top, addTask, calendarView);
 			pane.getChildren().addAll(top, addTask, calendarView);
 
-			if(!List.list.get(i).isEvent) {
+			if(List.list.get(i).isAssignment()) {
 			int count = i;
 			String name = List.list.get(i).name;
 			String description = List.list.get(i).description;
@@ -99,16 +116,16 @@ public class DisplayList {
 			int month = date.month;
 			int day = date.day; 
 			list.get(i).setOnAction(e ->{
-				displayTask.newThing = false;
+				DisplayTask.newThing = false;
 					buttonIndex = count;
-					Main.liststack.getChildren().add(displayTask.newAssignment);
-					displayTask.assignmentname.setText(name);
-					displayTask.assignDescription.setText(description);
-					displayTask.subject.setText(subject);
-					displayTask.high.setSelected(highPri);
-					displayTask.regular.setSelected(!highPri);
-					displayTask.highPriority = highPri;
-					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day)); 
+					Main.liststack.getChildren().add(DisplayTask.newAssignment);
+					DisplayTask.assignmentname.setText(name);
+					DisplayTask.assignDescription.setText(description);
+					DisplayTask.subject.setText(subject);
+					DisplayTask.high.setSelected(highPri);
+					DisplayTask.regular.setSelected(!highPri);
+					DisplayTask.highPriority = highPri;
+					DisplayTask.dateAssignment.setValue(LocalDate.of(year,month,day)); 
 			});
 			}
 			
@@ -121,31 +138,31 @@ public class DisplayList {
 				int year = date.year;
 				int month = date.month;
 				int day = date.day;
-				displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
+				DisplayTask.dateEvent.setValue(LocalDate.of(year, month, day));
 				int hour = date.getHour();
 				int min = date.minute;
 				boolean morn = date.isMorining();
 				
 				list.get(i).setOnAction(e ->{
-					displayTask.newThing = false;
+					DisplayTask.newThing = false;
 					buttonIndex = count;
-					displayTask.newThing = false;
-					Main.liststack.getChildren().add(displayTask.newEvent);
-					displayTask.eventname.setText(name);
-					displayTask.eventDescription.setText(description);
-					displayTask.location.setText(location);
-					displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
+					DisplayTask.newThing = false;
+					Main.liststack.getChildren().add(DisplayTask.newEvent);
+					DisplayTask.eventname.setText(name);
+					DisplayTask.eventDescription.setText(description);
+					DisplayTask.location.setText(location);
+					DisplayTask.dateEvent.setValue(LocalDate.of(year, month, day));
 			
-					displayTask.minute.setText(min+"");
+					DisplayTask.minute.setText(min+"");
 					if(morn){
-						displayTask.am.setSelected(true);
-						displayTask.pm.setSelected(false);
-						displayTask.hour.setText(hour+"");
+						DisplayTask.am.setSelected(true);
+						DisplayTask.pm.setSelected(false);
+						DisplayTask.hour.setText(hour+"");
 					}
 					else{
-						displayTask.am.setSelected(false);
-						displayTask.pm.setSelected(true);
-						displayTask.hour.setText(hour+"");
+						DisplayTask.am.setSelected(false);
+						DisplayTask.pm.setSelected(true);
+						DisplayTask.hour.setText(hour+"");
 					}
 
 				});

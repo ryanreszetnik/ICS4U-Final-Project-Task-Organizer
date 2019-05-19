@@ -12,20 +12,17 @@ public class List {
 
 	public static void addEvent(Task a) {
 		list.add(a);
-		a.isEvent = true;
 		DisplayList.addTask(a);
-		displayCalendar.addTask(a);
+		DisplayCalendar.addTask(a);
 	}
 	
 	public static void addAssignment(Task a) {
 		list.add(a);
-		a.isEvent = false;
 		DisplayList.addTask(a);
-		displayCalendar.addTask(a);
+		DisplayCalendar.addTask(a);
 	}
 	
 	public static void updateEvent(Task a) {
-		a.isEvent = true;
 		if(DisplayList.buttonIndex < list.size()-1) {
 			list.remove(DisplayList.buttonIndex);
 			list.add(DisplayList.buttonIndex, a);
@@ -38,7 +35,6 @@ public class List {
 	}
 	
 	public static void updateAssignment(Task a) {
-		a.isEvent = false;
 		if(DisplayList.buttonIndex < list.size()-1) {
 			list.remove(DisplayList.buttonIndex);
 			list.add(DisplayList.buttonIndex, a);
