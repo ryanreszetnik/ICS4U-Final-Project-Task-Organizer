@@ -16,10 +16,12 @@ public class Main extends Application {
 	static Pane newEvent = new Pane();
 	static Pane newAssignment = new Pane();
 	static Pane list = new Pane();
+	static Pane instructionView = new Pane();
 	static StackPane calendarstack = new StackPane();
 	static StackPane liststack = new StackPane();
 	static Scene calendarview = new Scene(calendarstack, 130 * 7, 100 * 6 + 95);
 	static Scene listview = new Scene(liststack, 700, 900);
+	static Scene instructionScene = new Scene(instructionView, 700, 900);
 	static boolean onListView = true;
 	static boolean canCreate = true;
 	static boolean requiredFields = false;
@@ -34,6 +36,7 @@ public class Main extends Application {
 			liststack.getChildren().add(list);
 			calendarview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			listview.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			instructionScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			DisplayTask.newEvent = newEvent;
 			DisplayTask.newAssignment = newAssignment;
 			DisplayCalendar.root = cal;
@@ -43,6 +46,7 @@ public class Main extends Application {
 			DisplayTask.displayEvent();
 			DisplayList.setup();
 			DisplayCalendar.setup();
+			Instructions.setup(instructionView);
 
 			primaryStage.setScene(listview);
 			primaryStage.show();
@@ -70,6 +74,16 @@ public class Main extends Application {
 				newAssignment.setTranslateY(150);
 				onListView = false;
 				DisplayCalendar.displayTasks();
+			});
+			
+			//List --> Instructions
+			DisplayList.toInstructions.setOnMouseClicked(event ->{
+				primaryStage.setScene(instructionScene);
+			});
+			
+			//Instructions --> List
+			Instructions.toList.setOnMouseClicked(event -> {
+				primaryStage.setScene(listview);
 			});
 
 			newEventButtons();

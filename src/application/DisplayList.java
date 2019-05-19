@@ -19,11 +19,11 @@ public class DisplayList {
 	static String[] values = {"Add New Task", "Event", "Assignment"};
 	static Button newEvent = new Button("New Event");
 	static Button newAssignment = new Button("New Assignment");
+	static Button toInstructions = new Button("Switch to Instructions");
 	static boolean isAssignment;
 	static boolean exists;
 	static int buttonIndex;
 	static Rectangle top;
-	
 	
 
 	public static void addButton(Button a) {
@@ -45,6 +45,10 @@ public class DisplayList {
 		newAssignment.setStyle("-fx-border-color: #aaaaaa; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
 		newAssignment.setTranslateX(3);
 		newAssignment.setTranslateY(65);
+		
+		toInstructions.setStyle("-fx-border-color: #000000; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+		toInstructions.setPrefHeight(60);
+		toInstructions.setTranslateX(250);
 		
 		newEvent.setTranslateX(3);
 		newEvent.setTranslateY(100);
@@ -68,7 +72,7 @@ public class DisplayList {
 
 		top = new Rectangle(700, 60);
 		top.setFill(Color.rgb(96, 96, 96));
-		pane.getChildren().addAll(top, addTask, calendarView);
+		pane.getChildren().addAll(top, addTask, calendarView, toInstructions);
 		addTask.setOnMouseClicked((e) -> {
 
 			if(!(pane.getChildren().contains(newAssignment) && pane.getChildren().contains(newEvent))) {
@@ -101,8 +105,8 @@ public class DisplayList {
 			}
 			
 
-			pane.getChildren().removeAll(top, addTask, calendarView);
-			pane.getChildren().addAll(top, addTask, calendarView);
+			pane.getChildren().removeAll(top, addTask, calendarView, toInstructions);
+			pane.getChildren().addAll(top, addTask, calendarView, toInstructions);
 
 			if(List.list.get(i).isAssignment()) {
 			int count = i;
