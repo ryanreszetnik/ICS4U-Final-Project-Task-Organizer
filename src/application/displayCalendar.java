@@ -42,7 +42,7 @@ public class displayCalendar {
 	public static Date currDate = new Date();
 	public static Date selectedDate = new Date();
 
-	static int buttonIndex;
+
 
 	public static void setup() {
 
@@ -182,14 +182,13 @@ public class displayCalendar {
 		});
 		for (int i = 1; i < 42; i++) {
 			int count = i;
-			// System.out.println(count);
+
 			days[i].setOnMouseClicked(event -> {
 				if (count >= day1 && count < day1 + monthsize) {
 					selectedDate.day = count - day1 + 1;
 					selectedDate.month = currDate.month;
 					selectedDate.year = currDate.year;
-					// System.out.println(Calendar.monthName(currDate.month)+"
-					// "+(count-day1+1)+" "+currDate.year);
+		
 					newEvent.setTranslateX(days[count].getTranslateX());
 					newAssignment.setTranslateX(days[count].getTranslateX());
 					newEvent.setTranslateY(days[count].getTranslateY() + buttonsizey);
@@ -218,6 +217,7 @@ public class displayCalendar {
 				hasTask[i][p] = 0;
 			}
 		}
+
 		for (int i = 0; i < tasks.size(); i++) {
 			if (root.getChildren().contains(tasks.get(i))) {
 				root.getChildren().remove(tasks.get(i));
@@ -225,12 +225,14 @@ public class displayCalendar {
 
 			if (List.list.get(i).date.month == currDate.month && List.list.get(i).date.year == currDate.year) {
 				String day = "" + List.list.get(i).date.day;
+			
 				tasks.get(i).setPrefSize(buttonsizex, buttonsizey / 5);
-				// System.out.println(dayPos(day));
+			
 				tasks.get(i).setTranslateX(dayPos(day) % 7 * buttonsizex);
 				tasks.get(i).setTranslateY(
 						dayPos(day) / 7 * buttonsizey + 115 + hasTask[dayPos(day) % 7][dayPos(day) / 7] * 25);
 				hasTask[dayPos(day) % 7][dayPos(day) / 7]++;
+				
 				root.getChildren().add(tasks.get(i));
 			}
 
@@ -238,7 +240,7 @@ public class displayCalendar {
 		for (int i = 0; i < tasks.size(); i++) {
 
 			if (!List.list.get(i).isEvent) {
-				buttonIndex = i;
+				
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
 				String subject = ((Assignment) (List.list.get(i))).getSubject();
@@ -250,7 +252,8 @@ public class displayCalendar {
 				int count = i;
 
 				tasks.get(i).setOnAction(e -> {
-					buttonIndex = count;
+					DisplayList.buttonIndex = count;
+				
 					displayTask.newThing = false;
 					Main.calendarstack.getChildren().add(displayTask.newAssignment);
 					displayTask.assignmentname.setText(name);
@@ -269,7 +272,7 @@ public class displayCalendar {
 				int year = date.year;
 				int month = date.month;
 				int day = date.day;
-			//	System.out.println("hour:" + date.hour);
+			
 				int hour = date.getHour();
 				int min = date.minute;
 				boolean morn = date.isMorining();
@@ -277,7 +280,7 @@ public class displayCalendar {
 				tasks.get(i).setOnAction(e -> {
 
 					displayTask.newThing = false;
-					buttonIndex = count;
+					DisplayList.buttonIndex = count;
 					Main.calendarstack.getChildren().add(displayTask.newEvent);
 					displayTask.eventname.setText(name);
 					displayTask.eventDescription.setText(description);
@@ -316,7 +319,7 @@ public class displayCalendar {
 	public static void editTasks() {
 		
 		for (int i = 0; i < list.size(); i++) {
-			
+			int count = i; 
 			//Code for if an Assignment is pressed
 			if(!List.list.get(i).isEvent) {
 			DisplayList.buttonIndex = i;
@@ -327,7 +330,7 @@ public class displayCalendar {
 			int year = date.year;
 			int month = date.month;
 			int day = date.day;
-			int count = i; 
+			
 			list.get(i).setOnAction(e ->{
 					DisplayList.buttonIndex = count;
 					displayTask.newThing = false;
@@ -341,18 +344,18 @@ public class displayCalendar {
 			
 			//Code for if an Event is pressed
 			else {
-				int count = i;
+				
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
 				String location = ((Event)(List.list.get(i))).getLocation();
-				Date date = List.list.get(i).date;
-				int year = date.year;
-				int month = date.month;
-				int day = date.day;
+				Date daytoadd = List.list.get(i).date;
+				int year = daytoadd.year;
+				int month = daytoadd.month;
+				int day = daytoadd.day;
 				displayTask.dateEvent.setValue(LocalDate.of(year, month, day));
-				int hour = date.getHour();
-				int min = date.minute;
-				boolean morn = date.isMorining();
+				int hour = daytoadd.getHour();
+				int min = daytoadd.minute;
+				boolean morn = daytoadd.isMorining();
 				
 				list.get(i).setOnAction(e ->{
 					DisplayList.buttonIndex = count;

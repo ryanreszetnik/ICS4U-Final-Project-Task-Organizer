@@ -221,7 +221,7 @@ public class Main extends Application {
 				int yr = displayTask.dateAssignment.getValue().getYear();
 				int mo = displayTask.dateAssignment.getValue().getMonthValue();
 				int day = displayTask.dateAssignment.getValue().getDayOfMonth();
-				System.out.println(displayTask.assignDescription.getText());
+			
 				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.assignDescription.getText(),
 						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
 
@@ -277,21 +277,22 @@ public class Main extends Application {
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(), 
 						displayTask.location.getText(), yr, mo, day,hr,min);
-				
+			
 				if(displayTask.newThing) {
 					List.addEvent(a);
-				}
-				
-				else{ 
+				}else{ 
 					List.updateEvent(a);
+			
 					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
+					displayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks(list);
 				} else {
-					displayCalendar.displayTasks();
+					
 					calendarstack.getChildren().remove(newEvent);
+					displayCalendar.displayTasks();
 
 				}
 				
