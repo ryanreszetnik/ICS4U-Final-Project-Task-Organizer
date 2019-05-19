@@ -25,9 +25,5 @@ public class List {
 			list.add(a);
 		}
 	}
-	
-	
-
-
 
 }

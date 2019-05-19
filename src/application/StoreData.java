@@ -15,16 +15,12 @@ import javafx.scene.layout.Pane;
 public class StoreData {
 
 	public static void readFile() {
-
+		
 		BufferedReader br = null;
-
-		// defines the buffered reader
-		String scores = "";
-		// string for all of the scores
-		// scoresList.clear();
-
+		
 		File f = new File("Tasks");
 		try {
+			//
 			if (f.exists() == false) {// if the file doesn't exist
 				PrintWriter writer = new PrintWriter("Tasks");// makes
 																// a
