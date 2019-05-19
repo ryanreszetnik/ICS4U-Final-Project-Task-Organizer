@@ -13,9 +13,7 @@ public class Event extends Task{
 		location = loc;
 		date = new Date(year, month, day, hour, minute);
 	}
-	public void display() {
-			
-	}
+
 	
 	public void setLocation(String location) {
 		this.location = location;
@@ -27,5 +25,7 @@ public class Event extends Task{
 	public boolean isAssignment() {
 		return false;
 	}
-	
+	public String toString(){
+		return "Name: "+name +"   Date: "+date.getDate()+ " @ " + date.getTime();
+	}
 }

@@ -4,14 +4,11 @@ public abstract class Task {
 	public String name;
 	public String description;
 	public Date date;
-	public boolean isEvent;
 	boolean hasTime = false;
 	
-	public abstract void display();
 	public void setTime(int hour, int min) {
 		date.setTime(hour, min);
 		hasTime = true;
-
 	}
 	public String Format(){
 		return name + date.getTime();		
@@ -28,9 +25,8 @@ public abstract class Task {
 	public void changeDate(int year, int month, int day){
 		date.setDate(year, month, day);
 	}
-	public String toString(){
-		return "Name: "+name +"   Date: "+date.toString();
-	}
+	
+	public abstract String toString();
 	
 	
 	

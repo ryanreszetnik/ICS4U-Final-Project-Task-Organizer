@@ -7,6 +7,7 @@ public class Calendar {
 	public ArrayList<Task> tasks = new ArrayList<>();
 	
 	public static int weekDay(int day, int month, int year){
+		//returns the day of the week for any given date
 		int century = year/100;
 		int yr = year%100;
 		if(month < 3){//january and feburary treated as previous year for formula
@@ -15,16 +16,15 @@ public class Calendar {
 		}
 		month-=2;//every month shifted back 2 months so march is considered month 1
 		int wd = (int) ((day+Math.floor(2.6*month-0.2)-2*century+yr+Math.floor(yr/4)+Math.floor(century/4))%7);
-		if(wd < 0){
+		//wonky formula that somehow gives the day of the week
+		if(wd < 0){//sometimes returns - numbers but it is just based on Sunday being 0
 			wd+=7;
 		}
 		return wd;//returns 0-6 for Sunday - Saturday
 	}
-	public static String dayName(int day, int month, int year){
-		int wd = weekDay(day, month, year);
-		return dayName(wd);
-	}
+	
 	public static String dayName(int weekDay){
+		//converts day # in the week to the name
 		String name = "";
 		switch(weekDay){
 		case 0:
@@ -52,6 +52,8 @@ public class Calendar {
 		return name;
 	}
 	public static int monthSize(int month, int year){
+		
+		// sets the size of the month in the pattern the lengths appear
 		int size = 0;
 		if(month > 7){
 			month--;
@@ -62,7 +64,8 @@ public class Calendar {
 			size = 31;
 		}
 		
-		if(month == 2){//feburary
+		
+		if(month == 2){//if the month is feburary, it checks for leap years
 			size = 28;
 			if(year%4==0 && year%100 != 0 || year% 400 ==0){// if it is a leap year
 				size = 29;
@@ -71,6 +74,7 @@ public class Calendar {
 		return size;
 	}
 	public static String monthName(int month){
+		//converts month # in the year to the name
 		String name = "";
 		switch(month){
 		case 1:

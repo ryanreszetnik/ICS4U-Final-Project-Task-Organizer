@@ -3,12 +3,6 @@ package application;
 public class Assignment extends Task{
 	private boolean priority;
 	private String subject;
-
-	
-	
-	public Assignment() {
-		
-	}
 	
 	public Assignment(String name, String description, String subject, boolean priority, int year, int month, int day) {
 		this.name = name;
@@ -18,29 +12,26 @@ public class Assignment extends Task{
 		this.date = new Date(year, month, day);
 	}
 	
-	public void setSubject(String subject) {
+	public void setSubject(String subject) {// sets the subject
 		this.subject = subject;
 	}
-	public String getSubject() {
+	public String getSubject() {// gets the subject
 		return subject;
 	}
 	
-	public void setPriority(boolean priority){
+	public void setPriority(boolean priority){// sets the priority
 		this.priority = priority;
 	}
-	public boolean getPriority() {
+	public boolean getPriority() {// gets the priority
 		return priority;
 	}
 	
 
 	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isAssignment() {
+	public boolean isAssignment() {// always returns true since it is an assignmnet
 		return true;
+	}
+	public String toString(){
+		return "Name: "+name +"   Date: "+date.getDate();
 	}
 }

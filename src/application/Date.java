@@ -87,10 +87,6 @@ public class Date {
 
 	}
 
-	public String toString() {
-		return getDate() + getTime();
-	}
-
 	public String getTime() {
 		String time = "";
 		String morning = " am";

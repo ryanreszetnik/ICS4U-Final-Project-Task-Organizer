@@ -128,7 +128,7 @@ public class StoreData {
 				data += lineArray.length + "\n";
 				data += temp.description + "\n";
 				data += temp.date.toFile();
-				if(temp.isEvent){
+				if(!temp.isAssignment()){
 					data += ((Event)(temp)).getLocation() +"\n";
 					data+= "event\n";
 				}else{
