@@ -64,6 +64,7 @@ public class StoreData {
 				}
 
 				else{
+					
 					switch (counter) {
 					case 0:
 						name = CurrentLine;
@@ -73,9 +74,10 @@ public class StoreData {
 						discCounter = 0;
 						break;
 					case 2:
-						desc +=CurrentLine + "\n";
+						desc +=CurrentLine;
 						discCounter++;
 						if(discCounter < discLength){
+							desc+="\n";
 							counter--;
 						}
 						break;

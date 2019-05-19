@@ -221,6 +221,7 @@ public class Main extends Application {
 				int yr = displayTask.dateAssignment.getValue().getYear();
 				int mo = displayTask.dateAssignment.getValue().getMonthValue();
 				int day = displayTask.dateAssignment.getValue().getDayOfMonth();
+
 				Task a = new Assignment(displayTask.assignmentname.getText(), displayTask.assignDescription.getText(),
 						displayTask.subject.getText(), displayTask.highPriority, yr, mo, day);
 
@@ -228,14 +229,16 @@ public class Main extends Application {
 					List.addAssignment(a);
 				}
 				else {
+					
 					List.updateAssignment(a);
 					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
 					displayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
 
+
 				if (onListView) {
-					liststack.getChildren().remove(newAssignment);
 					DisplayList.displayTasks(list);
+					liststack.getChildren().remove(newAssignment);
 				} else {
 					displayCalendar.displayTasks();
 					calendarstack.getChildren().remove(newAssignment);
@@ -276,21 +279,28 @@ public class Main extends Application {
 
 				Task a = new Event(displayTask.eventname.getText(), displayTask.eventDescription.getText(), 
 						displayTask.location.getText(), yr, mo, day,hr,min);
-				
+			
 				if(displayTask.newThing) {
 					List.addEvent(a);
-				}
-				
-				else{ 
+				}else{ 
 					List.updateEvent(a);
+			
 					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
+					displayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
 				if (onListView) {
 					liststack.getChildren().remove(newEvent);
 					DisplayList.displayTasks(list);
 				} else {
+
+					
 					calendarstack.getChildren().remove(newEvent);
 					displayCalendar.displayTasks();
+
+
+					calendarstack.getChildren().remove(newEvent);
+					displayCalendar.displayTasks();
+
 				}
 				
 				displayTask.eventname.clear();

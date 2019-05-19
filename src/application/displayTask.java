@@ -195,11 +195,11 @@ public class displayTask {
 		
 		
 		high.setOnMouseClicked(event ->{
-			((Assignment)List.list.get(DisplayList.buttonIndex)).setPriority(true);
+			
 			highPriority = true;
 		});
 		regular.setOnMouseClicked(event ->{
-			((Assignment)List.list.get(DisplayList.buttonIndex)).setPriority(false);
+			
 			highPriority = false;
 		});
 		
