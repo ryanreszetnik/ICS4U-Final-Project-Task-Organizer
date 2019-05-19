@@ -147,7 +147,7 @@ public class DisplayList {
 				
 				//The actual eventhandler for when the button is pressed
 				list.get(i).setOnAction(e ->{
-					//The code in here fills out the 
+					//The code in here fills out the DisplayTask "form" depending on the variables initialized above
 					DisplayTask.newThing = false;
 					buttonIndex = count;
 					Main.liststack.getChildren().add(DisplayTask.newAssignment);
@@ -161,7 +161,9 @@ public class DisplayList {
 				});
 			}
 			
+			//This else statement is very similar to the if before it, but with a few changes to support event data
 			else {
+				//All the necessarily variables are created here. There is location instead of subject in an event 
 				int count = i;
 				String name = List.list.get(i).name;
 				String description = List.list.get(i).description;
