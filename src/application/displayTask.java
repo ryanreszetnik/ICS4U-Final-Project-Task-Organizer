@@ -186,6 +186,7 @@ public class displayTask {
 		regular.setToggleGroup(hl);
 		high.setToggleGroup(hl);
 		regular.setSelected(true);
+		highPriority = false;
 		regular.setTranslateY(25);
 		regular.setTranslateX(440);
 		high.setTranslateY(25);
