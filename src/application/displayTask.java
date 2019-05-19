@@ -245,7 +245,9 @@ public class DisplayTask {
 			return false;
 		}
 		if(contains(hour.getText(),"0123456789") && contains(minute.getText(),"0123456789")){
-			return true;
+			if(Integer.valueOf(hour.getText())<= 12 && Integer.valueOf(minute.getText()) <=  59){
+				return true;
+			}
 		}
 		return false;
 	}
