@@ -93,6 +93,7 @@ public class DisplayList {
 			String name = List.list.get(i).name;
 			String description = List.list.get(i).description;
 			String subject = ((Assignment)(List.list.get(i))).getSubject();
+			boolean highPri = ((Assignment)(List.list.get(i))).getPriority();
 			Date date = List.list.get(i).date;
 			int year = date.year;
 			int month = date.month;
@@ -104,6 +105,9 @@ public class DisplayList {
 					displayTask.assignmentname.setText(name);
 					displayTask.assignDescription.setText(description);
 					displayTask.subject.setText(subject);
+					displayTask.high.setSelected(highPri);
+					displayTask.regular.setSelected(!highPri);
+					displayTask.highPriority = highPri;
 					displayTask.dateAssignment.setValue(LocalDate.of(year,month,day)); 
 			});
 			}

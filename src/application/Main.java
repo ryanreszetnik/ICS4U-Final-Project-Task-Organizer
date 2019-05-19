@@ -229,14 +229,16 @@ public class Main extends Application {
 					List.addAssignment(a);
 				}
 				else {
+					
 					List.updateAssignment(a);
 					DisplayList.list.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).toString());
 					displayCalendar.tasks.get(DisplayList.buttonIndex).setText(List.list.get(DisplayList.buttonIndex).Format());
 				}
 
+
 				if (onListView) {
-					liststack.getChildren().remove(newAssignment);
 					DisplayList.displayTasks(list);
+					liststack.getChildren().remove(newAssignment);
 				} else {
 					displayCalendar.displayTasks();
 					calendarstack.getChildren().remove(newAssignment);

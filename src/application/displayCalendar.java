@@ -222,6 +222,12 @@ public class displayCalendar {
 			if (root.getChildren().contains(tasks.get(i))) {
 				root.getChildren().remove(tasks.get(i));
 			}
+			if( !List.list.get(i).isEvent && ((Assignment)List.list.get(i)).getPriority()){				
+				tasks.get(i).setStyle("-fx-border-color: #990000; -fx-border-width: 5px; -fx-background-color: #5e5e5e;");
+			}
+			else {
+				tasks.get(i).setStyle("-fx-border-color: #303030; -fx-border-width: 1px; -fx-background-color: #5e5e5e;");
+			}
 
 			if (List.list.get(i).date.month == currDate.month && List.list.get(i).date.year == currDate.year) {
 				String day = "" + List.list.get(i).date.day;
@@ -248,12 +254,14 @@ public class displayCalendar {
 				int year = date.year;
 				int month = date.month;
 				int day = date.day;
-				Boolean priority = ((Assignment) List.list.get(i)).getPriority();
+				boolean highPri = ((Assignment) List.list.get(i)).getPriority();
 				int count = i;
 
 				tasks.get(i).setOnAction(e -> {
 					DisplayList.buttonIndex = count;
-				
+					displayTask.high.setSelected(highPri);
+					displayTask.regular.setSelected(!highPri);
+					displayTask.highPriority = highPri;
 					displayTask.newThing = false;
 					Main.calendarstack.getChildren().add(displayTask.newAssignment);
 					displayTask.assignmentname.setText(name);
